@@ -45,10 +45,6 @@ class UserProfileSignalReciever:
     @classmethod
     def updated(cls, sender, instance, created, *args, **kwargs):
         if not created:
-            instance.user.first_name = instance.first_name
-            instance.user.last_name = instance.last_name
-            instance.user.save()
-
             logger.info(f"Profile for user: '{instance.user.email}' updated.")
 
 

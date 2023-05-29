@@ -1,11 +1,11 @@
 class UserModelChoices:
     user = "User"
-    moderator = "Moderator"
+    accountant = "Accountant"
     admin = "Administrator"
 
     USER_TYPE_CHOICES = (
         (user, user),
-        (moderator, moderator),
+        (accountant, accountant),
         (admin, admin)
     )
 
@@ -18,3 +18,18 @@ class UserModelChoices:
         (male, male),
         (other, other)
     )
+
+    PDF = "pdf"
+    JPG = "jpg"
+    JPEG = "jpeg"
+    PNG = "png"
+
+    ALLOWED_FILE_EXTENSIONS = (PNG, JPG, JPEG, PNG)
+
+class AddressChoices:
+    PDF = "pdf"
+    JPG = "jpg"
+    JPEG = "jpeg"
+    PNG = "png"
+
+    ALLOWED_FILE_EXTENSIONS = (PNG, JPG, JPEG, PNG)

@@ -14,3 +14,6 @@ class FormatRegex:
     # 1 UC char, 1 LC char, 1 NUM char; between 8 to 15 chars
     PASSWORD_REGEX = re.compile(
         r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$')
+    
+    PAN_CARD_REGEX = re.compile(r'^([A-Z]{5})([0-9]{4})([A-Z]{1})')
+    PIN_REGEX = re.compile(r'^([1-9]{1})([0-9]{5})')

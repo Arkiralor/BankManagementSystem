@@ -11,6 +11,7 @@ from django.utils import timezone
 
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 
 from core.boilerplate.response_template import Resp
 from core.settings import MAC_HEADER
@@ -30,7 +31,7 @@ class JWTUtils:
     """
     @classmethod
     def get_tokens_for_user(cls, user: User = None):
-        refresh = RefreshToken.for_user(user)
+        refresh: OutstandingToken = RefreshToken.for_user(user)
 
         return {
             'refreshToken': str(refresh),

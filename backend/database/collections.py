@@ -7,6 +7,3 @@ class DatabaseCollections:
     user_ips = "userIpAdresses"
     user_mac_addresses = "userMacAddress"
     user_white_listed_ips = "userWhitelistedIps"
-
-    user_posts = "userPosts"
-    content_tags = "contentTags"
