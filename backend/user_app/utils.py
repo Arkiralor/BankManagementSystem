@@ -138,7 +138,7 @@ class UserModelUtils:
         ).exists()
 
     @classmethod
-    def create(cls, data: dict = None, user_type: str = UserModelChoices.user, *args, **kwargs) -> Resp:
+    def create(cls, data: dict = None, user_type: str = UserModelChoices.teller, *args, **kwargs) -> Resp:
         """
         Register a new user in the system.
         """

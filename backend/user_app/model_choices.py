@@ -1,11 +1,11 @@
 class UserModelChoices:
-    user = "User"
+    teller = "Teller"
     accountant = "Accountant"
     admin = "Administrator"
 
     USER_TYPE_CHOICES = (
-        (user, user),
         (accountant, accountant),
+        (teller, teller),
         (admin, admin)
     )
 
