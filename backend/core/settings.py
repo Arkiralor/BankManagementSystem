@@ -98,7 +98,7 @@ if ENV_TYPE == "dev":
     SIMPLE_JWT["REFRESH_TOKEN_LIFETIME"] = timedelta(days=15)
 
 
-## Create directory for logs
+# Create directory for logs
 LOG_DIR = path.join(BASE_DIR.parent, 'logs/')
 if not path.exists(LOG_DIR):
     makedirs(LOG_DIR)
@@ -133,7 +133,7 @@ LOGGING = {
     'loggers': {
         'root': {
             'handlers': [
-                'console', 
+                'console',
                 'root_file'
             ],
             "level": 'INFO'
@@ -149,8 +149,38 @@ TIME_ZONE = environ.get("TIME_ZONE", "utc")
 USE_I18N = eval(environ.get("USE_I18N", "True"))
 USE_TZ = eval(environ.get("USE_TZ", "True"))
 
-STATIC_URL = '/static/'
-STATIC_ROOT = 'static'
+AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_REGION_NAME = environ.get("AWS_REGION_NAME")
+
+USE_AWS_S3 = eval(environ.get("USE_AWS_S3", "True"))
+if USE_AWS_S3:
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400"
+    }
+    # s3 static settings
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = "core.file_storage.MediaStorage"
+
+    AWS_S3_FILE_OVERWRITE = True
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = path.join(BASE_DIR, 'mediafiles')
+
+STATICFILES_DIRS = (
+    path.join(BASE_DIR, 'staticfiles'),
+)
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_app.User'
 CORS_ORIGIN_WHITELIST = environ.get('CORS_ORIGIN_WHITELIST', '').split(', ')

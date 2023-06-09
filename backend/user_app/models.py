@@ -46,6 +46,13 @@ class User(AbstractUser):
                 allowed_extensions=UserModelChoices.ALLOWED_FILE_EXTENSIONS)
         ]
     )
+    address_proof = models.ImageField(
+        upload_to="media/address_proof",
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=UserModelChoices.ALLOWED_FILE_EXTENSIONS)
+        ]
+    )
 
     unsuccessful_login_attempts = models.PositiveIntegerField(
         default=0,
@@ -100,13 +107,6 @@ class Address(TemplateModel):
         max_length=7, 
         blank=True, 
         null=True
-    )
-    proof = models.ImageField(
-        upload_to="media/address_proof",
-        validators=[
-            FileExtensionValidator(
-                allowed_extensions=AddressChoices.ALLOWED_FILE_EXTENSIONS)
-        ]
     )
 
     def save(self, *args, **kwargs):

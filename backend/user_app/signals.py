@@ -23,7 +23,13 @@ class UserSignalReciever:
 
     @classmethod
     def pre_delete(cls, sender, instance, *args, **kwargs):
-        _ = UserModelUtils.insert_deleted_user_into_mongo(data=ShowUserSerializer(instance=instance).data)
+        _ = UserModelUtils.insert_deleted_user_into_mongo(
+            data=ShowUserSerializer(instance=instance).data)
+
+    @classmethod
+    def post_delete(cls, sender, instance, *args, **kwargs):
+        _ = instance.id_proof.delete(save=False)
+        _ = instance.address_proof.delete(save=False)
 
 
 post_save.connect(receiver=UserSignalReciever.created,
@@ -32,6 +38,8 @@ post_save.connect(receiver=UserSignalReciever.updated,
                   sender=UserSignalReciever.model)
 pre_delete.connect(receiver=UserSignalReciever.pre_delete,
                    sender=UserSignalReciever.model)
+post_delete.connect(receiver=UserSignalReciever.post_delete,
+                    sender=UserSignalReciever.model)
 
 
 class UserProfileSignalReciever:
