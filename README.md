@@ -1,6 +1,6 @@
 # Repository Boilerplate
 
-A boilerplate that can be used as a template for quickly setting up a repository for a web application with the following stacks:
+A system to manage a commercial bank with the following stacks:
 
 1. __Backend__ in [_Django_](https://www.djangoproject.com/) & [_Django Restframework_](https://www.django-rest-framework.org/)
 2. __Frontend__ in [_ReactJS_](https://react.dev/)
