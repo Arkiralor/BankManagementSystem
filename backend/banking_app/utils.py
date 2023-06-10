@@ -8,17 +8,22 @@ from banking_app.models import Account, Transaction
 from banking_app.model_choices import AccountChoice
 
 
-def account_number_generator(ac_type: str = AccountChoice.savings):
-    if ac_type == AccountChoice.savings:
-        return f"SB{uuid4()}".replace("-", "").upper()
-    elif ac_type == AccountChoice.current:
-        return f"CX{uuid4()}".replace("-", "").upper()
+def account_number_generator(ac_type: str = AccountChoice.savings) -> str:
+    account_type_prefixes = {
+        AccountChoice.savings: "SB",
+        AccountChoice.current: "CX",
+        AccountChoice.loan: "LN",
+        AccountChoice.credit: "CR",
+    }
 
-    else:
-        raise ValueError("Something went wrong.")
+    prefix = account_type_prefixes.get(ac_type)
+    if prefix is None:
+        raise ValueError("Invalid account type")
+
+    return f"{prefix}{uuid4().hex.upper()}"
 
 
-def get_raw_account_statement(account: Account = None, date_from: date = None, date_to: date = None, *args, **kwargs) -> QuerySet[Transaction]:
+def get_account_transactions(account: Account = None, date_from: date = None, date_to: date = None, *args, **kwargs) -> QuerySet[Transaction]:
 
     if account is None or not isinstance(account, Account):
         raise ValueError("Invalid account provided")

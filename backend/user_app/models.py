@@ -160,8 +160,7 @@ class UserProfile(TemplateModel):
         if self.last_name:
             self.last_name = self.last_name.title()
         if self.middle_name and len(self.middle_name) > 0:
-            for name in self.middle_name:
-                name = name.title()
+            self.middle_name = [name.title() for name in self.middle_name]
 
         if self.date_of_birth:
             res = timezone.now().date() - self.date_of_birth

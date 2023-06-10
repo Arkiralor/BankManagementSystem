@@ -22,6 +22,16 @@ class CustomerChoice:
         (driving_license, driving_license)
     )
 
+    female = "Female"
+    male = "Male"
+    other = "Other"
+
+    GENDER_CHOICES = (
+        (female, female),
+        (male, male),
+        (other, other)
+    )
+
     PDF = "pdf"
     JPG = "jpg"
     JPEG = "jpeg"

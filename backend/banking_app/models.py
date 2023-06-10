@@ -1,7 +1,7 @@
 from django.db import models
 
 from core.boilerplate.model_template import TemplateModel
-from banking_app.model_choices import AccountChoice
+from banking_app.model_choices import AccountChoice, TransactionChoice
 from banking_app.utils import account_number_generator
 from kyc_app.models import Customer
 
@@ -13,6 +13,9 @@ class Account(TemplateModel):
     balance = models.DecimalField(decimal_places=2)
     account_type = models.CharField(max_length=16, choices=AccountChoice.ACCOUNT_TYPES)
 
+    def __str__(self):
+        return self.account_number
+
     def credit(self, amount:float, *args, **kwargs):
         self.balance = self.balance + amount
         self.save()
@@ -21,13 +24,26 @@ class Account(TemplateModel):
         self.balance = self.balance - amount
         self.save()
 
+    
+    class Meta:
+        verbose_name = "Bank Account"
+        verbose_name_plural = "Bank Accounts"
+        ordering = ("-created",)
+
 class Transaction(TemplateModel):
     source = models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True)
     destination = models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True)
     amount = models.DecimalField(decimal_places=2)
+    transaction_type = models.CharField(max_length=TransactionChoice.TRANSACTION_TYPE)
 
-    def __init__(self, *args, **kwargs):
-        self.source.debit(amount=self.amount)
-        self.destination.credit(amount=self.amount)
+    def __str__(self):
+        return self.pk
 
-        super(Transaction, self).__init__(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            if self.source:
+                self.source.debit(amount=self.amount)
+            if self.destination:
+                self.destination.credit(amount=self.amount)
+
+        super(Transaction, self).save(*args, **kwargs)

@@ -21,11 +21,11 @@ class Customer(TemplateModel):
     regnal_suffix = models.CharField(
         max_length=10, help_text="I, II, Jr., Sr., etc")
     date_of_birth = models.DateField(blank=True, null=True)
+    gender = models.CharField(max_length=16, choices=CustomerChoice.GENDER_CHOICES)
 
     def save(self, *args, **kwargs):
         self.first_name = self.first_name.title()
-        for name in self.middle_name:
-            name = name.title()
+        self.middle_name = [name.title() for name in self.middle_name]
         self.last_name = self.last_name.title()
         self.regnal_suffix = self.regnal_suffix.upper()
 
