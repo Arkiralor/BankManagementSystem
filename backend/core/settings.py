@@ -173,9 +173,9 @@ if USE_AWS_S3:
     AWS_S3_FILE_OVERWRITE = True
 else:
     STATIC_URL = '/static/'
-    STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
+    STATIC_ROOT = path.join(BASE_DIR, 'static')
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = path.join(BASE_DIR, 'mediafiles')
+    MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = (
     path.join(BASE_DIR, 'staticfiles'),
