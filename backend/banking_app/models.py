@@ -10,7 +10,7 @@ class Account(TemplateModel):
     account_type = models.CharField(max_length=16, choices=AccountChoice.ACCOUNT_TYPES)
     ## The ID is for internal referencing (within the backend);
     ## The Account Number is for external referencing (outside the backend).
-    account_number = models.CharField(unique=True, default=partial(account_number_generator, account_type), editable=False)
+    account_number = models.CharField(unique=True, default=account_number_generator, editable=False)
     holder = models.ManyToManyField(Customer)
     balance = models.DecimalField(max_digits=16, decimal_places=2)
 

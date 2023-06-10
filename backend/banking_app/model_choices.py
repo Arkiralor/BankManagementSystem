@@ -6,7 +6,9 @@ class AccountChoice:
 
     ACCOUNT_TYPES = (
         (savings, savings),
-        (current, current)
+        (current, current),
+        (loan, loan),
+        (credit, credit)
     )
 
 class TransactionChoice:
