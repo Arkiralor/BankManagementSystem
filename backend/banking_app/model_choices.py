@@ -19,5 +19,6 @@ class TransactionChoice:
 
     TRANSACTION_TYPE = (
         (cash_deposit, cash_deposit),
-        (account_transfer, account_transfer)
+        (account_transfer, account_transfer),
+        (withdrawal, withdrawal)
     )
