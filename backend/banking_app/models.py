@@ -10,7 +10,7 @@ class Account(TemplateModel):
     ## The Account Number is for external referencing (outside the backend).
     account_number = models.CharField(unique=True, default=account_number_generator, editable=False)
     holder = models.ManyToManyField(Customer)
-    balance = models.DecimalField(decimal_places=2)
+    balance = models.DecimalField(max_digits=16, decimal_places=2)
     account_type = models.CharField(max_length=16, choices=AccountChoice.ACCOUNT_TYPES)
 
     def __str__(self):
@@ -31,10 +31,10 @@ class Account(TemplateModel):
         ordering = ("-created",)
 
 class Transaction(TemplateModel):
-    source = models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True)
-    destination = models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True)
-    amount = models.DecimalField(decimal_places=2)
-    transaction_type = models.CharField(max_length=TransactionChoice.TRANSACTION_TYPE)
+    source = models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True, related_name="source_account")
+    destination = models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True, related_name="destination_account")
+    amount = models.DecimalField(max_digits=16, decimal_places=2)
+    transaction_type = models.CharField(max_length=128, choices=TransactionChoice.TRANSACTION_TYPE)
 
     def __str__(self):
         return self.pk
@@ -47,3 +47,8 @@ class Transaction(TemplateModel):
                 self.destination.credit(amount=self.amount)
 
         super(Transaction, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Transaction"
+        verbose_name_plural = "Transactions"
+        ordering = ("-created",)

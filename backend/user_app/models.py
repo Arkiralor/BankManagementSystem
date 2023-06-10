@@ -41,6 +41,8 @@ class User(AbstractUser):
     slug = models.SlugField(max_length=250, null=True, blank=True)
     id_proof = models.ImageField(
         upload_to="media/id_proof",
+        blank=True,
+        null=True,
         validators=[
             FileExtensionValidator(
                 allowed_extensions=UserModelChoices.ALLOWED_FILE_EXTENSIONS)
@@ -48,6 +50,8 @@ class User(AbstractUser):
     )
     address_proof = models.ImageField(
         upload_to="media/address_proof",
+        blank=True,
+        null=True,
         validators=[
             FileExtensionValidator(
                 allowed_extensions=UserModelChoices.ALLOWED_FILE_EXTENSIONS)

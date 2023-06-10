@@ -57,6 +57,8 @@ class KYCDocuments(TemplateModel):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
     photo = models.ImageField(
         upload_to="media/custdocuments/photo",
+        blank=True,
+        null=True,
         validators=[
             FileExtensionValidator(
                 allowed_extensions=CustomerChoice.ALLOWED_FILE_EXTENSIONS)
@@ -66,6 +68,8 @@ class KYCDocuments(TemplateModel):
         max_length=25, choices=CustomerChoice.ID_PROOF_CHOICES)
     id_proof = models.ImageField(
         upload_to="media/custdocuments/id_proof",
+        blank=True,
+        null=True,
         validators=[
             FileExtensionValidator(
                 allowed_extensions=CustomerChoice.ALLOWED_FILE_EXTENSIONS)
@@ -75,6 +79,8 @@ class KYCDocuments(TemplateModel):
         max_length=25, choices=CustomerChoice.ADDRESS_PROOF_CHOICES)
     address_proof = models.ImageField(
         upload_to="media/custdocuments/address_proof",
+        blank=True,
+        null=True,
         validators=[
             FileExtensionValidator(
                 allowed_extensions=CustomerChoice.ALLOWED_FILE_EXTENSIONS)

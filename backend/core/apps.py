@@ -16,5 +16,7 @@ CUSTOM_APPS = [
     'admin_app.apps.AdminAppConfig',
     'communications_app.apps.CommunicationsAppConfig',
     'middleware_app.apps.MiddlewareAppConfig',
+    'banking_app.apps.BankingAppConfig',
+    'kyc_app.apps.KycAppConfig',
     'user_app.apps.UserAppConfig'
 ]
