@@ -1,3 +1,30 @@
 from django.contrib import admin
 
-# Register your models here.
+from banking_app.models import Account, Transaction
+
+@admin.register(Account)
+class AccountAdmin(admin.ModelAdmin):
+    list_display = ("id", "account_number", "balance", "account_type")
+    search_fields = (
+        "account_number",
+        "balance",
+        "account_type",
+    )
+    ordering = ("-created",)
+
+@admin.register(Transaction)
+class TransactionAdmin(admin.ModelAdmin):
+    list_display = ("id", "source", "destination", "amount", "transaction_type")
+    search_fields = (
+        "id",
+        "source__id",
+        "destination__id",
+        "source__account_number",
+        "destination__account_number",
+        "amount",
+        "transaction_type",
+        "created",
+        "updated"
+    )
+    raw_id_fields = ("source", "destination")
+    ordering = ("-created",)

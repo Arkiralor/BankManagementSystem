@@ -21,7 +21,11 @@ class Customer(TemplateModel):
     regnal_suffix = models.CharField(
         max_length=10, help_text="I, II, Jr., Sr., etc")
     date_of_birth = models.DateField(blank=True, null=True)
-    gender = models.CharField(max_length=16, choices=CustomerChoice.GENDER_CHOICES)
+    gender = models.CharField(
+        max_length=16, choices=CustomerChoice.GENDER_CHOICES)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
     def save(self, *args, **kwargs):
         self.first_name = self.first_name.title()
@@ -31,15 +35,26 @@ class Customer(TemplateModel):
 
         super(Customer, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = "Customer"
+        verbose_name_plural = "Customers"
+
 
 class KnowYourCustomer(TemplateModel):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
     id_proof_value = models.CharField(max_length=128)
     address_proof_value = models.CharField(max_length=128)
 
+    def __str__(self):
+        return f"{self.pk}"
+
+    class Meta:
+        verbose_name = "Know Your Customer"
+        verbose_name_plural = "Know Your Customers"
+
 
 class KYCDocuments(TemplateModel):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
     photo = models.ImageField(
         upload_to="media/custdocuments/photo",
         validators=[
@@ -66,6 +81,17 @@ class KYCDocuments(TemplateModel):
         ]
     )
 
+    def __str__(self):
+        return f"{self.pk}"
+
+    def save(self, *args, **kwargs):
+
+        super(KYCDocuments, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "KYC Document"
+        verbose_name_plural = "KYC Documents"
+
 
 class CustomerAddress(TemplateModel):
     """
@@ -85,6 +111,9 @@ class CustomerAddress(TemplateModel):
         null=True
     )
 
+    def __str__(self):
+        return self.pk
+
     def save(self, *args, **kwargs):
         is_true = (
             self.line_1 or self.line_2 or self.city or self.district or self.state or self.country)
@@ -97,3 +126,7 @@ class CustomerAddress(TemplateModel):
         self.country = self.country.title() if self.country else None
 
         super(CustomerAddress, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Customer Address"
+        verbose_name_plural = "Customer Addresses"
