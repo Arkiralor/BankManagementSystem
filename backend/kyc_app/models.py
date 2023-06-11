@@ -25,7 +25,7 @@ class Customer(TemplateModel):
         max_length=16, choices=CustomerChoice.GENDER_CHOICES, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.pk}"
+        return f"{self.first_name} {self.last_name}"
 
     def save(self, *args, **kwargs):
         self.first_name = self.first_name.title()

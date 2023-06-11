@@ -4,13 +4,16 @@ from banking_app.models import Account, Transaction
 
 @admin.register(Account)
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ("id", "account_number", "balance", "account_type")
+    list_display = ("id", "account_number", "holders", "balance", "account_type")
     search_fields = (
         "account_number",
         "balance",
         "account_type",
     )
     ordering = ("-created",)
+
+    def holders(self, obj):
+        return ', '.join([str(item) for item in obj.holder.all()])
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
@@ -28,3 +31,5 @@ class TransactionAdmin(admin.ModelAdmin):
     )
     raw_id_fields = ("source", "destination")
     ordering = ("-created",)
+
+    
