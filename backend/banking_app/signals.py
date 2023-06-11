@@ -10,7 +10,7 @@ class AccountSignalReciever:
     @classmethod
     def post_save(cls, sender, instance, created, *args, **kwargs):
         if created:
-            instance.credit(amount=instance.balance)
+            logger.info(f"Account {instance.account_number} created. Initial balance: {instance.balance}")
 
         else:
             logger.info(f"Account {instance.account_number} updated. Available balance: {instance.balance}")
