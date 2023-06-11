@@ -20,14 +20,15 @@ class CustomerAPI(APIView):
 
     def post(self, request:Request, *args, **kwargs):
         data = request.data
-        if not validate_request_body(request_data=data, request_schema=CustomerCreateRequestSerializer):
-            return Response(
-                {
-                    "error": "Invalid Request Body",
-                    "message": "Please check the request body and try again."
-                },
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        # valid, msg = validate_request_body(request_data=data, request_schema=CustomerCreateRequestSerializer)
+        # if not valid:
+        #     return Response(
+        #         {
+        #             "error": "Invalid Request Body",
+        #             "message": f"{msg}"
+        #         },
+        #         status=status.HTTP_400_BAD_REQUEST
+        #     )
         
         resp = CustomerAPIHelper.create(data=data)
         return resp.to_response()

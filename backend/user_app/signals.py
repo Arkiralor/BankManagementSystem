@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save, pre_save, post_delete, pre_delete
 
-from user_app.models import User, UserProfile
+from user_app.models import User, UserProfile, Address
 from user_app.serializers import ShowUserSerializer
 from user_app.utils import UserModelUtils
 
@@ -14,6 +14,7 @@ class UserSignalReciever:
     def created(cls, sender, instance, created, *args, **kwargs):
         if created:
             user_profile, _ = UserProfile.objects.get_or_create(user=instance)
+            user_address, _ = Address.objects.get_or_create(user=instance)
             logger.info(f"User: {instance.email} created.")
 
     @classmethod

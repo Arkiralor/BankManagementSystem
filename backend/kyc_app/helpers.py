@@ -71,16 +71,19 @@ class CustomerAPIHelper:
 
         kyc_created = KYCAPIHelper.create(data=kyc_data, customer=customer)
         if kyc_created.error:
+            customer.delete()
             return kyc_created
 
         kyc_documents_created = KYCDocumentsAPIHelper.create(
             data=kyc_documents_data, customer=customer)
         if kyc_documents_created.error:
+            customer.delete()
             return kyc_documents_created
 
         address_created = CustomerAddressAPIHelper.create(
             data=address_data, customer=customer)
         if address_created.error:
+            customer.delete()
             return address_created
 
         resp.message = "Customer Created Successfully"

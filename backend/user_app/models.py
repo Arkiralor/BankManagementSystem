@@ -27,6 +27,8 @@ class User(AbstractUser):
         default=uuid4
     )
 
+    user_type = models.CharField(max_length=128, choices=UserModelChoices.USER_TYPE_CHOICES, default=UserModelChoices.teller)
+
     username = models.CharField(max_length=16, unique=True)
     email = models.EmailField(
         validators=[

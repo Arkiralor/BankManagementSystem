@@ -19,19 +19,20 @@ class Customer(TemplateModel):
     )
     last_name = models.CharField(max_length=16)
     regnal_suffix = models.CharField(
-        max_length=10, help_text="I, II, Jr., Sr., etc")
+        max_length=10, help_text="I, II, Jr., Sr., etc", blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     gender = models.CharField(
-        max_length=16, choices=CustomerChoice.GENDER_CHOICES)
+        max_length=16, choices=CustomerChoice.GENDER_CHOICES, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.pk}"
 
     def save(self, *args, **kwargs):
         self.first_name = self.first_name.title()
         self.middle_name = [name.title() for name in self.middle_name]
         self.last_name = self.last_name.title()
-        self.regnal_suffix = self.regnal_suffix.upper()
+        if self.regnal_suffix:
+            self.regnal_suffix = self.regnal_suffix.upper()
 
         super(Customer, self).save(*args, **kwargs)
 
@@ -42,8 +43,8 @@ class Customer(TemplateModel):
 
 class KnowYourCustomer(TemplateModel):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
-    id_proof_value = models.CharField(max_length=128)
-    address_proof_value = models.CharField(max_length=128)
+    id_proof_value = models.CharField(max_length=128, blank=True, null=True)
+    address_proof_value = models.CharField(max_length=128, blank=True, null=True)
 
     def __str__(self):
         return f"{self.pk}"
@@ -65,7 +66,7 @@ class KYCDocuments(TemplateModel):
         ]
     )
     id_proof_type = models.CharField(
-        max_length=25, choices=CustomerChoice.ID_PROOF_CHOICES)
+        max_length=25, choices=CustomerChoice.ID_PROOF_CHOICES, blank=True, null=True)
     id_proof = models.ImageField(
         upload_to="media/custdocuments/id_proof",
         blank=True,
@@ -76,7 +77,7 @@ class KYCDocuments(TemplateModel):
         ]
     )
     address_proof_type = models.CharField(
-        max_length=25, choices=CustomerChoice.ADDRESS_PROOF_CHOICES)
+        max_length=25, choices=CustomerChoice.ADDRESS_PROOF_CHOICES, blank=True, null=True)
     address_proof = models.ImageField(
         upload_to="media/custdocuments/address_proof",
         blank=True,
@@ -118,7 +119,7 @@ class CustomerAddress(TemplateModel):
     )
 
     def __str__(self):
-        return self.pk
+        return f"{self.pk}"
 
     def save(self, *args, **kwargs):
         is_true = (
