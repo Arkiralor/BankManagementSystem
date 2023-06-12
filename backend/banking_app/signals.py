@@ -8,7 +8,7 @@ class AccountSignalReciever:
     model = Account
 
     @classmethod
-    def post_save(cls, sender, instance, created, *args, **kwargs):
+    def post_save(cls, sender, instance:Account, created, *args, **kwargs):
         if created:
             logger.info(f"Account {instance.account_number} created. Initial balance: {instance.balance}")
 
@@ -21,7 +21,7 @@ class TransactionSignalReciever:
     model = Transaction
 
     @classmethod
-    def post_save(cls, sender, instance, created, *args, **kwargs):
+    def post_save(cls, sender, instance:Transaction, created, *args, **kwargs):
         if created:
             if instance.source:
                 instance.source.debit(amount=instance.amount)
