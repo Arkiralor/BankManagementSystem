@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from typing import List
 
 from django.db.models import Q, QuerySet, Case, When, CharField, Value
 from django.utils import timezone
@@ -18,6 +19,10 @@ from banking_app import logger
 
 class AccountHelpers:
     MIN_DEPOSIT: float = 10_000.00
+
+    @classmethod
+    def get(cls, account_id: str = None):
+        return Account.objects.filter(pk=account_id).first()
 
     @classmethod
     def retrieve(cls, account_number: str = None, customer_id: str = None, *args, **kwargs) -> Resp:
@@ -74,12 +79,12 @@ class AccountHelpers:
         return bool(is_valid)
 
     @classmethod
-    def create(cls, customer: Customer = None, balance: float = 0.0, account_type: str = AccountChoice.savings, *args, **kwargs) -> Resp:
+    def create(cls, customers: List[Customer] = None, balance: float = 0.0, account_type: str = AccountChoice.savings, *args, **kwargs) -> Resp:
         """
         Create a new account for a given customer.
         """
         resp = Resp()
-        if customer is None or not isinstance(customer, Customer):
+        if customers is None or not isinstance(customers, List[Customer]):
             resp.error = "Invalid customer provided"
             resp.message = "Please provide a valid customer for the account holder."
             resp.data = None
@@ -88,16 +93,17 @@ class AccountHelpers:
             logger.warn(resp.message)
             return resp
 
-        if not cls.check_customer(customer=customer):
-            resp.error = "KYC details not found"
-            resp.message = "Please complete the KYC procedure for the customer first."
-            resp.data = {
-                "customer": CustomerSerializer(customer).data,
-            }
-            resp.status_code = status.HTTP_400_BAD_REQUEST
+        for customer in customers:
+            if not cls.check_customer(customer=customer):
+                resp.error = "KYC details not found"
+                resp.message = "Please complete the KYC procedure for the customer first."
+                resp.data = {
+                    "customer": CustomerSerializer(customer).data,
+                }
+                resp.status_code = status.HTTP_400_BAD_REQUEST
 
-            logger.warn(resp.message)
-            return resp
+                logger.warn(resp.message)
+                return resp
 
         if balance < cls.MIN_DEPOSIT:
             resp.error = "Invalid deposit amount"
@@ -113,7 +119,7 @@ class AccountHelpers:
             return resp
 
         data = {
-            "holder": f"{customer.id}",
+            "holder": customers,
             "account_type": account_type,
             "balance": balance
         }

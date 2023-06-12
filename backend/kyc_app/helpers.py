@@ -12,6 +12,10 @@ from kyc_app import logger
 class CustomerAPIHelper:
 
     @classmethod
+    def get(cls, customer_id:str=None):
+        return Customer.objects.filter(pk=customer_id).first()
+
+    @classmethod
     def retrieve(cls, customer_id: str = None):
         resp = Resp()
         customer = Customer.objects.filter(pk=customer_id).first()
