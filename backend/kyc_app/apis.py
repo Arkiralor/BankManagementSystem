@@ -32,3 +32,8 @@ class CustomerAPI(APIView):
         
         resp = CustomerAPIHelper.create(data=data)
         return resp.to_response()
+    
+    def put(self, request:Request, *args, **kwargs):
+        query = request.data.get('query')
+        resp = CustomerAPIHelper.search(query=query)
+        return resp.to_response()

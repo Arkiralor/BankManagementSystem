@@ -1,3 +1,5 @@
+from django.db.models import Q, QuerySet
+
 from rest_framework import status
 
 from core.boilerplate.response_template import Resp
@@ -10,6 +12,36 @@ from kyc_app import logger
 
 
 class CustomerAPIHelper:
+
+    @classmethod
+    def search(cls, query: str = None):
+        """
+        Method to search for customers based on their first name, last name, email, phone number or middle name.
+        """
+        resp = Resp()
+
+        if not query or query == "":
+            resp.error = "Invalid Search Query"
+            resp.message = f"Query: {query}"
+            resp.status_code = status.HTTP_400_BAD_REQUEST
+
+            logger.warn(resp.message)
+            return resp
+
+        customers = Customer.objects.filter(
+            Q(first_name__icontains=query)
+            | Q(last_name__icontains=query)
+            | Q(middle_name__icontains=query)
+        ).distinct().order_by("-created")
+
+        serialized = CustomerSerializer(customers, many=True).data
+
+        resp.message = "Customers Retrieved Successfully"
+        resp.data = serialized
+        resp.status_code = status.HTTP_200_OK
+
+        logger.info(resp.message)
+        return resp
 
     @classmethod
     def get(cls, customer_id:str=None):
