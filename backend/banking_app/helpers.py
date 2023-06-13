@@ -39,12 +39,12 @@ class AccountHelpers:
             logger.warn(resp.message)
             return resp
 
-        account = Account.objects.filter(
+        accounts= Account.objects.filter(
             Q(account_number__iexact=account_number)
-            | Q(holder=customer_id)
+            | Q(holder__pk=customer_id)
         ).order_by("-created")
 
-        serialized = AccountOutputSerializer(account, many=True).data
+        serialized = AccountOutputSerializer(accounts, many=True).data
 
         resp.message = "Account Retrieved Successfully"
         resp.data = serialized
@@ -84,32 +84,32 @@ class AccountHelpers:
         Create a new account for a given customer.
         """
         resp = Resp()
-        if customers is None or not isinstance(customers, List[Customer]):
-            resp.error = "Invalid customer provided"
-            resp.message = "Please provide a valid customer for the account holder."
-            resp.data = None
-            resp.status_code = status.HTTP_400_BAD_REQUEST
+        # if customers is None or not isinstance(customers, List[Customer]):
+        #     resp.error = "Invalid customer provided"
+        #     resp.message = "Please provide a valid customer for the account holder."
+        #     resp.data = None
+        #     resp.status_code = status.HTTP_400_BAD_REQUEST
 
-            logger.warn(resp.message)
-            return resp
+        #     logger.warn(resp.message)
+        #     return resp
 
-        for customer in customers:
-            if not cls.check_customer(customer=customer):
-                resp.error = "KYC details not found"
-                resp.message = "Please complete the KYC procedure for the customer first."
-                resp.data = {
-                    "customer": CustomerSerializer(customer).data,
-                }
-                resp.status_code = status.HTTP_400_BAD_REQUEST
+        # for customer in customers:
+        #     if not cls.check_customer(customer=customer):
+        #         resp.error = "KYC details not found"
+        #         resp.message = "Please complete the KYC procedure for the customer first."
+        #         resp.data = {
+        #             "customer": CustomerSerializer(customer).data,
+        #         }
+        #         resp.status_code = status.HTTP_400_BAD_REQUEST
 
-                logger.warn(resp.message)
-                return resp
+        #         logger.warn(resp.message)
+        #         return resp
 
         if balance < cls.MIN_DEPOSIT:
             resp.error = "Invalid deposit amount"
             resp.message = f"Minimum deposit amount is {cls.MIN_DEPOSIT}"
             resp.data = {
-                "customer": f"{customer.id}",
+                "customer": f"{[str(customer) for customer in customers]}",
                 "account_type": account_type,
                 "balance": balance
             }
@@ -119,7 +119,7 @@ class AccountHelpers:
             return resp
 
         data = {
-            "holder": customers,
+            "holder": [customer.id for customer in customers],
             "account_type": account_type,
             "balance": balance
         }

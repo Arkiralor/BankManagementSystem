@@ -12,7 +12,7 @@ class AccountInputSerializer(ModelSerializer):
 
 
 class AccountOutputSerializer(ModelSerializer):
-    holder = CustomerSerializer()
+    holder = CustomerSerializer(many=True)
 
     class Meta:
         model = Account

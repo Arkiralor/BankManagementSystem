@@ -3,7 +3,7 @@ from collections import OrderedDict
 from rest_framework import status
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
-from rest_framework.utils.serializer_helpers import ReturnDict
+from rest_framework.utils.serializer_helpers import ReturnDict, ReturnList
 
 from core import logger
 
@@ -27,7 +27,7 @@ class Resp:
         if self.error:
             logger.warn(self.to_text())
             
-        if (type(self.data) == dict or type(self.data) == OrderedDict or type(self.data) == ReturnDict) and not self.error:
+        if (type(self.data) == dict or type(self.data) == OrderedDict or type(self.data) == ReturnDict or type(self.data) == list or type(self.data) == ReturnList) and not self.error:
             return self.data
         
         else:
