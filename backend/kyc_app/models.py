@@ -1,3 +1,5 @@
+from os import sep, path, makedirs
+
 from django.contrib.postgres.fields import ArrayField
 from django.core.exceptions import ValidationError
 from django.core.validators import (EmailValidator, FileExtensionValidator,
@@ -7,6 +9,8 @@ from django.db import models
 from core.boilerplate.model_template import TemplateModel
 from kyc_app.constants import FormatRegex
 from kyc_app.model_choices import CustomerChoice
+
+from kyc_app import logger
 
 
 class Customer(TemplateModel):
@@ -68,7 +72,7 @@ class KYCDocuments(TemplateModel):
     id_proof_type = models.CharField(
         max_length=25, choices=CustomerChoice.ID_PROOF_CHOICES, blank=True, null=True)
     id_proof = models.ImageField(
-        upload_to="media/custdocuments/id_proof",
+        upload_to="custdocuments/id_proof",
         blank=True,
         null=True,
         validators=[
@@ -79,7 +83,7 @@ class KYCDocuments(TemplateModel):
     address_proof_type = models.CharField(
         max_length=25, choices=CustomerChoice.ADDRESS_PROOF_CHOICES, blank=True, null=True)
     address_proof = models.ImageField(
-        upload_to="media/custdocuments/address_proof",
+        upload_to="custdocuments/address_proof",
         blank=True,
         null=True,
         validators=[
@@ -92,8 +96,24 @@ class KYCDocuments(TemplateModel):
         return f"{self.pk}"
 
     def save(self, *args, **kwargs):
-
         super(KYCDocuments, self).save(*args, **kwargs)
+
+    ## TODO (prithoo): Will deal with this later.
+    # def fix_file_names(self, *args, **kwargs):
+    #     if self.photo:
+    #         logger.info(f"Fixing photo name for customer {self.customer.id}")
+    #         self.photo.name = f"{self.id_proof.name.split(sep)[:-1:]}{sep}{self.customer.id}-photo.{self.photo.name.split('.')[-1]}"
+    #         logger.info(self.photo.name)
+    #     if self.id_proof:
+    #         logger.info(f"Fixing id_proof name for customer {self.customer.id}")
+    #         self.id_proof.name = f"{self.id_proof.name.split(sep)[:-1:]}{sep}{self.customer.id}-id.{self.id_proof.name.split('.')[-1]}"
+    #         logger.info(self.id_proof.name)
+    #     if self.address_proof:
+    #         logger.info(f"Fixing address_proof name for customer {self.customer.id}")
+    #         self.address_proof.name = f"{self.id_proof.name.split(sep)[:-1:]}{sep}{self.customer.id}-address.{self.address_proof.name.split('.')[-1]}"
+    #         logger.info(self.address_proof.name)
+
+    #     self.save()
 
     class Meta:
         verbose_name = "KYC Document"

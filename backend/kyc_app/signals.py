@@ -26,27 +26,6 @@ class KycDocumentsReciever:
         POST-SAVE signal for KYCDocuments model.
         """
         if created:
-            if instance.photo:
-                instance.photo.name = f"{instance.customer.id}-photo.{instance.photo.name.split('.')[-1]}"
-
-                photo = Image.open(instance.photo.file)
-                photo.save(instance.photo.file, quality=cls.QUALITY,
-                           optimize=cls.OPTIMIZE)
-
-            if instance.id_proof:
-                instance.id_proof.name = f"{instance.customer.id}-id.{instance.id_proof.name.split('.')[-1]}"
-
-                id_proof = Image.open(instance.id_proof.file)
-                id_proof.save(instance.id_proof.file,
-                              quality=cls.QUALITY, optimize=cls.OPTIMIZE)
-
-            if instance.address_proof:
-                instance.address_proof.name = f"{instance.customer.id}-address.{instance.address_proof.name.split('.')[-1]}"
-
-                address_proof = Image.open(instance.address_proof.file)
-                address_proof.save(instance.address_proof.file,
-                                   quality=cls.QUALITY, optimize=cls.OPTIMIZE)
-
             logger.info(
                 f"KYC Documents for customer {instance.customer.id} created.")
 

@@ -23,6 +23,7 @@ APP_NAME = environ.get("APP_NAME", "")
 DOMAIN_URL = environ.get("DOMAIN_URL", "")
 OWNER_EMAIL = environ.get("OWNER_EMAIL", f"owner@{APP_NAME}.com")
 CONTACT_EMAIL = environ.get("CONTACT_EMAIL", f"contact@{APP_NAME}.com")
+DATA_UPLOAD_MAX_MEMORY_SIZE = int(environ.get("DATA_UPLOAD_MAX_MEMORY_SIZE", 26_214_400))
 
 TEMPLATES = [
     {

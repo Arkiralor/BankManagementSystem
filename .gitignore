@@ -279,3 +279,7 @@ yarn-error.log
 
 ## Encryption Keys:
 *.pem
+
+## Media and Static files:
+media/
+static/

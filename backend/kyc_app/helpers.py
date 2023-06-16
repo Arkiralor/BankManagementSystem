@@ -1,6 +1,7 @@
 from django.db.models import Q, QuerySet
 
 from rest_framework import status
+from rest_framework.parsers import FileUploadParser
 
 from core.boilerplate.response_template import Resp
 from kyc_app.models import Customer, KnowYourCustomer, KYCDocuments, CustomerAddress
@@ -179,6 +180,15 @@ class KYCAPIHelper:
 class KYCDocumentsAPIHelper:
 
     @classmethod
+    def get(cls, customer_id: str = None):
+        kyc_documents = KYCDocuments.objects.filter(customer__id=customer_id).first()
+        if not kyc_documents:
+            logger.warn("Invalid Customer ID")
+            raise ValueError("Invalid Customer ID")
+        
+        return kyc_documents
+
+    @classmethod
     def create(cls, data: dict = None, customer: Customer = None):
         resp = Resp()
 
@@ -215,6 +225,30 @@ class KYCDocumentsAPIHelper:
 
         logger.info(resp.message)
         return resp
+
+
+    @classmethod
+    def add_documents(cls, customer_id: str=None, id_proof = None, address_proof = None, *args, **kwargs) -> Resp:
+        resp = Resp()
+
+        kyc_documents = cls.get(customer_id=customer_id)
+        if id_proof:
+            if kyc_documents.id_proof:
+                _ = kyc_documents.id_proof.delete(save=False)
+            kyc_documents.id_proof = id_proof
+        if address_proof:
+            if kyc_documents.address_proof:
+                _ = kyc_documents.address_proof.delete(save=False)
+            kyc_documents.address_proof = address_proof
+
+        kyc_documents.save()
+        resp.message = f"KYC documents successfully updated for customer<{customer_id}>."
+        resp.data = KYCDocumentsOutputSerializer(kyc_documents).data
+        resp.status_code = status.HTTP_200_OK
+
+        logger.info(resp.message)
+        return resp
+
 
 
 class CustomerAddressAPIHelper:
