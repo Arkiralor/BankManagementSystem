@@ -7,6 +7,7 @@ django-dotenv
 djangorestframework
 djangorestframework-simplejwt
 django-storages
+faker
 gunicorn
 motor
 pandas
