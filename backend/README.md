@@ -6,7 +6,7 @@ This is not the software that a bank's customer might use to manage their accoun
 
 1. Registering new customers
    1. Recording their KYC details
-2. Creating/Requisitioning accounts for sutomers.
+2. Creating/Requisitioning accounts for customers.
 3. Recording transactions to and from bank accounts.
    - _For simplicity's sake, we have envisioned a world/reality in which the bank using this system is the only bank in the world so we do not need to manage branches or external bank transfers._
 
