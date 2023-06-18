@@ -270,7 +270,7 @@ class FakeCustomers:
             return True
 
 
-def main(count: int = 1):
+def create_customers(count: int = 1):
     if settings.ENV_TYPE != "dev" or not settings.DEBUG:
         logger.warn(
             f"ENVIRONMENT TYPE: {settings.ENV_TYPE}; DEBUG: {settings.DEBUG}")
@@ -283,4 +283,4 @@ def main(count: int = 1):
 
 
 if __name__ == "__main__":
-    main()
+    create_customers()

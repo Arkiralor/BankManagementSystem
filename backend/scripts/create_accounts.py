@@ -42,7 +42,7 @@ class FakeAccount:
             logger.info(f"Fake Bank Account created: {resp.to_dict()}")
 
 
-def main(count: int = 1):
+def create_accounts(count: int = 1):
     if settings.ENV_TYPE != "dev" or not settings.DEBUG:
         logger.warn(
             f"ENVIRONMENT TYPE: {settings.ENV_TYPE}; DEBUG: {settings.DEBUG}")
@@ -54,4 +54,4 @@ def main(count: int = 1):
 
 
 if __name__ == "__main__":
-    main()
+    create_accounts()
