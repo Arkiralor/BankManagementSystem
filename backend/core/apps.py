@@ -15,6 +15,7 @@ THIRD_PARTY_APPS = [
 
 CUSTOM_APPS = [
     'admin_app.apps.AdminAppConfig',
+    'analytics_app.apps.AnalyticsAppConfig',
     'banking_app.apps.BankingAppConfig',
     'communications_app.apps.CommunicationsAppConfig',
     'kyc_app.apps.KycAppConfig',

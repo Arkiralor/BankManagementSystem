@@ -1,5 +1,7 @@
 from collections import OrderedDict
 
+from django.db.models.query import QuerySet
+
 from rest_framework import status
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
@@ -27,7 +29,7 @@ class Resp:
         if self.error:
             logger.warn(self.to_text())
             
-        if (type(self.data) == dict or type(self.data) == OrderedDict or type(self.data) == ReturnDict or type(self.data) == list or type(self.data) == ReturnList) and not self.error:
+        if (type(self.data) == dict or type(self.data) == OrderedDict or type(self.data) == ReturnDict or type(self.data) == list or type(self.data) == ReturnList) or (type(self.data) == QuerySet) and not self.error:
             return self.data
         
         else:
