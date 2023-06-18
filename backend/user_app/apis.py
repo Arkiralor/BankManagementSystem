@@ -108,9 +108,6 @@ class UserAPI(APIView):
         resp = UserModelUtils.delete(
             user=request.user, password=password, reason=reason)
 
-        if resp.error:
-            return resp.to_exception()
-
         return resp.to_response()
 
 
