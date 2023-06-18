@@ -8,6 +8,7 @@ from core.boilerplate.model_template import TemplateModel
 from banking_app.model_choices import AccountChoice, TransactionChoice
 from banking_app.utils import account_number_generator
 from kyc_app.models import Customer
+from user_app.models import User
 
 
 class Account(TemplateModel):
@@ -69,6 +70,7 @@ class Transaction(TemplateModel):
     amount = models.DecimalField(max_digits=16, decimal_places=2)
     transaction_type = models.CharField(
         max_length=128, choices=TransactionChoice.TRANSACTION_TYPE)
+    authorised_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         """

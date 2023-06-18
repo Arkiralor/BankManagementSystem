@@ -40,3 +40,24 @@ class BankAccountAPI(APIView):
         resp = AccountHelpers.create(
             customers=customers, balance=balance, account_type=account_type)
         return resp.to_response()
+    
+
+class TransactionAPI(APIView):
+    permission_classes = (IsAccountantOrTeller | IsAdminUser,)
+
+    def post(self, request: Request, *args, **kwargs):
+        data = request.data
+        source = data.get("source")
+        destination = data.get("destination")
+        amount = data.get("amount")
+        transaction_type = data.get("type")
+
+        resp = TransactionHelpers.create(
+            source=source,
+            destination=destination,
+            amount=amount,
+            authorised_by=request.user,
+            transaction_type=transaction_type
+        )
+
+        return resp.to_response()

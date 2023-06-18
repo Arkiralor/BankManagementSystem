@@ -13,6 +13,7 @@ from banking_app.serializers import AccountInputSerializer, TransactionInputSeri
 from kyc_app.models import Customer, KnowYourCustomer, KYCDocuments, CustomerAddress
 from kyc_app.serializers import CustomerSerializer, KYCDocumentsInputSerializer, KYCDocumentsOutputSerializer, KnowYourCustomerInputSerializer, \
     KnowYourCustomerOutputSerializer, CustomerAddressInputSerializer, CustomerAddressOutputSerializer
+from user_app.models import User
 
 from banking_app import logger
 
@@ -205,3 +206,97 @@ class TransactionHelpers:
         ).order_by("-created")
 
         return transactions
+    
+    @classmethod
+    def retrieve(cls, transaction_id: str = None, *args, **kwargs) -> Resp:
+        """
+        Retrieve the details of a single transaction.
+        """
+        resp = Resp()
+
+        if not transaction_id or transaction_id == "":
+            resp.error = "Invalid Transaction ID"
+            resp.message = f"Transaction ID: {transaction_id}"
+            resp.status_code = status.HTTP_400_BAD_REQUEST
+
+            logger.warn(resp.message)
+            return resp
+
+        transaction = Transaction.objects.filter(pk=transaction_id).first()
+        if transaction is None:
+            resp.error = "Transaction not found"
+            resp.message = f"Transaction ID: {transaction_id}"
+            resp.status_code = status.HTTP_404_NOT_FOUND
+
+            logger.warn(resp.message)
+            return resp
+
+        serialized = TransactionOutputSerializer(transaction).data
+
+        resp.message = "Transaction Retrieved Successfully"
+        resp.data = serialized
+        resp.status_code = status.HTTP_200_OK
+
+        logger.info(resp.message)
+        return resp
+    
+    @classmethod
+    def create(cls, source_id:str = None, destination_id:str = None, amount:float = 0.0, authorised_by: User = None, transaction_type: str = TransactionChoice.cash_deposit, *args, **kwargs) -> Resp:
+        resp = Resp()
+        if (not source_id and not destination_id) or (source_id == "" and destination_id == ""):
+            resp.error = "Invalid Account Number"
+            resp.message = f"Both Source and Destination Account Numbers cannot be NULL."
+            resp.data = {
+                "source": source_id,
+                "destination": destination_id,
+            }
+            resp.status_code = status.HTTP_400_BAD_REQUEST
+
+            logger.warn(resp.message)
+            return resp
+        
+        if not amount or amount <= 0.0:
+            resp.error = "Invalid Amount"
+            resp.message = f"Amount must be greater than 0.0"
+            resp.data = {
+                "amount": amount,
+            }
+            resp.status_code = status.HTTP_400_BAD_REQUEST
+
+            logger.warn(resp.message)
+            return resp
+        
+        if not authorised_by:
+            resp.error = "Bank Employee Not Provided"
+            resp.message = f"Every transaction must be authorised by a valid bank employee (user)."
+            resp.status_code = status.HTTP_400_BAD_REQUEST
+
+            logger.warn(resp.message)
+            return resp
+        
+        data = {
+            "source": source_id,
+            "destination": destination_id,
+            "amount": amount,
+            "authorised_by": f"{authorised_by.id}",
+            "transaction_type": transaction_type
+        }
+
+        deserialized = TransactionInputSerializer(data=data)
+        if not deserialized.is_valid():
+            resp.error = "Invalid transaction data"
+            resp.message = f"{deserialized.errors}"
+            resp.data = data
+            resp.status_code = status.HTTP_400_BAD_REQUEST
+
+            logger.warn(resp.message)
+            return resp
+        
+        deserialized.save()
+
+        resp.message = f"Transaction {deserialized.instance} created successfully."
+        resp.data = TransactionOutputSerializer(deserialized.instance).data
+        resp.status_code = status.HTTP_201_CREATED
+
+        logger.info(resp.message)
+        return resp
