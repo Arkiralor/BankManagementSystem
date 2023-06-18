@@ -16,10 +16,11 @@ from kyc_app.helpers import CustomerAPIHelper
 
 from scripts import logger
 
-ID_PROOF_FILE_PATH           = safe_join(settings.BASE_DIR, "scripts", "data", "id_proof.jpg")
-ADDRESS_PROOF_FILE_PATH      = safe_join(settings.BASE_DIR, "scripts", "data", "address_proof.jpg")
-PHOTO_FILE_PATH              = safe_join(settings.BASE_DIR, "scripts", "data", "photo.jpg")
-
+ID_PROOF_FILE_PATH = safe_join(
+    settings.BASE_DIR, "scripts", "data", "id_proof.jpg")
+ADDRESS_PROOF_FILE_PATH = safe_join(
+    settings.BASE_DIR, "scripts", "data", "address_proof.jpg")
+PHOTO_FILE_PATH = safe_join(settings.BASE_DIR, "scripts", "data", "photo.jpg")
 
 
 if not path.exists(ID_PROOF_FILE_PATH):
@@ -35,14 +36,14 @@ if not path.exists(PHOTO_FILE_PATH):
     exit(1)
 
 
-
 class Randomizer:
     CHAR_SET: Tuple[str] = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
-                          "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+                            "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
     DIG_SET: Tuple[str] = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
     ALPHANUMERIC_SET: Tuple[str] = CHAR_SET + DIG_SET
     SIZE_LIST: List[int] = [0, 1, 2, 3, 4]
-    REGNAL_SUFFIXES: List[str] = ["I", "II", "III", "IV", "V", "Jr.", "Sr.", None]
+    REGNAL_SUFFIXES: List[str] = ["I", "II",
+                                  "III", "IV", "V", "Jr.", "Sr.", None]
     GENDER_LIST: List[str] = ["Female", "Male", "Other"]
 
     @classmethod
@@ -66,7 +67,7 @@ class Randomizer:
                     list(cls.DIG_SET)
                 )
             )
-        
+
         return "".join(chosen_tokens)
 
     @classmethod
@@ -78,13 +79,13 @@ class Randomizer:
                     list(cls.ALPHANUMERIC_SET)
                 )
             )
-        
+
         return "".join(chosen_tokens)
 
     @classmethod
     def get_guid_str(cls):
         return uuid4().strip().replace("-", "").upper()
-    
+
     @classmethod
     def assign_gender(cls):
         return choice(cls.GENDER_LIST)
@@ -134,7 +135,7 @@ class FakeFactory:
 
         for _ in range(count):
             middle_names.append(self.faker.first_name())
-        
+
         return middle_names
 
     def create_fake_person(self):
@@ -145,8 +146,10 @@ class FakeFactory:
         last_name = self.faker.last_name_female(
         ) if self.gender == "Female" else self.faker.last_name_male()
 
-        date_of_birth = self.faker.date_between_dates(date_start=datetime(1978,1,1), date_end=datetime(2019,12,31))
-        regnal_suffix = choice(self.randomizer.REGNAL_SUFFIXES) if choice([True, False]) else None
+        date_of_birth = self.faker.date_between_dates(
+            date_start=datetime(1978, 1, 1), date_end=datetime(2019, 12, 31))
+        regnal_suffix = choice(self.randomizer.REGNAL_SUFFIXES) if choice(
+            [True, False]) else None
 
         person = {
             "first_name": first_name,
@@ -158,7 +161,7 @@ class FakeFactory:
         }
 
         return person
-    
+
     def create_fake_kyc(self):
         id_proof_value = self.randomizer.get_random_string()
         address_proof_value = self.randomizer.get_random_string()
@@ -190,14 +193,16 @@ class FakeCustomers:
         self.fake_factory = FakeFactory(gender=Randomizer.assign_gender())
 
     def assign_files(self, customer_id: str = None):
-        kyc_documents = KYCDocuments.objects.filter(customer__pk=customer_id).first()
+        kyc_documents = KYCDocuments.objects.filter(
+            customer__pk=customer_id).first()
         if not kyc_documents:
             logger.info(f"Customer not found: {customer_id}")
             return False
 
         with open(ID_PROOF_FILE_PATH, "rb") as id_proof_file:
             try:
-                kyc_documents.id_proof = SimpleUploadedFile("id_proof.jpg", id_proof_file.read())
+                kyc_documents.id_proof = SimpleUploadedFile(
+                    "id_proof.jpg", id_proof_file.read())
                 kyc_documents.id_proof_type = CustomerChoice.pan_card
                 kyc_documents.save()
             except Exception as ex:
@@ -206,7 +211,8 @@ class FakeCustomers:
 
         with open(ADDRESS_PROOF_FILE_PATH, "rb") as address_proof_file:
             try:
-                kyc_documents.address_proof = SimpleUploadedFile("address_proof.jpg", address_proof_file.read())
+                kyc_documents.address_proof = SimpleUploadedFile(
+                    "address_proof.jpg", address_proof_file.read())
                 kyc_documents.address_proof_type = CustomerChoice.voter_id
                 kyc_documents.save()
             except Exception as ex:
@@ -215,7 +221,8 @@ class FakeCustomers:
 
         with open(PHOTO_FILE_PATH, "rb") as photo_file:
             try:
-                kyc_documents.photo = SimpleUploadedFile("photo.jpg", photo_file.read())
+                kyc_documents.photo = SimpleUploadedFile(
+                    "photo.jpg", photo_file.read())
                 kyc_documents.save()
             except Exception as ex:
                 logger.error(f"Error assigning Photo: {ex}")
@@ -226,7 +233,6 @@ class FakeCustomers:
     def fake_customer(self):
         customer = self.fake_factory.create_fake_person()
         kyc = self.fake_factory.create_fake_kyc()
-
 
         address = self.fake_factory.create_address()
 
@@ -239,7 +245,7 @@ class FakeCustomers:
             },
             "address": address
         }
-    
+
     def create_customer(self):
         data = self.fake_customer()
         customer = CustomerAPIHelper.create(data=data)
@@ -247,24 +253,34 @@ class FakeCustomers:
         if customer_id:
             res = self.assign_files(customer_id=customer_id)
             if not res:
-                logger.error(f"Error assigning files to customer: {customer_id}")
+                logger.error(
+                    f"Error assigning files to customer: {customer_id}")
                 Customer.objects.filter(pk=customer_id).delete()
                 return False
-            logger.info(f"KYC documents successfully updated for Cutomer<{customer_id}>.")
-        
+            logger.info(
+                f"KYC documents successfully updated for Cutomer<{customer_id}>.")
+
         if customer.error:
             logger.info(f"Problem creating customer: {customer.to_text()}")
             return False
 
         else:
-            logger.info(f"Fake Customer created successfully: {customer.to_dict()}")
+            logger.info(
+                f"Fake Customer created successfully: {customer.to_dict()}")
             return True
 
 
 def main(count: int = 1):
+    if settings.ENV_TYPE != "dev" or not settings.DEBUG:
+        logger.warn(
+            f"ENVIRONMENT TYPE: {settings.ENV_TYPE}; DEBUG: {settings.DEBUG}")
+        logger.error("This script is only for development purposes.")
+        exit(1)
+
     for _ in range(count):
         fake_customers = FakeCustomers()
         fake_customers.create_customer()
+
 
 if __name__ == "__main__":
     main()
