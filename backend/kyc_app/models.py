@@ -1,3 +1,4 @@
+from datetime import datetime, date, time, timedelta
 from os import sep, path, makedirs
 
 from django.contrib.postgres.fields import ArrayField
@@ -5,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import (EmailValidator, FileExtensionValidator,
                                     RegexValidator)
 from django.db import models
+from django.utils import timezone
 
 from core.boilerplate.model_template import TemplateModel
 from kyc_app.constants import FormatRegex
@@ -40,6 +42,14 @@ class Customer(TemplateModel):
             self.regnal_suffix = self.regnal_suffix.upper()
 
         super(Customer, self).save(*args, **kwargs)
+
+    @property
+    def age(self):
+        if self.date_of_birth:
+            delta = (timezone.now().date() - self.date_of_birth)
+            return int(delta.days / 365.25)
+        
+        return 0
 
     class Meta:
         verbose_name = "Customer"
