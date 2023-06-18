@@ -7,6 +7,227 @@
 	},
 	"item": [
 		{
+			"name": "Analytics App",
+			"item": [
+				{
+					"name": "Get Customer Age Groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/customers/?criteria=ageGroup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"customers",
+								""
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "ageGroup"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Customer Age Groups",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/analytics/customers/?criteria=ageGroup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"analytics",
+										"customers",
+										""
+									],
+									"query": [
+										{
+											"key": "criteria",
+											"value": "ageGroup"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 18:45:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "132"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"age_group\": \"0-17\",\n        \"count\": 77\n    },\n    {\n        \"age_group\": \"18-25\",\n        \"count\": 52\n    },\n    {\n        \"age_group\": \"26-35\",\n        \"count\": 64\n    },\n    {\n        \"age_group\": \"36-45\",\n        \"count\": 57\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Customer Gender Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/customers/?criteria=gender",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"customers",
+								""
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "gender"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Customer Gender Groups",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/analytics/customers/?criteria=gender",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"analytics",
+										"customers",
+										""
+									],
+									"query": [
+										{
+											"key": "criteria",
+											"value": "gender"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 18:53:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"group\": \"Female\",\n        \"count\": 87\n    },\n    {\n        \"group\": \"Male\",\n        \"count\": 77\n    },\n    {\n        \"group\": \"Other\",\n        \"count\": 86\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "User App",
 			"item": [
 				{
