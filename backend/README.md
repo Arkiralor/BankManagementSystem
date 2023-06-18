@@ -115,5 +115,5 @@ AWS_S3_ARN = ""
 
 ## Documentation
 
-1. [Postman](https://documenter.getpostman.com/view/17779018/2s93Y3wh65)
+1. [Postman](https://documenter.getpostman.com/view/17779018/2s93sjT8DE)
 2. [JSON](../docs/backend/backend_postman_collection.json)
