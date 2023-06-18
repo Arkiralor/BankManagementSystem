@@ -1,8 +1,7 @@
 {
 	"info": {
-		"_postman_id": "694c24ea-c8f8-4bdf-a144-6cc375bc8622",
-		"name": "Django Boilerplate",
-		"description": "A boilerplate that can be used as a template for quickly setting up a repository for a web application with the following stacks:\n\n1. **Backend** in _Django_\n2. **Frontend** in _ReactJS_\n3. **Application** in _React Native_\n4. **Stable Storage** in _PostgreSQL_\n5. **Warehousing/Lake** in _MongoDB_",
+		"_postman_id": "d75601eb-315a-4fd2-bd70-d5a2ab245598",
+		"name": "Bank Management System",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17779018"
 	},
@@ -11,265 +10,13 @@
 			"name": "User App",
 			"item": [
 				{
-					"name": "Testing APIS",
-					"item": [
-						{
-							"name": "Test Authentication POST",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{accessToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"{{test_user_email}}\",\r\n    \"password\": \"{{test_user_password}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{domain}}/api/user/auth-test/?keyOne=valueOne&keyTwo=valueTwo&keyThree=valueThree",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"user",
-										"auth-test",
-										""
-									],
-									"query": [
-										{
-											"key": "keyOne",
-											"value": "valueOne"
-										},
-										{
-											"key": "keyTwo",
-											"value": "valueTwo"
-										},
-										{
-											"key": "keyThree",
-											"value": "valueThree"
-										}
-									]
-								},
-								"description": "Test authentication in POST method."
-							},
-							"response": [
-								{
-									"name": "Test Authentication POST",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"prithoo11335@gmail.com\",\r\n    \"password\": \"•••••••\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "localhost:8000/api/user/auth-test/?keyOne=valueOne&keyTwo=valueTwo&keyThree=valueThree",
-											"host": [
-												"localhost"
-											],
-											"port": "8000",
-											"path": [
-												"",
-												"api",
-												"user",
-												"auth-test",
-												""
-											],
-											"query": [
-												{
-													"key": "keyOne",
-													"value": "valueOne"
-												},
-												{
-													"key": "keyTwo",
-													"value": "valueTwo"
-												},
-												{
-													"key": "keyThree",
-													"value": "valueThree"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Date",
-											"value": "Sat, 22 Apr 2023 04:06:27 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "WSGIServer/0.2 CPython/3.9.12"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Accept, Origin, Cookie"
-										},
-										{
-											"key": "Allow",
-											"value": "GET, POST, HEAD, OPTIONS"
-										},
-										{
-											"key": "X-Frame-Options",
-											"value": "DENY"
-										},
-										{
-											"key": "Content-Length",
-											"value": "382"
-										},
-										{
-											"key": "X-Content-Type-Options",
-											"value": "nosniff"
-										},
-										{
-											"key": "Referrer-Policy",
-											"value": "same-origin"
-										},
-										{
-											"key": "Cross-Origin-Opener-Policy",
-											"value": "same-origin"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"body\": {\n        \"email\": \"prithoo11335@gmail.com\",\n        \"password\": \"Driftking11235\"\n    },\n    \"params\": {\n        \"keyOne\": \"valueOne\",\n        \"keyTwo\": \"valueTwo\",\n        \"keyThree\": \"valueThree\"\n    },\n    \"user\": {\n        \"id\": \"be9d4b8d-c033-45b6-9cb8-f53ffd27e4d3\",\n        \"username\": \"prithoo11335\",\n        \"email\": \"prithoo11335@gmail.com\",\n        \"date_joined\": \"2023-04-21T12:01:45.384873+05:30\",\n        \"slug\": \"prithoo11335\",\n        \"unsuccessful_login_attempts\": 0,\n        \"blocked_until\": null\n    }\n}"
-								}
-							]
-						},
-						{
-							"name": "Test Authentication GET",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{accessToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{domain}}/api/user/auth-test/",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"user",
-										"auth-test",
-										""
-									]
-								},
-								"description": "Test authentication in GET method."
-							},
-							"response": [
-								{
-									"name": "Test Authentication",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "localhost:8000//api/user/auth-test/",
-											"host": [
-												"localhost"
-											],
-											"port": "8000",
-											"path": [
-												"",
-												"api",
-												"user",
-												"auth-test",
-												""
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Date",
-											"value": "Fri, 21 Apr 2023 00:16:56 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "WSGIServer/0.2 CPython/3.9.12"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Accept, Origin"
-										},
-										{
-											"key": "Allow",
-											"value": "GET, HEAD, OPTIONS"
-										},
-										{
-											"key": "X-Frame-Options",
-											"value": "DENY"
-										},
-										{
-											"key": "Content-Length",
-											"value": "321"
-										},
-										{
-											"key": "X-Content-Type-Options",
-											"value": "nosniff"
-										},
-										{
-											"key": "Referrer-Policy",
-											"value": "same-origin"
-										},
-										{
-											"key": "Cross-Origin-Opener-Policy",
-											"value": "same-origin"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": \"prithoo11335@gmail.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMDY0NjI4LCJpYXQiOjE2ODIwMzU4MjgsImp0aSI6IjFiYzczYWIzMzZiNzQ2NjI5MWM3ODJlYmZjZjQ3ZDYyIiwidXNlcl9pZCI6IjBjNDFiMWQ4LWU5ZGItNGIyMi05ZTZiLTE2MjJhZDY1YTI2YSJ9.WPDgwpIFCZIXw9eWOw3013HVSK6355brxp6JVV22XJo\"\n}"
-								}
-							]
-						}
-					],
-					"description": "Dummy APIs that do not commit any changes to the backend but are used to test out different types of authentication in the backend."
-				},
-				{
-					"name": "Signup",
+					"name": "Add User (Teller)",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"{{test_user_username}}\",\r\n    \"email\": \"{{test_user_email}}\",\r\n    \"password\": \"{{test_user_password}}\"\r\n}",
+							"raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -277,9 +24,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/user/signup/",
+							"raw": "{{baseUrl}}/api/user/signup/",
 							"host": [
-								"{{domain}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
@@ -287,18 +34,17 @@
 								"signup",
 								""
 							]
-						},
-						"description": "Register a new user to the system; this only creates a new normal user and cannot be used to register moderators, administrators, etc."
+						}
 					},
 					"response": [
 						{
-							"name": "Signup",
+							"name": "Add User (Teller)",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"prithoo11335\",\r\n    \"email\": \"prithoo11335@gmail.com\",\r\n    \"password\": \"•••••••\"\r\n}",
+									"raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -306,13 +52,11 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000//api/user/signup/",
+									"raw": "{{baseUrl}}/api/user/signup/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
-										"",
 										"api",
 										"user",
 										"signup",
@@ -326,11 +70,11 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 21 Apr 2023 00:18:54 GMT"
+									"value": "Sun, 11 Jun 2023 17:05:34 GMT"
 								},
 								{
 									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.12"
+									"value": "WSGIServer/0.2 CPython/3.9.17"
 								},
 								{
 									"key": "Content-Type",
@@ -338,7 +82,7 @@
 								},
 								{
 									"key": "Vary",
-									"value": "Accept, Origin"
+									"value": "Accept, Origin, Cookie"
 								},
 								{
 									"key": "Allow",
@@ -350,7 +94,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "228"
+									"value": "159"
 								},
 								{
 									"key": "X-Content-Type-Options",
@@ -366,18 +110,18 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": \"3d0837e7-4514-425e-ae8f-8260ffc130ab\",\n    \"username\": \"prithoo11335\",\n    \"email\": \"prithoo11335@gmail.com\",\n    \"date_joined\": \"2023-04-21T05:48:54.810673+05:30\",\n    \"slug\": \"prithoo11335\",\n    \"unsuccessful_login_attempts\": 0,\n    \"blocked_until\": null\n}"
+							"body": "{\n    \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"username\": \"testuser\",\n    \"email\": \"test.user@gmail.com\",\n    \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n    \"slug\": \"testuser\"\n}"
 						}
 					]
 				},
 				{
-					"name": "Login (Password)",
+					"name": "Password Login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": null,\r\n    \"email\": \"{{adminEmail}}\",\r\n    \"password\": \"{{adminPassword}}\"\r\n}",
+							"raw": "{\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -385,9 +129,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/user/login/password/",
+							"raw": "{{baseUrl}}/api/user/login/password/",
 							"host": [
-								"{{domain}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
@@ -396,18 +140,17 @@
 								"password",
 								""
 							]
-						},
-						"description": "Used to login any user with their username/email and password."
+						}
 					},
 					"response": [
 						{
-							"name": "Login (Password)",
+							"name": "Password Login",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": null,\r\n    \"email\": \"prithoo11335@gmail.com\",\r\n    \"password\": \"•••••••\"\r\n}",
+									"raw": "{\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -415,13 +158,11 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000//api/user/login/password/",
+									"raw": "{{baseUrl}}/api/user/login/password/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
-										"",
 										"api",
 										"user",
 										"login",
@@ -436,11 +177,11 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 21 Apr 2023 00:18:16 GMT"
+									"value": "Sun, 11 Jun 2023 17:13:19 GMT"
 								},
 								{
 									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.12"
+									"value": "WSGIServer/0.2 CPython/3.9.17"
 								},
 								{
 									"key": "Content-Type",
@@ -448,7 +189,7 @@
 								},
 								{
 									"key": "Vary",
-									"value": "Accept, Origin"
+									"value": "Accept, Origin, Cookie"
 								},
 								{
 									"key": "Allow",
@@ -476,56 +217,55 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"user\": \"0c41b1d8-e9db-4b22-9e6b-1622ad65a26a\",\n    \"tokens\": {\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4MzMzMjI5NiwiaWF0IjoxNjgyMDM2Mjk2LCJqdGkiOiI1MzY5ODk4ZjM0NGM0NzIxYTQwNjE2ZTc3Yjk2MjQ3MiIsInVzZXJfaWQiOiIwYzQxYjFkOC1lOWRiLTRiMjItOWU2Yi0xNjIyYWQ2NWEyNmEifQ.BCupX00LYQQAXjFe5D4YPnsBMTQ86zMMTjLY6hiQ2PI\",\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMDY1MDk2LCJpYXQiOjE2ODIwMzYyOTYsImp0aSI6ImZiNTk5NmZmYTljMzRlYWFiZThjMzZmN2MzZDBiMDM4IiwidXNlcl9pZCI6IjBjNDFiMWQ4LWU5ZGItNGIyMi05ZTZiLTE2MjJhZDY1YTI2YSJ9.hwuxXUPjktfrjZBEgtAWs8f6gLoLWeLwz4PTPwDFRUo\"\n    },\n    \"login\": \"2023-04-21T00:18:16.443408Z\"\n}"
+							"body": "{\n    \"user\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"tokens\": {\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4Nzc5OTU5OSwiaWF0IjoxNjg2NTAzNTk5LCJqdGkiOiI4N2Y4M2Y4YzcyYWU0MmQ0YjgyNGIyZTRlY2Y4ZjI3OSIsInVzZXJfaWQiOiI3YmUzYmIyZi05NjEzLTQ3ZmItYmIzYS0wNzEzODU4MjlmOTIifQ.ZrwjxtPONiVKVOoDamc7C1yiRLAdFXL4gH4wU_GvtcI\",\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3MjcxZjQzNmY4YzlkMDMwMjk0NmY3NzdiIiwidXNlcl9pZCI6IjdiZTNiYjJmLTk2MTMtNDdmYi1iYjNhLTA3MTM4NTgyOWY5MiJ9.5WiZnXdJDvoeBithSnruY0strV5qtHSl1qzp1O9gf4c\"\n    },\n    \"login\": \"2023-06-11T17:13:19.961037Z\"\n}"
 						}
 					]
 				},
 				{
-					"name": "Get User Info",
+					"name": "Test Authentication",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{domain}}/api/user/info/",
+							"raw": "{{baseUrl}}/api/user/auth-test/",
 							"host": [
-								"{{domain}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"user",
-								"info",
+								"auth-test",
 								""
 							]
-						},
-						"description": "Used to get information about a registered user; if the userId is not provided in the params, the requesting user's information is returned."
+						}
 					},
 					"response": [
 						{
-							"name": "Get User Info",
+							"name": "Test Authentication",
 							"originalRequest": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
 								"url": {
-									"raw": "localhost:8000//api/user/info/",
+									"raw": "{{baseUrl}}/api/user/auth-test/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
-										"",
 										"api",
 										"user",
-										"info",
+										"auth-test",
 										""
 									]
 								}
@@ -536,11 +276,11 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 21 Apr 2023 01:18:30 GMT"
+									"value": "Sun, 11 Jun 2023 17:48:27 GMT"
 								},
 								{
 									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.12"
+									"value": "WSGIServer/0.2 CPython/3.9.17"
 								},
 								{
 									"key": "Content-Type",
@@ -548,7 +288,7 @@
 								},
 								{
 									"key": "Vary",
-									"value": "Accept, Origin"
+									"value": "Accept, Origin, Cookie"
 								},
 								{
 									"key": "Allow",
@@ -560,7 +300,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "228"
+									"value": "77"
 								},
 								{
 									"key": "X-Content-Type-Options",
@@ -576,159 +316,25 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": \"3d0837e7-4514-425e-ae8f-8260ffc130ab\",\n    \"username\": \"prithoo11335\",\n    \"email\": \"prithoo11335@gmail.com\",\n    \"date_joined\": \"2023-04-21T05:48:54.810673+05:30\",\n    \"slug\": \"prithoo11335\",\n    \"unsuccessful_login_attempts\": 0,\n    \"blocked_until\": null\n}"
+							"body": "{\n    \"user\": \"test.user@gmail.com\",\n    \"message\": \"Access token working successfully.\"\n}"
 						}
 					]
 				},
 				{
-					"name": "Search User",
+					"name": "Get Own Info",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{domain}}/api/user/info/?term=admin",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"info",
-								""
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "term",
-									"value": "admin"
-								}
-							]
-						},
-						"description": "API that is used to search for a given user."
-					},
-					"response": [
-						{
-							"name": "Search User",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "localhost:8000/api/user/info/?page=1&term=pri",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"",
-										"api",
-										"user",
-										"info",
-										""
-									],
-									"query": [
-										{
-											"key": "page",
-											"value": "1"
-										},
-										{
-											"key": "term",
-											"value": "pri"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Fri, 21 Apr 2023 01:19:17 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.12"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin"
-								},
-								{
-									"key": "Allow",
-									"value": "GET, POST, HEAD, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "512"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"page\": 1,\n    \"results\": [\n        {\n            \"id\": \"6374e632-032f-4225-a42c-07298c19e1a1\",\n            \"user\": {\n                \"id\": \"3d0837e7-4514-425e-ae8f-8260ffc130ab\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-21T05:48:54.810673+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"created\": \"2023-04-21T05:48:54.854768+05:30\",\n            \"updated\": \"2023-04-21T05:48:54.854768+05:30\",\n            \"first_name\": null,\n            \"middle_name\": null,\n            \"last_name\": null,\n            \"regnal_number\": 1,\n            \"gender\": null,\n            \"date_of_birth\": null,\n            \"age\": null\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Edit Profile",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"first_name\": \"Prithoo\",\r\n    \"middle_name\": [\r\n        \"Pinak\"\r\n    ],\r\n    \"last_name\": \"Medhi\",\r\n    \"regnal_number\": 1,\r\n    \"gender\": \"Male\",\r\n    \"date_of_birth\": \"1992-09-25\",\r\n    \"age\": null\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
 							}
-						},
+						],
 						"url": {
-							"raw": "{{domain}}/api/user/info/",
+							"raw": "{{baseUrl}}/api/user/info/",
 							"host": [
-								"{{domain}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
@@ -736,150 +342,26 @@
 								"info",
 								""
 							]
-						},
-						"description": "API that is used to edit the profile information about a user."
-					},
-					"response": [
-						{
-							"name": "Edit Profile",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"first_name\": \"Prithoo\",\r\n    \"middle_name\": [\r\n        \"Pinak\"\r\n    ],\r\n    \"last_name\": \"Medhi\",\r\n    \"regnal_number\": 1,\r\n    \"gender\": \"Male\",\r\n    \"date_of_birth\": \"1992-09-25\",\r\n    \"age\": null\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8000//api/user/info/",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"",
-										"api",
-										"user",
-										"info",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Fri, 21 Apr 2023 03:41:27 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.12"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin"
-								},
-								{
-									"key": "Allow",
-									"value": "GET, POST, PUT, HEAD, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "510"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": \"6374e632-032f-4225-a42c-07298c19e1a1\",\n    \"user\": {\n        \"id\": \"3d0837e7-4514-425e-ae8f-8260ffc130ab\",\n        \"username\": \"prithoo11335\",\n        \"email\": \"prithoo11335@gmail.com\",\n        \"date_joined\": \"2023-04-21T05:48:54.810673+05:30\",\n        \"slug\": \"prithoo11335\",\n        \"unsuccessful_login_attempts\": 0,\n        \"blocked_until\": null\n    },\n    \"created\": \"2023-04-21T05:48:54.854768+05:30\",\n    \"updated\": \"2023-04-21T09:11:27.520635+05:30\",\n    \"first_name\": \"Prithoo\",\n    \"middle_name\": [\n        \"Pinak\"\n    ],\n    \"last_name\": \"Medhi\",\n    \"regnal_number\": 1,\n    \"gender\": \"Male\",\n    \"date_of_birth\": \"1992-09-25\",\n    \"age\": 30\n}"
 						}
-					]
-				},
-				{
-					"name": "Delete User",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"{{test_user_password}}\",\r\n    \"reason\": \"Some basic-ass reason.\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{domain}}/api/user/info/",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"info",
-								""
-							]
-						},
-						"description": "API used to delete a user."
 					},
 					"response": [
 						{
-							"name": "Delete User",
+							"name": "Get Own Info",
 							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"password\": \"•••••••\",\r\n    \"reason\": \"Some basic-ass reason.\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
 									}
-								},
+								],
 								"url": {
-									"raw": "localhost:8000//api/user/info/",
+									"raw": "{{baseUrl}}/api/user/info/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
-										"",
 										"api",
 										"user",
 										"info",
@@ -893,11 +375,11 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Sat, 22 Apr 2023 05:26:27 GMT"
+									"value": "Sun, 11 Jun 2023 17:51:42 GMT"
 								},
 								{
 									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.12"
+									"value": "WSGIServer/0.2 CPython/3.9.17"
 								},
 								{
 									"key": "Content-Type",
@@ -917,7 +399,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "65"
+									"value": "159"
 								},
 								{
 									"key": "X-Content-Type-Options",
@@ -933,210 +415,336 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"error\": null,\n    \"message\": \"User deleted successfully.\",\n    \"data\": null\n}"
+							"body": "{\n    \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"username\": \"testuser\",\n    \"email\": \"test.user@gmail.com\",\n    \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n    \"slug\": \"testuser\"\n}"
 						}
 					]
 				}
-			],
-			"description": "Deals with user management functionality: creations, update, delete, etc."
+			]
 		},
 		{
-			"name": "Admin App",
+			"name": "KYC App",
 			"item": [
 				{
-					"name": "Get All Request Logs",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{adminAccess}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{domain}}/api/admin/logs/request/?page=1",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"logs",
-								"request",
-								""
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1"
-								}
-							]
-						},
-						"description": "Used to view all logged requests made to the backend."
-					},
-					"response": [
-						{
-							"name": "Get All Request Logs",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer •••••••",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "localhost:8000/api/admin/logs/request/?page=1",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"",
-										"api",
-										"admin",
-										"logs",
-										"request",
-										""
-									],
-									"query": [
-										{
-											"key": "page",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Sat, 22 Apr 2023 15:17:46 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.12"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin, Cookie"
-								},
-								{
-									"key": "Allow",
-									"value": "GET, POST, HEAD, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "15111"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"page\": 1,\n    \"results\": [\n        {\n            \"_id\": \"B918163339BC4522B2B2884CB4D10E9A\",\n            \"method\": \"POST\",\n            \"path\": \"/api/user/signup/\",\n            \"cookies\": {},\n            \"body\": {\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"password\": \"Driftking11235\"\n            },\n            \"headers\": {\n                \"Content-Length\": \"111\",\n                \"Content-Type\": \"application/json\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"50f58e01-8282-468c-8495-bd39cb096cc2\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {},\n            \"timestampUtc\": \"2023-04-22T13:43:29.817000\"\n        },\n        {\n            \"_id\": \"3270B92827D74C339658929166BBF308\",\n            \"method\": \"POST\",\n            \"path\": \"/api/user/login/password/\",\n            \"cookies\": {},\n            \"body\": {\n                \"username\": null,\n                \"email\": \"prithoo11335@gmail.com\",\n                \"password\": \"Driftking11235\"\n            },\n            \"headers\": {\n                \"Content-Length\": \"101\",\n                \"Content-Type\": \"application/json\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"e0aa6898-a5a5-4ca6-b4fb-c2d70fae1c3d\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {},\n            \"timestampUtc\": \"2023-04-22T13:43:47.623000\"\n        },\n        {\n            \"_id\": \"E462396E51B044839ABB478B1C66A3A6\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"8f5f51d5-d119-437c-88fd-a1c00ed153a8\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T13:44:14.946000\"\n        },\n        {\n            \"_id\": \"4CEE68F9E925441482B4E50D067BF5C8\",\n            \"method\": \"POST\",\n            \"path\": \"/api/user/login/password/\",\n            \"cookies\": {},\n            \"body\": {\n                \"username\": null,\n                \"email\": \"admin@admin.com\",\n                \"password\": \"password\"\n            },\n            \"headers\": {\n                \"Content-Length\": \"88\",\n                \"Content-Type\": \"application/json\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"e4769bf3-b599-4747-94c2-06a95238231c\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {},\n            \"timestampUtc\": \"2023-04-22T15:07:26.493000\"\n        },\n        {\n            \"_id\": \"F045605FFC654C72917F65051DB42687\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"34896a5d-4145-4fcd-9dfe-2177222a67ca\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:53.135000\"\n        },\n        {\n            \"_id\": \"BD8CA56561CF403591A72D8C92BB36A2\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"56b24a8a-91bc-421d-bf77-760f07d451cb\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:54.191000\"\n        },\n        {\n            \"_id\": \"0CE6BDDD661947278252EE62891A27A6\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"b967731e-e211-49d9-9897-6fe6b0632d79\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:55.048000\"\n        },\n        {\n            \"_id\": \"5F8CE01BAC1E403AA248F30145F56FC9\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"966d8a12-bb93-41dd-8e27-62c1806a318f\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:55.832000\"\n        },\n        {\n            \"_id\": \"C2E86157E90B4C55A68297D2619C4F55\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"1db63ccb-a43b-46ac-99b5-d8c13e50424b\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:56.645000\"\n        },\n        {\n            \"_id\": \"6DF67E1DBD904030AA9F04D9EAE643DF\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"df8152e9-0384-4f34-9524-7232798e3af7\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:57.462000\"\n        },\n        {\n            \"_id\": \"D869F234B1234F119B35DCB8160032A3\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"8b06f897-2d52-4723-9f6c-608f4587d532\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:58.266000\"\n        },\n        {\n            \"_id\": \"4447CD1161324A18AB554CB50D581FE8\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"17f484d1-5b1c-4e0b-8695-c170c11d26ca\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:59.070000\"\n        },\n        {\n            \"_id\": \"76C0F484D2AF4057B5AD66FE7284FCD9\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"b98075d9-f42a-44ec-85e0-2aa605cb25f9\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:09:00.051000\"\n        },\n        {\n            \"_id\": \"CF10480D2F504E098A93529115BFD8A5\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"9ce938ca-18bb-4b1c-9d68-91a243a454aa\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:09:00.948000\"\n        },\n        {\n            \"_id\": \"7283936615DE41D0804D3FCDAACC811E\",\n            \"method\": \"POST\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {},\n            \"headers\": {\n                \"Content-Length\": \"0\",\n                \"Content-Type\": \"text/plain\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"732b22ad-9c1f-464c-9f99-6dfa63218079\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {\n                \"term\": \"admin\"\n            },\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:09:37.279000\"\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Search for Request Log",
+					"name": "Add Customer",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{adminAccess}}",
+								"value": "Bearer {{tellerAccess}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\": {\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"McNought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\"\n    },\n    \"kyc_documents\": {\n        \"id_proof_type\": \"PAN Card\",\n        \"address_proof_type\": \"Voter ID\"\n    },\n    \"address\": {\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{domain}}/api/admin/logs/request/?page=1&method=put&path=/",
+							"raw": "{{baseUrl}}/api/kyc/customer/",
 							"host": [
-								"{{domain}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
-								"admin",
-								"logs",
-								"request",
+								"kyc",
+								"customer",
 								""
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "method",
-									"value": "put"
-								},
-								{
-									"key": "path",
-									"value": "/"
-								}
 							]
-						},
-						"description": "API used to search for requests made to the backend."
+						}
 					},
 					"response": [
 						{
-							"name": "Search for Request Log",
+							"name": "Add Customer",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer •••••••",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customer\": {\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"McNought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\"\n    },\n    \"kyc_documents\": {\n        \"id_proof_type\": \"PAN Card\",\n        \"address_proof_type\": \"Voter ID\"\n    },\n    \"address\": {\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "localhost:8000/api/admin/logs/request/?page=1&method=put&path=/",
+									"raw": "{{baseUrl}}/api/kyc/customer/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
-										"",
 										"api",
-										"admin",
-										"logs",
-										"request",
+										"kyc",
+										"customer",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 16 Jun 2023 06:37:12 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1197"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"customer\": {\n        \"id\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\",\n        \"created\": \"2023-06-16T06:37:12.105415Z\",\n        \"updated\": \"2023-06-16T06:37:12.105424Z\",\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"Mcnought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id\": \"d9ce224a-d703-4237-8c46-a1ff7de81a07\",\n        \"created\": \"2023-06-16T06:37:12.118266Z\",\n        \"updated\": \"2023-06-16T06:37:12.118277Z\",\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\",\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    },\n    \"kyc_documents\": {\n        \"id\": \"535e64e5-1daf-45c2-a558-0045dc6a8ce2\",\n        \"created\": \"2023-06-16T06:37:12.120600Z\",\n        \"updated\": \"2023-06-16T06:37:12.120607Z\",\n        \"photo\": null,\n        \"id_proof_type\": \"PAN Card\",\n        \"id_proof\": null,\n        \"address_proof_type\": \"Voter ID\",\n        \"address_proof\": null,\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    },\n    \"address\": {\n        \"id\": \"d7d394b1-a977-4959-adba-d407df325968\",\n        \"created\": \"2023-06-16T06:37:12.122364Z\",\n        \"updated\": \"2023-06-16T06:37:12.122370Z\",\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\",\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Search Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"middlename\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/kyc/customer/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"kyc",
+								"customer",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Search Customer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"query\": \"middlename\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/kyc/customer/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"kyc",
+										"customer",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jun 2023 04:22:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "294"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"6f9d37a3-7eb6-48a7-863c-3829edc66d01\",\n        \"created\": \"2023-06-11T18:21:04.908605Z\",\n        \"updated\": \"2023-06-11T18:21:04.908617Z\",\n        \"first_name\": \"Test\",\n        \"middle_name\": [\n            \"Middlename1\",\n            \"Middlename2\",\n            \"Middlename3\"\n        ],\n        \"last_name\": \"Customer\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1991-04-12\",\n        \"gender\": \"Male\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Upload KYC Documents",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "idProof",
+									"type": "file",
+									"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/id_proof.pdf"
+								},
+								{
+									"key": "addressProof",
+									"type": "file",
+									"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/address_proof.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/kyc/documents/?customer=d4d44a57-d164-4851-980a-3eb2e9dae3b5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"kyc",
+								"documents",
+								""
+							],
+							"query": [
+								{
+									"key": "customer",
+									"value": "d4d44a57-d164-4851-980a-3eb2e9dae3b5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upload KYC Documents",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "idProof",
+											"type": "file",
+											"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/id_proof.pdf"
+										},
+										{
+											"key": "addressProof",
+											"type": "file",
+											"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/address_proof.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/kyc/documents/?customer=d4d44a57-d164-4851-980a-3eb2e9dae3b5",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"kyc",
+										"documents",
 										""
 									],
 									"query": [
 										{
-											"key": "page",
-											"value": "1"
-										},
-										{
-											"key": "method",
-											"value": "put"
-										},
-										{
-											"key": "path",
-											"value": "/"
+											"key": "customer",
+											"value": "d4d44a57-d164-4851-980a-3eb2e9dae3b5"
 										}
 									]
 								}
@@ -1147,11 +755,136 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Sat, 22 Apr 2023 15:23:35 GMT"
+									"value": "Fri, 16 Jun 2023 06:38:48 GMT"
 								},
 								{
 									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.12"
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "PUT, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "626"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"535e64e5-1daf-45c2-a558-0045dc6a8ce2\",\n    \"customer\": {\n        \"id\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\",\n        \"created\": \"2023-06-16T06:37:12.105415Z\",\n        \"updated\": \"2023-06-16T06:37:12.105424Z\",\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"Mcnought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"created\": \"2023-06-16T06:37:12.120600Z\",\n    \"updated\": \"2023-06-16T06:38:48.936140Z\",\n    \"photo\": null,\n    \"id_proof_type\": \"PAN Card\",\n    \"id_proof\": \"/media/custdocuments/id_proof/id_proof_2fqwfU6.pdf\",\n    \"address_proof_type\": \"Voter ID\",\n    \"address_proof\": \"/media/custdocuments/address_proof/address_proof_35FRqmV.pdf\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Banking App",
+			"item": [
+				{
+					"name": "Create Bank Account",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customers\": [\n        \"6f9d37a3-7eb6-48a7-863c-3829edc66d01\"\n    ],\n    \"deposit\": 1.25E+9,\n    \"type\": \"Savings\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/banking/account/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"banking",
+								"account",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Bank Account",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customers\": [\n        \"6f9d37a3-7eb6-48a7-863c-3829edc66d01\"\n    ],\n    \"deposit\": 1.25E+9,\n    \"type\": \"Savings\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/banking/account/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"banking",
+										"account",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jun 2023 03:49:36 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
 								},
 								{
 									"key": "Content-Type",
@@ -1171,7 +904,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "12474"
+									"value": "532"
 								},
 								{
 									"key": "X-Content-Type-Options",
@@ -1187,12 +920,721 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"page\": 1,\n    \"results\": [\n        {\n            \"_id\": \"E462396E51B044839ABB478B1C66A3A6\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"8f5f51d5-d119-437c-88fd-a1c00ed153a8\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T13:44:14.946000\"\n        },\n        {\n            \"_id\": \"F045605FFC654C72917F65051DB42687\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"34896a5d-4145-4fcd-9dfe-2177222a67ca\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:53.135000\"\n        },\n        {\n            \"_id\": \"BD8CA56561CF403591A72D8C92BB36A2\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"56b24a8a-91bc-421d-bf77-760f07d451cb\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:54.191000\"\n        },\n        {\n            \"_id\": \"0CE6BDDD661947278252EE62891A27A6\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"b967731e-e211-49d9-9897-6fe6b0632d79\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:55.048000\"\n        },\n        {\n            \"_id\": \"5F8CE01BAC1E403AA248F30145F56FC9\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"966d8a12-bb93-41dd-8e27-62c1806a318f\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:55.832000\"\n        },\n        {\n            \"_id\": \"C2E86157E90B4C55A68297D2619C4F55\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"1db63ccb-a43b-46ac-99b5-d8c13e50424b\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:56.645000\"\n        },\n        {\n            \"_id\": \"6DF67E1DBD904030AA9F04D9EAE643DF\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"df8152e9-0384-4f34-9524-7232798e3af7\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:57.462000\"\n        },\n        {\n            \"_id\": \"D869F234B1234F119B35DCB8160032A3\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"8b06f897-2d52-4723-9f6c-608f4587d532\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:58.266000\"\n        },\n        {\n            \"_id\": \"4447CD1161324A18AB554CB50D581FE8\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"17f484d1-5b1c-4e0b-8695-c170c11d26ca\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:08:59.070000\"\n        },\n        {\n            \"_id\": \"76C0F484D2AF4057B5AD66FE7284FCD9\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"b98075d9-f42a-44ec-85e0-2aa605cb25f9\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:09:00.051000\"\n        },\n        {\n            \"_id\": \"CF10480D2F504E098A93529115BFD8A5\",\n            \"method\": \"PUT\",\n            \"path\": \"/api/user/info/\",\n            \"cookies\": {},\n            \"body\": {\n                \"first_name\": \"Prithoo\",\n                \"middle_name\": [\n                    \"Pinak\"\n                ],\n                \"last_name\": \"Medhi\",\n                \"regnal_number\": 1,\n                \"gender\": \"Male\",\n                \"date_of_birth\": \"1992-09-25\",\n                \"age\": null\n            },\n            \"headers\": {\n                \"Content-Length\": \"209\",\n                \"Content-Type\": \"application/json\",\n                \"Authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMTk5ODI4LCJpYXQiOjE2ODIxNzEwMjgsImp0aSI6IjEzZDQ2NjBiMzRiMDQ3N2FiZDA4ODI3MTNhYjViY2M5IiwidXNlcl9pZCI6ImMyMTkyZGQzLTEzOTItNGRhOC05ZGZkLTAyM2UwZDM2Y2I5ZSJ9.atP1rv8PPAD00VyisIHmg_h1YeXFpWgTVejkvzeqjL4\",\n                \"User-Agent\": \"PostmanRuntime/7.32.2\",\n                \"Accept\": \"*/*\",\n                \"Cache-Control\": \"no-cache\",\n                \"Postman-Token\": \"9ce938ca-18bb-4b1c-9d68-91a243a454aa\",\n                \"Host\": \"localhost:8000\",\n                \"Accept-Encoding\": \"gzip, deflate, br\",\n                \"Connection\": \"keep-alive\"\n            },\n            \"params\": {},\n            \"user\": {\n                \"id\": \"c2192dd3-1392-4da8-9dfd-023e0d36cb9e\",\n                \"username\": \"prithoo11335\",\n                \"email\": \"prithoo11335@gmail.com\",\n                \"date_joined\": \"2023-04-22T19:13:30.372276+05:30\",\n                \"slug\": \"prithoo11335\",\n                \"unsuccessful_login_attempts\": 0,\n                \"blocked_until\": null\n            },\n            \"timestampUtc\": \"2023-04-22T15:09:00.948000\"\n        }\n    ]\n}"
+							"body": "{\n    \"id\": \"70b938e8-d756-428f-bb6d-6c218f3f3179\",\n    \"holder\": [\n        {\n            \"id\": \"6f9d37a3-7eb6-48a7-863c-3829edc66d01\",\n            \"created\": \"2023-06-11T18:21:04.908605Z\",\n            \"updated\": \"2023-06-11T18:21:04.908617Z\",\n            \"first_name\": \"Test\",\n            \"middle_name\": [\n                \"Middlename1\",\n                \"Middlename2\",\n                \"Middlename3\"\n            ],\n            \"last_name\": \"Customer\",\n            \"regnal_suffix\": null,\n            \"date_of_birth\": \"1991-04-12\",\n            \"gender\": \"Male\"\n        }\n    ],\n    \"created\": \"2023-06-13T03:49:36.010773Z\",\n    \"updated\": \"2023-06-13T03:49:36.010785Z\",\n    \"account_type\": \"Savings\",\n    \"account_number\": \"C125855620F443779CB6D65F004013BD\",\n    \"balance\": \"1250000000.00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Bank Accounts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/banking/account/?customer=6f9d37a3-7eb6-48a7-863c-3829edc66d01&account",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"banking",
+								"account",
+								""
+							],
+							"query": [
+								{
+									"key": "customer",
+									"value": "6f9d37a3-7eb6-48a7-863c-3829edc66d01"
+								},
+								{
+									"key": "account",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Bank Accounts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/banking/account/?customer=6f9d37a3-7eb6-48a7-863c-3829edc66d01&account",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"banking",
+										"account",
+										""
+									],
+									"query": [
+										{
+											"key": "customer",
+											"value": "6f9d37a3-7eb6-48a7-863c-3829edc66d01"
+										},
+										{
+											"key": "account",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jun 2023 04:09:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1343"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"70b938e8-d756-428f-bb6d-6c218f3f3179\",\n        \"holder\": [\n            {\n                \"id\": \"6f9d37a3-7eb6-48a7-863c-3829edc66d01\",\n                \"created\": \"2023-06-11T18:21:04.908605Z\",\n                \"updated\": \"2023-06-11T18:21:04.908617Z\",\n                \"first_name\": \"Test\",\n                \"middle_name\": [\n                    \"Middlename1\",\n                    \"Middlename2\",\n                    \"Middlename3\"\n                ],\n                \"last_name\": \"Customer\",\n                \"regnal_suffix\": null,\n                \"date_of_birth\": \"1991-04-12\",\n                \"gender\": \"Male\"\n            }\n        ],\n        \"created\": \"2023-06-13T03:49:36.010773Z\",\n        \"updated\": \"2023-06-13T03:49:36.010785Z\",\n        \"account_type\": \"Savings\",\n        \"account_number\": \"C125855620F443779CB6D65F004013BD\",\n        \"balance\": \"1250000000.00\"\n    },\n    {\n        \"id\": \"2505bd46-6c57-47cd-8221-665c28954764\",\n        \"holder\": [\n            {\n                \"id\": \"0830e38c-9869-4f6a-aeb0-6edab18f97d9\",\n                \"created\": \"2023-06-10T19:37:58.393020Z\",\n                \"updated\": \"2023-06-10T19:37:58.393039Z\",\n                \"first_name\": \"Javier\",\n                \"middle_name\": [\n                    \"Giorcomo\",\n                    \"Madrigo\",\n                    \"Esteban\"\n                ],\n                \"last_name\": \"Gomez\",\n                \"regnal_suffix\": \"I\",\n                \"date_of_birth\": \"1956-02-14\",\n                \"gender\": \"Male\"\n            },\n            {\n                \"id\": \"6f9d37a3-7eb6-48a7-863c-3829edc66d01\",\n                \"created\": \"2023-06-11T18:21:04.908605Z\",\n                \"updated\": \"2023-06-11T18:21:04.908617Z\",\n                \"first_name\": \"Test\",\n                \"middle_name\": [\n                    \"Middlename1\",\n                    \"Middlename2\",\n                    \"Middlename3\"\n                ],\n                \"last_name\": \"Customer\",\n                \"regnal_suffix\": null,\n                \"date_of_birth\": \"1991-04-12\",\n                \"gender\": \"Male\"\n            }\n        ],\n        \"created\": \"2023-06-10T19:47:15.648243Z\",\n        \"updated\": \"2023-06-11T23:54:50.748840Z\",\n        \"account_type\": \"Current\",\n        \"account_number\": \"4C5D4040F3CD474EA548BF2DAEF10B38\",\n        \"balance\": \"390000.00\"\n    }\n]"
 						}
 					]
 				}
-			],
-			"description": "Application that deals with administrative and maintainance tasks via APIs."
+			]
+		},
+		{
+			"name": "Ledger App",
+			"item": [
+				{
+					"name": "Create Ledger Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"First Ledger Entry\",\n    \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/ledger/entry/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"ledger",
+								"entry",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Ledger Entry",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"First Ledger Entry\",\n    \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/ledger/entry/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ledger",
+										"entry",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 16:35:10 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "903"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"f7dae9b3-3dbf-4362-876a-07e43ae7e094\",\n    \"employee\": {\n        \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n        \"username\": \"testuser\",\n        \"email\": \"test.user@gmail.com\",\n        \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n        \"slug\": \"testuser\"\n    },\n    \"created\": \"2023-06-18T16:35:10.138610Z\",\n    \"updated\": \"2023-06-18T16:35:10.138624Z\",\n    \"title\": \"First Ledger Entry\",\n    \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve Ledger Entry",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f&user&from=2023-01-31&to=2023-06-30",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"ledger",
+								"entry",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "f3ab4244-4a68-47db-9274-e271f45e387f"
+								},
+								{
+									"key": "user",
+									"value": null
+								},
+								{
+									"key": "from",
+									"value": "2023-01-31"
+								},
+								{
+									"key": "to",
+									"value": "2023-06-30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Retrieve Ledger Entry (By ID)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f&user&from&to",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ledger",
+										"entry",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "f3ab4244-4a68-47db-9274-e271f45e387f"
+										},
+										{
+											"key": "user",
+											"value": null
+										},
+										{
+											"key": "from",
+											"value": null
+										},
+										{
+											"key": "to",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 16:49:23 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "907"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"f3ab4244-4a68-47db-9274-e271f45e387f\",\n    \"employee\": {\n        \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n        \"username\": \"testuser\",\n        \"email\": \"test.user@gmail.com\",\n        \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n        \"slug\": \"testuser\"\n    },\n    \"created\": \"2023-06-18T16:40:01.497224Z\",\n    \"updated\": \"2023-06-18T16:40:01.497245Z\",\n    \"title\": \"Sixteenth Ledger Entry\",\n    \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n}"
+						},
+						{
+							"name": "Retrieve Ledger Entry (Manual Date)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/ledger/entry/?user&from=2023-01-31&to=2023-06-30",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ledger",
+										"entry",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "f3ab4244-4a68-47db-9274-e271f45e387f",
+											"disabled": true
+										},
+										{
+											"key": "user",
+											"value": null
+										},
+										{
+											"key": "from",
+											"value": "2023-01-31"
+										},
+										{
+											"key": "to",
+											"value": "2023-06-30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 16:54:50 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14492"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"f3ab4244-4a68-47db-9274-e271f45e387f\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:40:01.497224Z\",\n        \"updated\": \"2023-06-18T16:40:01.497245Z\",\n        \"title\": \"Sixteenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"2cf8dc97-9bd4-43ce-b00c-e59c2f60e9b3\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:39:49.867825Z\",\n        \"updated\": \"2023-06-18T16:39:49.867838Z\",\n        \"title\": \"Fifteenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"abe29a52-af21-4ea3-9d54-a8a321e886b6\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:39:39.855410Z\",\n        \"updated\": \"2023-06-18T16:39:39.855423Z\",\n        \"title\": \"Fouteenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"0ac312f6-5b15-48d8-af5c-083b6f3349ca\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:50.085391Z\",\n        \"updated\": \"2023-06-18T16:37:50.085413Z\",\n        \"title\": \"Thirteenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"4444c40e-6cf9-4d63-9644-f2e9afc7ccd2\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:40.877098Z\",\n        \"updated\": \"2023-06-18T16:37:40.877114Z\",\n        \"title\": \"Twelfth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"3d1d071a-7cd4-4ef6-9cc1-6da8fe6b693b\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:32.165831Z\",\n        \"updated\": \"2023-06-18T16:37:32.165846Z\",\n        \"title\": \"Eleventh Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"d6ec4556-c104-4d6f-a0c6-41f6685bdd9d\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:25.405195Z\",\n        \"updated\": \"2023-06-18T16:37:25.405215Z\",\n        \"title\": \"Tenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"526f2ce1-0ead-4afd-849d-c23ffc46ee51\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:15.864471Z\",\n        \"updated\": \"2023-06-18T16:37:15.864494Z\",\n        \"title\": \"Ninth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"6cac5323-cf9d-4068-9e28-1c813717d77d\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:08.390280Z\",\n        \"updated\": \"2023-06-18T16:37:08.390293Z\",\n        \"title\": \"Eighth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"3d79a7a4-812d-412e-9188-2bc6aa6f8b37\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:36:30.147754Z\",\n        \"updated\": \"2023-06-18T16:36:30.147777Z\",\n        \"title\": \"Seventh Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"9e57372a-4d7e-466d-ae57-1a859d1e0f34\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:36:16.095723Z\",\n        \"updated\": \"2023-06-18T16:36:16.095745Z\",\n        \"title\": \"Sixth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"4f681dc0-ecca-4d05-aad0-b99ab2a1e1a4\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:36:08.328867Z\",\n        \"updated\": \"2023-06-18T16:36:08.328883Z\",\n        \"title\": \"Fifth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"8e812b70-7ce6-44be-b5be-d23b0a8c16db\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:35:53.383887Z\",\n        \"updated\": \"2023-06-18T16:35:53.383900Z\",\n        \"title\": \"Fourth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"3b80bb15-de5c-42d2-9535-1ce260a42148\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:35:44.830643Z\",\n        \"updated\": \"2023-06-18T16:35:44.830668Z\",\n        \"title\": \"Third Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"d68e8e65-fde7-42ed-b6a0-05d755d962f9\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:35:37.342663Z\",\n        \"updated\": \"2023-06-18T16:35:37.342675Z\",\n        \"title\": \"Second Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"f7dae9b3-3dbf-4362-876a-07e43ae7e094\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:35:10.138610Z\",\n        \"updated\": \"2023-06-18T16:35:10.138624Z\",\n        \"title\": \"First Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    }\n]"
+						},
+						{
+							"name": "Retrieve Ledger Entry (Default Date)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/ledger/entry/?user",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ledger",
+										"entry",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "f3ab4244-4a68-47db-9274-e271f45e387f",
+											"disabled": true
+										},
+										{
+											"key": "user",
+											"value": null
+										},
+										{
+											"key": "from",
+											"value": "2023-01-31",
+											"disabled": true
+										},
+										{
+											"key": "to",
+											"value": "2023-06-30",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 16:55:45 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14492"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"f3ab4244-4a68-47db-9274-e271f45e387f\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:40:01.497224Z\",\n        \"updated\": \"2023-06-18T16:40:01.497245Z\",\n        \"title\": \"Sixteenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"2cf8dc97-9bd4-43ce-b00c-e59c2f60e9b3\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:39:49.867825Z\",\n        \"updated\": \"2023-06-18T16:39:49.867838Z\",\n        \"title\": \"Fifteenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"abe29a52-af21-4ea3-9d54-a8a321e886b6\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:39:39.855410Z\",\n        \"updated\": \"2023-06-18T16:39:39.855423Z\",\n        \"title\": \"Fouteenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"0ac312f6-5b15-48d8-af5c-083b6f3349ca\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:50.085391Z\",\n        \"updated\": \"2023-06-18T16:37:50.085413Z\",\n        \"title\": \"Thirteenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"4444c40e-6cf9-4d63-9644-f2e9afc7ccd2\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:40.877098Z\",\n        \"updated\": \"2023-06-18T16:37:40.877114Z\",\n        \"title\": \"Twelfth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"3d1d071a-7cd4-4ef6-9cc1-6da8fe6b693b\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:32.165831Z\",\n        \"updated\": \"2023-06-18T16:37:32.165846Z\",\n        \"title\": \"Eleventh Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"d6ec4556-c104-4d6f-a0c6-41f6685bdd9d\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:25.405195Z\",\n        \"updated\": \"2023-06-18T16:37:25.405215Z\",\n        \"title\": \"Tenth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"526f2ce1-0ead-4afd-849d-c23ffc46ee51\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:15.864471Z\",\n        \"updated\": \"2023-06-18T16:37:15.864494Z\",\n        \"title\": \"Ninth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"6cac5323-cf9d-4068-9e28-1c813717d77d\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:37:08.390280Z\",\n        \"updated\": \"2023-06-18T16:37:08.390293Z\",\n        \"title\": \"Eighth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"3d79a7a4-812d-412e-9188-2bc6aa6f8b37\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:36:30.147754Z\",\n        \"updated\": \"2023-06-18T16:36:30.147777Z\",\n        \"title\": \"Seventh Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"9e57372a-4d7e-466d-ae57-1a859d1e0f34\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:36:16.095723Z\",\n        \"updated\": \"2023-06-18T16:36:16.095745Z\",\n        \"title\": \"Sixth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"4f681dc0-ecca-4d05-aad0-b99ab2a1e1a4\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:36:08.328867Z\",\n        \"updated\": \"2023-06-18T16:36:08.328883Z\",\n        \"title\": \"Fifth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"8e812b70-7ce6-44be-b5be-d23b0a8c16db\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:35:53.383887Z\",\n        \"updated\": \"2023-06-18T16:35:53.383900Z\",\n        \"title\": \"Fourth Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"3b80bb15-de5c-42d2-9535-1ce260a42148\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:35:44.830643Z\",\n        \"updated\": \"2023-06-18T16:35:44.830668Z\",\n        \"title\": \"Third Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"d68e8e65-fde7-42ed-b6a0-05d755d962f9\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:35:37.342663Z\",\n        \"updated\": \"2023-06-18T16:35:37.342675Z\",\n        \"title\": \"Second Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    },\n    {\n        \"id\": \"f7dae9b3-3dbf-4362-876a-07e43ae7e094\",\n        \"employee\": {\n            \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n            \"username\": \"testuser\",\n            \"email\": \"test.user@gmail.com\",\n            \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n            \"slug\": \"testuser\"\n        },\n        \"created\": \"2023-06-18T16:35:10.138610Z\",\n        \"updated\": \"2023-06-18T16:35:10.138624Z\",\n        \"title\": \"First Ledger Entry\",\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis eros, in commodo ligula. Maecenas ut dignissim leo. Aenean viverra maximus finibus. Praesent eu augue quis urna molestie maximus at non dui. Curabitur porta suscipit gravida. Mauris fringilla finibus ipsum, bibendum suscipit purus tincidunt eget. Vestibulum dignissim convallis justo eu lobortis. Fusce mollis nunc nec mauris vehicula scelerisque. Duis eu egestas nunc, sit amet efficitur libero. In non vestibulum nisl, non pulvinar erat. Vestibulum sit amet feugiat est, cursus posuere ante.\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Update Ledger Entry",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"updated title\",\n    \"body\": \"It is with great joy, that I would like to announce that the ledger update API is woking as intended.\\nThe world is filled with countless experiences and each one of us may reflect and recollect the same experiences differently; but over time, we may need to append to, remove from: the perceptions we may have had of these experiences, so that we may better ourselves and our understanding of the world that we live in.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"ledger",
+								"entry",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "f3ab4244-4a68-47db-9274-e271f45e387f"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Ledger Entry",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{tellerAccess}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"updated title\",\n    \"body\": \"It is with great joy, that I would like to announce that the ledger update API is woking as intended.\\nThe world is filled with countless experiences and each one of us may reflect and recollect the same experiences differently; but over time, we may need to append to, remove from: the perceptions we may have had of these experiences, so that we may better ourselves and our understanding of the world that we live in.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ledger",
+										"entry",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "f3ab4244-4a68-47db-9274-e271f45e387f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 17:04:16 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "750"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"f3ab4244-4a68-47db-9274-e271f45e387f\",\n    \"employee\": {\n        \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n        \"username\": \"testuser\",\n        \"email\": \"test.user@gmail.com\",\n        \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n        \"slug\": \"testuser\"\n    },\n    \"created\": \"2023-06-18T16:40:01.497224Z\",\n    \"updated\": \"2023-06-18T17:04:16.127976Z\",\n    \"title\": \"Updated Title\",\n    \"body\": \"It is with great joy, that I would like to announce that the ledger update API is woking as intended.\\nThe world is filled with countless experiences and each one of us may reflect and recollect the same experiences differently; but over time, we may need to append to, remove from: the perceptions we may have had of these experiences, so that we may better ourselves and our understanding of the world that we live in.\"\n}"
+						}
+					]
+				}
+			]
 		}
 	]
 }
