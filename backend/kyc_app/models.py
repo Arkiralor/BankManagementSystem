@@ -33,7 +33,8 @@ class Customer(TemplateModel):
 
     def save(self, *args, **kwargs):
         self.first_name = self.first_name.title()
-        self.middle_name = [name.title() for name in self.middle_name]
+        if self.middle_name:
+            self.middle_name = [name.title() for name in self.middle_name]
         self.last_name = self.last_name.title()
         if self.regnal_suffix:
             self.regnal_suffix = self.regnal_suffix.upper()
@@ -61,7 +62,7 @@ class KnowYourCustomer(TemplateModel):
 class KYCDocuments(TemplateModel):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
     photo = models.ImageField(
-        upload_to="media/custdocuments/photo",
+        upload_to="custdocuments/photo",
         blank=True,
         null=True,
         validators=[
