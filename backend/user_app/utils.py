@@ -219,7 +219,7 @@ class UserModelUtils:
         return resp
 
     @classmethod
-    def get_ip_address(cls, request:HttpRequest=None):
+    def get_ip_address(cls, request: HttpRequest = None):
         """
         Get the IP address from a request.
         To be used when logging a user's IP address when logging in.
@@ -236,7 +236,7 @@ class UserModelUtils:
             return ""
 
     @classmethod
-    def log_login_ip(cls, user:str=None, request:HttpRequest=None)->None:
+    def log_login_ip(cls, user: str = None, request: HttpRequest = None) -> None:
         """
         Log a user's IP address when successfully logging in.
         """
@@ -258,7 +258,8 @@ class UserModelUtils:
                     ]
                 }
                 if not SynchronousMethods.exists(filter_dict=check_dict, collection=DatabaseCollections.user_ips):
-                    _ = SynchronousMethods.insert_one(data=data, collection=DatabaseCollections.user_ips)
+                    _ = SynchronousMethods.insert_one(
+                        data=data, collection=DatabaseCollections.user_ips)
             except Exception as ex:
                 logger.warn(f"{ex}")
 
@@ -330,7 +331,7 @@ class UserModelUtils:
         user.save()
 
         tokens = JWTUtils.get_tokens_for_user(user=user)
-        
+
         resp.message = f"User {user.email} logged in successfully."
         resp.data = {
             "user": user.id,
@@ -346,10 +347,10 @@ class UserModelUtils:
 
     @classmethod
     def insert_deleted_user_into_mongo(
-            cls, 
-            data:dict=None, 
-            reason:str="Some generic reason."
-        )->None:
+        cls,
+        data: dict = None,
+        reason: str = "Some generic reason."
+    ) -> None:
         """
         Keep a record of any deleted users in the MongoDB cluster.
         """
@@ -358,15 +359,16 @@ class UserModelUtils:
             del data["id"]
 
             data["reason"] = reason
-            data["timestamp"] = timezone.now().strftime('%Y-%m-%dT%H:%M:%S.%f%z')
-        
+            data["timestamp"] = timezone.now().strftime(
+                '%Y-%m-%dT%H:%M:%S.%f%z')
+
             return SynchronousMethods.insert_one(data=data, collection=DatabaseCollections.deleted_users)
         except Exception as ex:
             logger.warn(f"{ex}")
             return {}
 
     @classmethod
-    def delete(cls, user:User=None, password:str=None, reason:str=None) -> Resp:
+    def delete(cls, user: User = None, password: str = None, reason: str = None) -> Resp:
         """
         Utility method for a user to delete their account.
         """
@@ -383,7 +385,7 @@ class UserModelUtils:
 
             logger.warn(resp.message)
             return resp
-        
+
         if not check_password(password, user.password):
             resp.error = "Incorrect Password"
             resp.message = resp.error
@@ -395,17 +397,17 @@ class UserModelUtils:
 
             logger.warn(resp.message)
             return resp
-        
+
         user.delete()
 
         resp.message = f"User deleted successfully."
         resp.status_code = status.HTTP_200_OK
-        
+
         logger.info(resp.message)
         return resp
 
     @classmethod
-    def get_whitelisted_ips(cls, user:User=None, page:int=1)->Resp:
+    def get_whitelisted_ips(cls, user: User = None, page: int = 1) -> Resp:
         resp = Resp()
 
         if not user:
@@ -418,12 +420,13 @@ class UserModelUtils:
 
             logger.warn(resp.text())
             return resp
-        
+
         filter_dict = {
             "user": f"{user.id}"
         }
 
-        results = SynchronousMethods.find(filter_dict=filter_dict, collection=DatabaseCollections.user_white_listed_ips, page=page)
+        results = SynchronousMethods.find(
+            filter_dict=filter_dict, collection=DatabaseCollections.user_white_listed_ips, page=page)
 
         resp.message = f"White-listed IP addresses for '{user.email}' retrieved successfully."
         resp.data = {
@@ -436,7 +439,7 @@ class UserModelUtils:
         return resp
 
     @classmethod
-    def add_white_list_ips(cls, user:User=None, password:str=None, ips:List[str]=[]) -> Resp:
+    def add_white_list_ips(cls, user: User = None, password: str = None, ips: List[str] = []) -> Resp:
         resp = Resp()
 
         if not user or not check_password(password=password, encoded=user.password):
@@ -450,7 +453,7 @@ class UserModelUtils:
 
             logger.warn(resp.text())
             return resp
-        
+
         for ip in ips:
             try:
                 data = {
@@ -459,9 +462,11 @@ class UserModelUtils:
                 }
 
                 if SynchronousMethods.find(filter_dict=data, collection=DatabaseCollections.user_white_listed_ips):
-                    logger.warn("This IP is already whitelisted for this user.")
+                    logger.warn(
+                        "This IP is already whitelisted for this user.")
                 else:
-                    _ = SynchronousMethods.insert_one(data=data, collection=DatabaseCollections.user_white_listed_ips)
+                    _ = SynchronousMethods.insert_one(
+                        data=data, collection=DatabaseCollections.user_white_listed_ips)
             except Exception as ex:
                 resp.error = "Error in MongoDB Insertion"
                 resp.message = f"{ex}"
@@ -483,7 +488,7 @@ class UserModelUtils:
         return resp
 
     @classmethod
-    def delete_whitelisted_ip(cls, user:User=None, ip:str=None, _id:str=None) -> Resp:
+    def delete_whitelisted_ip(cls, user: User = None, ip: str = None, _id: str = None) -> Resp:
         resp = Resp()
 
         if not user:
@@ -501,9 +506,10 @@ class UserModelUtils:
         elif not _id and ip:
             filter_dict["ip"] = ip
         elif _id and ip:
-            logger.info(f"Contructing complicated filter hash table for MongoDB query for {user.username} as both: '_id' and 'ip' were provided")
+            logger.info(
+                f"Contructing complicated filter hash table for MongoDB query for {user.username} as both: '_id' and 'ip' were provided")
             filter_dict = {
-                "$and":[
+                "$and": [
                     {"user": f"{user.id}"},
                     {
                         "$or": [
@@ -525,7 +531,7 @@ class UserModelUtils:
 
             logger.warn(resp.to_text())
             return resp
-        
+
         if not SynchronousMethods.find(filter_dict=filter_dict, collection=DatabaseCollections.user_white_listed_ips):
             resp.error = "Document Not Found"
             resp.message = f"No document found with attributes: {filter_dict} in collection '{DatabaseCollections.user_white_listed_ips}'."
@@ -534,8 +540,9 @@ class UserModelUtils:
 
             logger.warn(resp.to_text())
             return resp
-        
-        check = SynchronousMethods.delete(filter_dict=filter_dict, collection=DatabaseCollections.user_white_listed_ips)
+
+        check = SynchronousMethods.delete(
+            filter_dict=filter_dict, collection=DatabaseCollections.user_white_listed_ips)
         if not check:
             resp.error = "Internal Error"
             resp.message = f"Internal server error; check logs."
@@ -544,7 +551,7 @@ class UserModelUtils:
 
             logger.warn(resp.to_text())
             return resp
-        
+
         resp.message = f"Whitelisted IP address {ip if ip else _id} deleted for {user.email}."
         resp.data = cls.get_whitelisted_ips(user=user).data
         resp.status_code = status.HTTP_200_OK
@@ -553,7 +560,7 @@ class UserModelUtils:
         return resp
 
     @classmethod
-    def log_login_mac(self, user:str=None, request:HttpRequest=None)->None:
+    def log_login_mac(self, user: str = None, request: HttpRequest = None) -> None:
         mac = request.headers.get(MAC_HEADER)
         if mac:
             try:
@@ -570,9 +577,11 @@ class UserModelUtils:
                     ]
                 }
                 if not SynchronousMethods.exists(filter_dict=check_dict, collection=DatabaseCollections.user_mac_addresses):
-                    _ = SynchronousMethods.insert_one(data=data, collection=DatabaseCollections.user_mac_addresses)
+                    _ = SynchronousMethods.insert_one(
+                        data=data, collection=DatabaseCollections.user_mac_addresses)
             except Exception as ex:
                 logger.warn(f"{ex}")
+
 
 class UserProfileModelUtils:
 
@@ -587,11 +596,11 @@ class UserProfileModelUtils:
     )
 
     @classmethod
-    def get(cls, user_id:str=None)->UserProfile:
+    def get(cls, user_id: str = None) -> UserProfile:
         return UserProfile.objects.filter(user__pk=user_id).select_related("user").first()
-    
+
     @classmethod
-    def put(cls, user_id:str=None, data:dict=None)->Resp:
+    def put(cls, user_id: str = None, data: dict = None) -> Resp:
         resp = Resp()
 
         if not user_id or not data:
@@ -601,7 +610,7 @@ class UserProfileModelUtils:
 
             logger.warn(resp.message)
             return resp
-        
+
         profile = cls.get(user_id=user_id)
 
         db_data = UserProfileInputSerializer(profile).data
@@ -617,10 +626,11 @@ class UserProfileModelUtils:
 
                 logger.warn(resp.text())
                 return resp
-            
+
             db_data[key] = data.get(key)
 
-        deserialized = UserProfileInputSerializer(instance=profile, data=db_data)
+        deserialized = UserProfileInputSerializer(
+            instance=profile, data=db_data)
 
         if not deserialized.is_valid():
             resp.error = "Serializer Error"
@@ -630,10 +640,11 @@ class UserProfileModelUtils:
 
             logger.warn(resp.text())
             return resp
-        
+
         deserialized.save()
         resp.message = "Profile updated successfully."
-        resp.data = UserProfileOutputSerializer(instance=deserialized.instance).data
+        resp.data = UserProfileOutputSerializer(
+            instance=deserialized.instance).data
         resp.status_code = status.HTTP_200_OK
 
         logger.info(resp.message)

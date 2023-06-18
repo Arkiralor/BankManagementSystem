@@ -11,24 +11,24 @@ class UserSignalReciever:
     model = User
 
     @classmethod
-    def created(cls, sender, instance, created, *args, **kwargs):
+    def created(cls, sender, instance: User, created, *args, **kwargs):
         if created:
             user_profile, _ = UserProfile.objects.get_or_create(user=instance)
             user_address, _ = Address.objects.get_or_create(user=instance)
             logger.info(f"User: {instance.email} created.")
 
     @classmethod
-    def updated(cls, sender, instance, created, *args, **kwargs):
+    def updated(cls, sender, instance: User, created, *args, **kwargs):
         if not created:
             logger.info(f"User: '{instance.email}' updated.")
 
     @classmethod
-    def pre_delete(cls, sender, instance, *args, **kwargs):
+    def pre_delete(cls, sender, instance: User, *args, **kwargs):
         _ = UserModelUtils.insert_deleted_user_into_mongo(
             data=ShowUserSerializer(instance=instance).data)
 
     @classmethod
-    def post_delete(cls, sender, instance, *args, **kwargs):
+    def post_delete(cls, sender, instance: User, *args, **kwargs):
         _ = instance.id_proof.delete(save=False)
         _ = instance.address_proof.delete(save=False)
 
@@ -47,12 +47,12 @@ class UserProfileSignalReciever:
     model = UserProfile
 
     @classmethod
-    def created(cls, sender, instance, created, *args, **kwargs):
+    def created(cls, sender, instance: UserProfile, created, *args, **kwargs):
         if created:
             logger.info(f"Profile for user: '{instance.user.email}' created.")
 
     @classmethod
-    def updated(cls, sender, instance, created, *args, **kwargs):
+    def updated(cls, sender, instance: UserProfile, created, *args, **kwargs):
         if not created:
             logger.info(f"Profile for user: '{instance.user.email}' updated.")
 
