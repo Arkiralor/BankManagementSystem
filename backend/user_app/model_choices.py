@@ -28,6 +28,7 @@ class UserModelChoices:
 
     ALLOWED_FILE_EXTENSIONS = (PNG, JPG, JPEG, PNG)
 
+
 class AddressChoices:
     PDF = "pdf"
     JPG = "jpg"
