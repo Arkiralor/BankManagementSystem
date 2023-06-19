@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "d75601eb-315a-4fd2-bd70-d5a2ab245598",
 		"name": "Bank Management System",
+		"description": "A basic system written in `Python`/`Django` to facilitate the employees of a bank manage the _day-to-day_ task, such as:\n\n1. Registering new customers and recording their KYC (Know-Your-Customer) details.\n2. Assigning bank accounts to customers, where a single account may have multiple holders and each holder may have multiple accounts.  \n    Currently, there are four type of accounts available in the system:\n    1. Savings\n    2. Current\n    3. Loan\n    4. Credit\n3. Recording individual transactions.  \n    .  \n    .  \n    .  \n    .  \n    .  \n    _et cetera_",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17779018"
 	},
@@ -31,7 +32,8 @@
 									"value": "ageGroup"
 								}
 							]
-						}
+						},
+						"description": "API for analysts to group `customer` objects according to the rough age-group they fall into. The age-groups are as follows:\n\n1. 0-17 years.\n2. 18-25 years.\n3. 26-35 years.\n4. 36-45 years.\n5. 46-55 years.\n6. 56-65 years.\n7. 66-75 years.\n8. 76-85 years.\n9. 86+   years.\n\n_All the mentioned age-ranges are INCLUSIVE of their limits._"
 					},
 					"response": [
 						{
@@ -41,15 +43,16 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/api/analytics/customers/?criteria=ageGroup",
+									"raw": "localhost:8000/api/analytics/customers/?criteria=ageGroup",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
 										"api",
 										"analytics",
@@ -142,7 +145,8 @@
 									"value": "gender"
 								}
 							]
-						}
+						},
+						"description": "API to let analysts find the number of `customer` entities for each defined `gender` attribute registered in the system. Currently, these are the `gender` attributes supported in the system:\n\n1. Female\n2. Male\n3. Other"
 					},
 					"response": [
 						{
@@ -225,802 +229,8 @@
 						}
 					]
 				}
-			]
-		},
-		{
-			"name": "User App",
-			"item": [
-				{
-					"name": "Add User (Teller)",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/user/signup/",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"signup",
-								""
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Add User (Teller)",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/user/signup/",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"user",
-										"signup",
-										""
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Sun, 11 Jun 2023 17:05:34 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.17"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin, Cookie"
-								},
-								{
-									"key": "Allow",
-									"value": "POST, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "159"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"username\": \"testuser\",\n    \"email\": \"test.user@gmail.com\",\n    \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n    \"slug\": \"testuser\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Password Login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/user/login/password/",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"login",
-								"password",
-								""
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Password Login",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/user/login/password/",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"user",
-										"login",
-										"password",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Sun, 11 Jun 2023 17:13:19 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.17"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin, Cookie"
-								},
-								{
-									"key": "Allow",
-									"value": "POST, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "687"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"user\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"tokens\": {\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4Nzc5OTU5OSwiaWF0IjoxNjg2NTAzNTk5LCJqdGkiOiI4N2Y4M2Y4YzcyYWU0MmQ0YjgyNGIyZTRlY2Y4ZjI3OSIsInVzZXJfaWQiOiI3YmUzYmIyZi05NjEzLTQ3ZmItYmIzYS0wNzEzODU4MjlmOTIifQ.ZrwjxtPONiVKVOoDamc7C1yiRLAdFXL4gH4wU_GvtcI\",\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3MjcxZjQzNmY4YzlkMDMwMjk0NmY3NzdiIiwidXNlcl9pZCI6IjdiZTNiYjJmLTk2MTMtNDdmYi1iYjNhLTA3MTM4NTgyOWY5MiJ9.5WiZnXdJDvoeBithSnruY0strV5qtHSl1qzp1O9gf4c\"\n    },\n    \"login\": \"2023-06-11T17:13:19.961037Z\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Test Authentication",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{tellerAccess}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/api/user/auth-test/",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"auth-test",
-								""
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Test Authentication",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/api/user/auth-test/",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"user",
-										"auth-test",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Sun, 11 Jun 2023 17:48:27 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.17"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin, Cookie"
-								},
-								{
-									"key": "Allow",
-									"value": "GET, POST, HEAD, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "77"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"user\": \"test.user@gmail.com\",\n    \"message\": \"Access token working successfully.\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Get Own Info",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{tellerAccess}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/api/user/info/",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"info",
-								""
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Get Own Info",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/api/user/info/",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"user",
-										"info",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Sun, 11 Jun 2023 17:51:42 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.17"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin, Cookie"
-								},
-								{
-									"key": "Allow",
-									"value": "GET, POST, PUT, DELETE, HEAD, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "159"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"username\": \"testuser\",\n    \"email\": \"test.user@gmail.com\",\n    \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n    \"slug\": \"testuser\"\n}"
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "KYC App",
-			"item": [
-				{
-					"name": "Add Customer",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{tellerAccess}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"customer\": {\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"McNought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\"\n    },\n    \"kyc_documents\": {\n        \"id_proof_type\": \"PAN Card\",\n        \"address_proof_type\": \"Voter ID\"\n    },\n    \"address\": {\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\"\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/kyc/customer/",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"kyc",
-								"customer",
-								""
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Add Customer",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"customer\": {\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"McNought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\"\n    },\n    \"kyc_documents\": {\n        \"id_proof_type\": \"PAN Card\",\n        \"address_proof_type\": \"Voter ID\"\n    },\n    \"address\": {\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\"\n    }\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/kyc/customer/",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"kyc",
-										"customer",
-										""
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Fri, 16 Jun 2023 06:37:12 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.17"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin, Cookie"
-								},
-								{
-									"key": "Allow",
-									"value": "GET, POST, PUT, HEAD, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "1197"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"customer\": {\n        \"id\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\",\n        \"created\": \"2023-06-16T06:37:12.105415Z\",\n        \"updated\": \"2023-06-16T06:37:12.105424Z\",\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"Mcnought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id\": \"d9ce224a-d703-4237-8c46-a1ff7de81a07\",\n        \"created\": \"2023-06-16T06:37:12.118266Z\",\n        \"updated\": \"2023-06-16T06:37:12.118277Z\",\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\",\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    },\n    \"kyc_documents\": {\n        \"id\": \"535e64e5-1daf-45c2-a558-0045dc6a8ce2\",\n        \"created\": \"2023-06-16T06:37:12.120600Z\",\n        \"updated\": \"2023-06-16T06:37:12.120607Z\",\n        \"photo\": null,\n        \"id_proof_type\": \"PAN Card\",\n        \"id_proof\": null,\n        \"address_proof_type\": \"Voter ID\",\n        \"address_proof\": null,\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    },\n    \"address\": {\n        \"id\": \"d7d394b1-a977-4959-adba-d407df325968\",\n        \"created\": \"2023-06-16T06:37:12.122364Z\",\n        \"updated\": \"2023-06-16T06:37:12.122370Z\",\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\",\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "Search Customer",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{tellerAccess}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"middlename\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/kyc/customer/",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"kyc",
-								"customer",
-								""
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Search Customer",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"query\": \"middlename\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/kyc/customer/",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"kyc",
-										"customer",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Tue, 13 Jun 2023 04:22:11 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.17"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin, Cookie"
-								},
-								{
-									"key": "Allow",
-									"value": "GET, POST, PUT, HEAD, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "294"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "[\n    {\n        \"id\": \"6f9d37a3-7eb6-48a7-863c-3829edc66d01\",\n        \"created\": \"2023-06-11T18:21:04.908605Z\",\n        \"updated\": \"2023-06-11T18:21:04.908617Z\",\n        \"first_name\": \"Test\",\n        \"middle_name\": [\n            \"Middlename1\",\n            \"Middlename2\",\n            \"Middlename3\"\n        ],\n        \"last_name\": \"Customer\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1991-04-12\",\n        \"gender\": \"Male\"\n    }\n]"
-						}
-					]
-				},
-				{
-					"name": "Upload KYC Documents",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{tellerAccess}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "idProof",
-									"type": "file",
-									"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/id_proof.pdf"
-								},
-								{
-									"key": "addressProof",
-									"type": "file",
-									"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/address_proof.pdf"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/kyc/documents/?customer=d4d44a57-d164-4851-980a-3eb2e9dae3b5",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"kyc",
-								"documents",
-								""
-							],
-							"query": [
-								{
-									"key": "customer",
-									"value": "d4d44a57-d164-4851-980a-3eb2e9dae3b5"
-								}
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Upload KYC Documents",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "idProof",
-											"type": "file",
-											"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/id_proof.pdf"
-										},
-										{
-											"key": "addressProof",
-											"type": "file",
-											"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/address_proof.pdf"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/kyc/documents/?customer=d4d44a57-d164-4851-980a-3eb2e9dae3b5",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"kyc",
-										"documents",
-										""
-									],
-									"query": [
-										{
-											"key": "customer",
-											"value": "d4d44a57-d164-4851-980a-3eb2e9dae3b5"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Fri, 16 Jun 2023 06:38:48 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.9.17"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept, Origin, Cookie"
-								},
-								{
-									"key": "Allow",
-									"value": "PUT, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
-									"value": "626"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": \"535e64e5-1daf-45c2-a558-0045dc6a8ce2\",\n    \"customer\": {\n        \"id\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\",\n        \"created\": \"2023-06-16T06:37:12.105415Z\",\n        \"updated\": \"2023-06-16T06:37:12.105424Z\",\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"Mcnought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"created\": \"2023-06-16T06:37:12.120600Z\",\n    \"updated\": \"2023-06-16T06:38:48.936140Z\",\n    \"photo\": null,\n    \"id_proof_type\": \"PAN Card\",\n    \"id_proof\": \"/media/custdocuments/id_proof/id_proof_2fqwfU6.pdf\",\n    \"address_proof_type\": \"Voter ID\",\n    \"address_proof\": \"/media/custdocuments/address_proof/address_proof_35FRqmV.pdf\"\n}"
-						}
-					]
-				}
-			]
+			],
+			"description": "This editor contains the analytics functionality of the system. Currently it has two analytics APIs which are supported by helpers in the backend:\n\n1. Group customers by age-group.\n2. Find the number of customers by gender.\n\n_Further analytics functionality is planned for development._"
 		},
 		{
 			"name": "Banking App",
@@ -1059,7 +269,8 @@
 								"account",
 								""
 							]
-						}
+						},
+						"description": "This API allows a `teller` or `accountant` type of user to create a bank account for a customer whose KYC details are complete.\n\nThe KYC details APIs and workflows are mentioned below in the `KYC App`."
 					},
 					"response": [
 						{
@@ -1069,7 +280,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
 										"type": "text"
 									}
 								],
@@ -1083,10 +294,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/banking/account/",
+									"raw": "localhost:8000/api/banking/account/",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
 										"api",
 										"banking",
@@ -1189,7 +401,8 @@
 									"value": null
 								}
 							]
-						}
+						},
+						"description": "API to retrieve details of all a bank account, either via its `PrimaryKey` or to retrieve the details of all bank accounts in which a given user is a `holder`.\n\n_Querying via both is __NOT__ supported._"
 					},
 					"response": [
 						{
@@ -1199,7 +412,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
 										"type": "text"
 									}
 								],
@@ -1213,10 +426,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/banking/account/?customer=6f9d37a3-7eb6-48a7-863c-3829edc66d01&account",
+									"raw": "localhost:8000/api/banking/account/?customer=6f9d37a3-7eb6-48a7-863c-3829edc66d01&account",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
 										"api",
 										"banking",
@@ -1285,7 +499,395 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "This application deals with banking activities such as bank-accounts, transactions, _et cetera_ and hence, is the core application of the codebase."
+		},
+		{
+			"name": "KYC App",
+			"item": [
+				{
+					"name": "Add Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\": {\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"McNought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\"\n    },\n    \"kyc_documents\": {\n        \"id_proof_type\": \"PAN Card\",\n        \"address_proof_type\": \"Voter ID\"\n    },\n    \"address\": {\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/kyc/customer/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"kyc",
+								"customer",
+								""
+							]
+						},
+						"description": "API for tellers/accountants to register a new customer to the system.\n\nThe customer's data, along with their KYC data is inserted into the system at the same time.\n\n### Basics\n\n1. The `customer` field contains the personal information about the customer.\n2. The `kyc` field contains the values of the documents used to prove the KYC details, such as the PAN or the EPIC ID of the customer.\n3. The `kyc_documents` field contains the type of ID and Address proof provided by the customer, such as the PAN Card for the proof of identity and EPIC for the proof of address.\n4. The `address` field contains the address associated with the customer and will be the address used by the bank to correspond with the customer.\n    \n\n### Note\n\nThe `kyc_documents` key would only have _what_ type of document the customer is providing as proof of their details as due to a limitation of the `json` schema used for the bodies of REST APIs, both data and files cannot be uploaded at the same time.\n\nThe actual documents of `image` type are uploaded at the `upload-documents` API down below."
+					},
+					"response": [
+						{
+							"name": "Add Customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customer\": {\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"McNought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\"\n    },\n    \"kyc_documents\": {\n        \"id_proof_type\": \"PAN Card\",\n        \"address_proof_type\": \"Voter ID\"\n    },\n    \"address\": {\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/kyc/customer/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"kyc",
+										"customer",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 16 Jun 2023 06:37:12 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1197"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"customer\": {\n        \"id\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\",\n        \"created\": \"2023-06-16T06:37:12.105415Z\",\n        \"updated\": \"2023-06-16T06:37:12.105424Z\",\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"Mcnought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"kyc\": {\n        \"id\": \"d9ce224a-d703-4237-8c46-a1ff7de81a07\",\n        \"created\": \"2023-06-16T06:37:12.118266Z\",\n        \"updated\": \"2023-06-16T06:37:12.118277Z\",\n        \"id_proof_value\": \"1123BG12189Q\",\n        \"address_proof_value\": \"81918881990\",\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    },\n    \"kyc_documents\": {\n        \"id\": \"535e64e5-1daf-45c2-a558-0045dc6a8ce2\",\n        \"created\": \"2023-06-16T06:37:12.120600Z\",\n        \"updated\": \"2023-06-16T06:37:12.120607Z\",\n        \"photo\": null,\n        \"id_proof_type\": \"PAN Card\",\n        \"id_proof\": null,\n        \"address_proof_type\": \"Voter ID\",\n        \"address_proof\": null,\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    },\n    \"address\": {\n        \"id\": \"d7d394b1-a977-4959-adba-d407df325968\",\n        \"created\": \"2023-06-16T06:37:12.122364Z\",\n        \"updated\": \"2023-06-16T06:37:12.122370Z\",\n        \"line_1\": \"#4, \\\"The Dursleys\\\",\",\n        \"line_2\": \"Privet Drive,\",\n        \"city\": \"Woking\",\n        \"district\": \"Surrey\",\n        \"state\": \"South East\",\n        \"country\": \"Angleland, United Kingdom\",\n        \"pin_code\": \"728001\",\n        \"customer\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Search Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"middlename\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/kyc/customer/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"kyc",
+								"customer",
+								""
+							]
+						},
+						"description": "API to allow tellers/accountants to search for a particular customer."
+					},
+					"response": [
+						{
+							"name": "Search Customer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"query\": \"middlename\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/kyc/customer/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"kyc",
+										"customer",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jun 2023 04:22:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "294"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"6f9d37a3-7eb6-48a7-863c-3829edc66d01\",\n        \"created\": \"2023-06-11T18:21:04.908605Z\",\n        \"updated\": \"2023-06-11T18:21:04.908617Z\",\n        \"first_name\": \"Test\",\n        \"middle_name\": [\n            \"Middlename1\",\n            \"Middlename2\",\n            \"Middlename3\"\n        ],\n        \"last_name\": \"Customer\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1991-04-12\",\n        \"gender\": \"Male\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Upload KYC Documents",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "idProof",
+									"type": "file",
+									"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/id_proof.pdf"
+								},
+								{
+									"key": "addressProof",
+									"type": "file",
+									"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/address_proof.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/kyc/documents/?customer=d4d44a57-d164-4851-980a-3eb2e9dae3b5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"kyc",
+								"documents",
+								""
+							],
+							"query": [
+								{
+									"key": "customer",
+									"value": "d4d44a57-d164-4851-980a-3eb2e9dae3b5"
+								}
+							]
+						},
+						"description": "API to allow tellers/accountants to upload the document proofs of the KYC details of the customer.\n\nThis is done via a separate _PUT_ API as due to a limitation of the `json` schema used for the `body` of REST API requests, files and data cannot be sent at the same time."
+					},
+					"response": [
+						{
+							"name": "Upload KYC Documents",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "idProof",
+											"type": "file",
+											"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/id_proof.pdf"
+										},
+										{
+											"key": "addressProof",
+											"type": "file",
+											"src": "/home/arkiralor/coding/BankManagementSystem/backend/scripts/data/address_proof.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8000/api/kyc/documents/?customer=d4d44a57-d164-4851-980a-3eb2e9dae3b5",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"kyc",
+										"documents",
+										""
+									],
+									"query": [
+										{
+											"key": "customer",
+											"value": "d4d44a57-d164-4851-980a-3eb2e9dae3b5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 16 Jun 2023 06:38:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "PUT, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "626"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"535e64e5-1daf-45c2-a558-0045dc6a8ce2\",\n    \"customer\": {\n        \"id\": \"d4d44a57-d164-4851-980a-3eb2e9dae3b5\",\n        \"created\": \"2023-06-16T06:37:12.105415Z\",\n        \"updated\": \"2023-06-16T06:37:12.105424Z\",\n        \"first_name\": \"Alexander\",\n        \"middle_name\": [\n            \"Jonathan\",\n            \"James\"\n        ],\n        \"last_name\": \"Mcnought\",\n        \"regnal_suffix\": null,\n        \"date_of_birth\": \"1982-01-31\",\n        \"gender\": \"Male\"\n    },\n    \"created\": \"2023-06-16T06:37:12.120600Z\",\n    \"updated\": \"2023-06-16T06:38:48.936140Z\",\n    \"photo\": null,\n    \"id_proof_type\": \"PAN Card\",\n    \"id_proof\": \"/media/custdocuments/id_proof/id_proof_2fqwfU6.pdf\",\n    \"address_proof_type\": \"Voter ID\",\n    \"address_proof\": \"/media/custdocuments/address_proof/address_proof_35FRqmV.pdf\"\n}"
+						}
+					]
+				}
+			],
+			"description": "This app deals with `Know-Your-Customer` details for the clients of the bank, such as:\n\n1. Customer's personal details (name, date of birth, gender, _et cetera_)\n2. Customer's address.\n3. Document proof regarding the customer's KYC details."
 		},
 		{
 			"name": "Ledger App",
@@ -1321,7 +923,8 @@
 								"entry",
 								""
 							]
-						}
+						},
+						"description": "API to let tellers/accountants create a ledger entry."
 					},
 					"response": [
 						{
@@ -1331,7 +934,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
 										"type": "text"
 									}
 								],
@@ -1345,10 +948,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/ledger/entry/",
+									"raw": "localhost:8000/api/ledger/entry/",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
 										"api",
 										"ledger",
@@ -1447,7 +1051,8 @@
 									"value": "2023-06-30"
 								}
 							]
-						}
+						},
+						"description": "API to retrieve a ledger entry/entries.\n\nIf `id` is provided, then `from` and `to` are outright ignored.\n\nIf `user` is not provided, then the requesting user's ID is taken.\n\nIf `to` and `from` are not provided and `id` is not set either, the current date is taken for both fields."
 					},
 					"response": [
 						{
@@ -1457,15 +1062,16 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f&user&from&to",
+									"raw": "localhost:8000/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f&user&from&to",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
 										"api",
 										"ledger",
@@ -1763,7 +1369,8 @@
 									"value": "f3ab4244-4a68-47db-9274-e271f45e387f"
 								}
 							]
-						}
+						},
+						"description": "API to let tellers/accountants update ledger entries."
 					},
 					"response": [
 						{
@@ -1773,7 +1380,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
 										"type": "text"
 									}
 								],
@@ -1787,10 +1394,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f",
+									"raw": "localhost:8000/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
 										"api",
 										"ledger",
@@ -1855,7 +1463,432 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "Application to contain functionality to let bank employees maintain daily ledgers (official diaries)."
+		},
+		{
+			"name": "User App",
+			"item": [
+				{
+					"name": "Add User (Teller)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/signup/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"signup",
+								""
+							]
+						},
+						"description": "API to register a new user of userType `teller`."
+					},
+					"response": [
+						{
+							"name": "Add User (Teller)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"test.user@gmail.com\",\n    \"password\": \"Password@123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/user/signup/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"signup",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Jun 2023 17:05:34 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"username\": \"testuser\",\n    \"email\": \"test.user@gmail.com\",\n    \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n    \"slug\": \"testuser\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Password Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/login/password/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login",
+								"password",
+								""
+							]
+						},
+						"description": "API to let a user log in via their password.\n\nThey can either use their `username` or `email` as the login ID."
+					},
+					"response": [
+						{
+							"name": "Password Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"test.user@gmail.com\",\n    \"password\": \"Password@123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/user/login/password/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"login",
+										"password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Jun 2023 17:13:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "687"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"tokens\": {\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4Nzc5OTU5OSwiaWF0IjoxNjg2NTAzNTk5LCJqdGkiOiI4N2Y4M2Y4YzcyYWU0MmQ0YjgyNGIyZTRlY2Y4ZjI3OSIsInVzZXJfaWQiOiI3YmUzYmIyZi05NjEzLTQ3ZmItYmIzYS0wNzEzODU4MjlmOTIifQ.ZrwjxtPONiVKVOoDamc7C1yiRLAdFXL4gH4wU_GvtcI\",\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3MjcxZjQzNmY4YzlkMDMwMjk0NmY3NzdiIiwidXNlcl9pZCI6IjdiZTNiYjJmLTk2MTMtNDdmYi1iYjNhLTA3MTM4NTgyOWY5MiJ9.5WiZnXdJDvoeBithSnruY0strV5qtHSl1qzp1O9gf4c\"\n    },\n    \"login\": \"2023-06-11T17:13:19.961037Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Test Authentication",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/user/auth-test/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"auth-test",
+								""
+							]
+						},
+						"description": "Dummy API to test out newly-implemented authentication methods."
+					},
+					"response": [
+						{
+							"name": "Test Authentication",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/user/auth-test/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"auth-test",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Jun 2023 17:48:27 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "77"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": \"test.user@gmail.com\",\n    \"message\": \"Access token working successfully.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Own Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/user/info/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"info",
+								""
+							]
+						},
+						"description": "API to let a user retrieve their own account information as stored in the system."
+					},
+					"response": [
+						{
+							"name": "Get Own Info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/user/info/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"info",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Jun 2023 17:51:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7be3bb2f-9613-47fb-bb3a-071385829f92\",\n    \"username\": \"testuser\",\n    \"email\": \"test.user@gmail.com\",\n    \"date_joined\": \"2023-06-11T17:05:34.844369Z\",\n    \"slug\": \"testuser\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Application to handle functionalities related to user-account creation."
 		}
 	]
 }
