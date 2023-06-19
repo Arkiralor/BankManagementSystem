@@ -44,7 +44,7 @@ class Randomizer:
     SIZE_LIST: List[int] = [0, 1, 2, 3, 4]
     REGNAL_SUFFIXES: List[str] = ["I", "II",
                                   "III", "IV", "V", "Jr.", "Sr.", None]
-    GENDER_LIST: List[str] = ["Female", "Male", "Other"]
+    GENDER_LIST: List[str] = ["Female", "Male", "Other", "Female", "Male"]
 
     @classmethod
     def get_random_string(cls, length: int = 10):
@@ -147,7 +147,7 @@ class FakeFactory:
         ) if self.gender == "Female" else self.faker.last_name_male()
 
         date_of_birth = self.faker.date_between_dates(
-            date_start=datetime(1978, 1, 1), date_end=datetime(2019, 12, 31))
+            date_start=datetime(1901, 1, 1), date_end=datetime(2001, 12, 31))
         regnal_suffix = choice(self.randomizer.REGNAL_SUFFIXES) if choice(
             [True, False]) else None
 
