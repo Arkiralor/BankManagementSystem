@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
 from django.urls import path, include
 
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView, TokenBlacklistView
@@ -20,6 +22,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token-verify'),
     path('api/token/blacklist/', TokenBlacklistView.as_view(), name='token-blacklist'),
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/images/favicon.ico'))),
 ]
 
 if settings.DEBUG and settings.ENV_TYPE.lower() == 'dev':
