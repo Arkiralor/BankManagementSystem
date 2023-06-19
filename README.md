@@ -29,15 +29,15 @@ The setup procedures are defined as follows
 
 #### Backend Setup
 
-See [`backend/readme.md`](https://github.com/Arkiralor/ProjectBoilerplate/blob/master/backend/README.md)
+See [`backend/readme.md`](backend/README.md)
 
 #### Frontend Setup
 
-See `frontend/readme.md`
+See [`frontend/readme.md`](frontend/README.md)
 
 #### Application Setup
 
-See `app/readme.md`
+See [`app/readme.md`](app/README.md)
 
 #### PostgreSQL/PGADmin Setup
 
