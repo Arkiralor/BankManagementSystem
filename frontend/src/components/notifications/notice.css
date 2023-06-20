@@ -1,6 +1,11 @@
-.noticeBody {
+.noticeText {
     width: fit-content;
     height: fit-content;
-    margin: 0px;
-    padding: 1px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin: 12px;
+    padding: 5px;
+    font-family: Helvetica;
+    font-style: italic;
+    text-rendering: optimizeLegibility;
 };

@@ -1,36 +1,14 @@
 
-h3 {
-    font-size: 1.5rem;
-    font-weight: lighter;
-    padding: 0;
-    color: rgb(31, 31, 31);
-    margin-left: 14px;
-    margin-right: 14px;
-
-}
-
-;
-
-
-/* .noticeContainer {
-    display: inline-flex;
-    flex-direction: column;
-    margin: 14px;
-    padding: 2px;
-    width: fit-content;
-    height: auto;
-    background-color: #e4e4e4;
-}
-
-; */
-
 .notice {
-    display: inline-block;
-    /* flex-direction: column; */
+    background-color: #e4e4e4;
+    display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     justify-items: center;
-    width: fit-content;
+    width: 100vw;
     height: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 ;
