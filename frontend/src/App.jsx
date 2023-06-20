@@ -28,10 +28,8 @@ function App() {
                     <AffirmativeButton text="Click me!" onClick={() => console.log("Agree!")} />
                     <DenyButton text="Don't click me!" onClick={() => console.log("Disagree!")} />
                 </div>
-            </header>
-            <div className="check-env">
                 <CheckEnvVariables />
-            </div>
+            </header>
         </div>
     );
 }

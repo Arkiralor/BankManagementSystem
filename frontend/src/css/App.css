@@ -52,8 +52,8 @@
 }
 
 .check-env {
-  display: inline-flex;
-  flex-direction: column;
+  /* display: inline-flex;
+  flex-direction: column; */
   background-color: #e4e4e4;
   width: 100%;
   height: auto;

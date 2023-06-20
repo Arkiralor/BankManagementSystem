@@ -1,13 +1,12 @@
 .greencircle {
     width: 4px;
     height: 4px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
+    /* -webkit-border-radius: 2px;
+    -moz-border-radius: 2px; */
     border-radius: 2px;
     background: rgb(30, 255, 0);
     animation: greencircleAnimation 0.25s ease-in-out infinite;
-    margin: 14px;
-    padding: 2px;
+    padding: 0px;
 }
 
 @keyframes greencircleAnimation {

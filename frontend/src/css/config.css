@@ -12,30 +12,25 @@ h3 {
 ;
 
 
-.noticeContainer {
-    /* display: inline-flex;
-    flex-direction: column; */
+/* .noticeContainer {
+    display: inline-flex;
+    flex-direction: column;
     margin: 14px;
     padding: 2px;
-    width: 50px;
+    width: fit-content;
     height: auto;
     background-color: #e4e4e4;
 }
 
-;
+; */
 
 .notice {
-    display: inline-flex;
-    flex-direction: column;
+    display: inline-block;
+    /* flex-direction: column; */
     align-items: center;
-}
-
-;
-
-.noticeText {
-    font-family: Helvetica;
-    font-size: 0.75rem;
-    font-weight: lighter;
+    justify-items: center;
+    width: fit-content;
+    height: auto;
 }
 
 ;

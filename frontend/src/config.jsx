@@ -19,23 +19,15 @@ const GET_OWN_DETAILS_EP = process.env.REACT_APP_GET_OWN_DETAILS_EP;
 function registerNotice(msg, check) {
     if (Boolean(check) === true) {
 
-        return (
-            <div className="noticeContainer">
-                <div className="notice">
+        return  <div className="notice">
                     <OkayLight /> <NoticeBody msg={msg} />
-                </div>
-            </div>
-        );
+                </div>;
     }
     else if (Boolean(check) === false) {
 
-        return (
-            <div className="noticeContainer">
-                <div className="notice">
+        return  <div className="notice">
                     <FuckedLight /> <NoticeBody msg={msg} />
-                </div>
-            </div>
-        );
+                </div>;
     }
 };
 
