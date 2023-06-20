@@ -1,0 +1,26 @@
+.denyButton {
+    background-color: #e26c5c;
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.denyButton:hover {
+    background-color: #f18577;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+        0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.denyButton:active {
+    background-color: #923124;
+    color: rgb(253, 253, 253);
+    font-weight: 200;
+}

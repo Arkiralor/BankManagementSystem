@@ -1,0 +1,25 @@
+.redcircle {
+    width: 4px;
+    height: 4px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: rgb(255, 0, 0);
+    animation: redcircleAnimation 0.25s ease-in-out infinite;
+    margin: 14px;
+    padding: 2px;
+}
+
+@keyframes redcircleAnimation {
+    0% {
+        box-shadow: 0 0 5px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0), 0 0 30px rgb(255, 0, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 5px rgb(156, 78, 78), 0 0 20px rgb(211, 153, 153), 0 0 30px rgb(235, 203, 203);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0), 0 0 30px rgb(255, 0, 0);
+    }
+}

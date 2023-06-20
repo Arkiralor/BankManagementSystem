@@ -1,0 +1,26 @@
+.affirmativeButton {
+    background-color: #7be25c;
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.affirmativeButton:hover {
+    background-color: #9cfc7f;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+        0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.affirmativeButton:active {
+    background-color: #3c9221;
+    color: rgb(255, 255, 255);
+    font-weight: 200;
+}

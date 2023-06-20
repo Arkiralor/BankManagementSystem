@@ -1,0 +1,23 @@
+.greencircle {
+    width: 4px;
+    height: 4px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: rgb(30, 255, 0);
+    animation: greencircleAnimation 0.25s ease-in-out infinite;
+    margin: 14px;
+    padding: 2px;
+}
+
+@keyframes greencircleAnimation {
+    0% {
+      box-shadow: 0 0 5px rgb(30, 255, 0), 0 0 20px rgb(30, 255, 0), 0 0 30px rgb(30, 255, 0);
+    }
+    50% {
+        box-shadow: 0 0 5px rgb(73, 156, 62), 0 0 20px rgb(136, 196, 128), 0 0 30px rgb(180, 247, 172);
+    }
+    100% {
+        box-shadow: 0 0 5px rgb(30, 255, 0), 0 0 20px rgb(30, 255, 0), 0 0 30px rgb(30, 255, 0);
+    }
+  }
