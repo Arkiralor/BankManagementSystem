@@ -1,9 +1,10 @@
 import React from "react";
 import "./css/config.css";
-import FuckedLight from "./components/notifications/okayLight";
+import FuckedLight from "./components/notifications/fuckedLight";
 import OkayLight from "./components/notifications/okayLight";
+import CurrentDateTime from "./utils/dateString";
+import NoticeBody from "./components/notifications/notice";
 
-// I need to set the global variables and constants here.
 
 // This is the URL of the backend server.
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -16,38 +17,36 @@ const GET_OWN_DETAILS_EP = process.env.REACT_APP_GET_OWN_DETAILS_EP;
 
 
 function registerNotice(msg, check) {
-    if (Boolean(check) == true) {
-        let comp = (
+    if (Boolean(check) === true) {
+
+        return (
             <div className="noticeContainer">
                 <div className="notice">
-                    <OkayLight /> <h3>{msg}</h3>
+                    <OkayLight /> <NoticeBody msg={msg} />
                 </div>
             </div>
-        )
-
-        return comp;
+        );
     }
-    else if (Boolean(check) == false) {
-        let comp = (
+    else if (Boolean(check) === false) {
+
+        return (
             <div className="noticeContainer">
                 <div className="notice">
-                    <FuckedLight /> <h3>{msg}</h3>
+                    <FuckedLight /> <NoticeBody msg={msg} />
                 </div>
             </div>
-        )
-
-        return comp;
+        );
     }
 };
 
 export default function CheckEnvVariables() {
 
-    let envVars = {
+    const envVars = {
         baseUrl: BASE_URL,
         registerTellerEp: REGISTER_TELLER_EP,
         passwordLoginEp: PASSWORD_LOGIN_EP,
         testAuthenticationEp: TEST_AUTHENTICATION_EP,
-        getOwnDetailsEp: GET_OWN_DETAILS_EP,
+        getOwnDetailsEp: GET_OWN_DETAILS_EP
     }
 
     let msg = "All environment variables set.";
@@ -56,17 +55,18 @@ export default function CheckEnvVariables() {
     let keys = Object.keys(envVars);
     for (const item of keys) {
         if (
-            (envVars[item] == undefined)
-            || (envVars[item] == "")
-            || (envVars[item] == null)
+            (envVars[item] === undefined)
+            || (envVars[item] === "")
+            || (envVars[item] === null)
         ) {
-            console.log(`[${new Date().toLocaleString()}] ${item}: ${envVars[item]}`);
             msg = `The \`${item}\` environment variable is not set.`;
             check = false;
-            console.log(`[${new Date().toLocaleString()}] Check: ${check}`);
             break;
         }
+        else {
+            continue;
+        }
     }
-    console.log(`[${new Date().toLocaleString()}] Check: ${check}`);
+    console.log(`[${CurrentDateTime()}]\t${msg}`);
     return registerNotice(msg, check);
 }

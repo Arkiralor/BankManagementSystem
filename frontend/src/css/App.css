@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  /* font-family: Verdana, Tahoma, sans-serif; */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -54,7 +53,7 @@
 
 .check-env {
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: #e4e4e4;
   width: 100%;
   height: auto;
