@@ -49,7 +49,7 @@ Please make sure the pre-requisites are satisfied before proceeding with the dev
 8. Run said migrations for the RDBMS using: `python manage.py migrate`
 9. Create a new Superuser or Administrator using: `python manage.py createsuperuser`
 
-    __FOR LOCAL DEV MACHINE ONLY__
+    ___FOR LOCAL DEV MACHINE ONLY___
 
     ```sh
     USERNAME: admin
@@ -57,7 +57,16 @@ Please make sure the pre-requisites are satisfied before proceeding with the dev
     PASSWORD: password
     ```
 
-10. `sh scripts/run_server.sh`
+10. If they do not exist; create the `static` and `media` directories by running the following commands.
+
+    ```sh
+    mkdir static
+    mkdir media
+    ```
+
+11. Run `python manage.py collectstatic --no-input` to collate the necessary `static` files.
+
+12. Run `sh scripts/run_server.sh` to start the development server.
 
 ### .ENV File Format
 
