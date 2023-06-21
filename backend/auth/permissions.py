@@ -24,11 +24,11 @@ class IsModerator(BasePermission):
 
 class IsAccountantOrTeller(BasePermission):
     '''
-    Allows access to moderators or administrators.
+    Allows access to Accountants or Tellers.
     '''
 
     def has_permission(self, request: HttpRequest, view):
-        logger.info('Checking if user has Moderator access.')
+        logger.info('Checking if user has Accountant/Teller access.')
         try:
             is_true = (
                 (request.user.is_staff or request.user.is_superuser or request.user.user_type == UserModelChoices.accountant or request.user.user_type == UserModelChoices.teller)

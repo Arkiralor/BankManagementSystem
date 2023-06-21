@@ -86,6 +86,7 @@ class IpAddressChecker(object):
         }
         _exists = SynchronousMethods.exists(filter_dict=filter_dict, collection=DatabaseCollections.user_ips) or SynchronousMethods.exists(
             filter_dict=filter_dict, collection=DatabaseCollections.user_white_listed_ips)
+        logger.info(f"User IP record found: {_exists}")
         return _exists
 
     def process_request(self, request: HttpRequest):

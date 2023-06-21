@@ -154,7 +154,6 @@ class SynchronousMethods:
             return False
         
         if cls.db[collection].count_documents(filter=filter_dict) > 0:
-            logger.info("Record(s) exist(s).")
             return True
         
         return False
