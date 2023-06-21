@@ -36,7 +36,7 @@ class NetworkUtils:
     @classmethod
     def add_to_allowed_hosts(cls):
         """
-        Edits the ALLOWED_HOSTS environment variable to add the current machine's IP address.
+        Edits the ALLOWED_HOSTS environment variable to add the current machine's LOCAL IP address.
         """
         if not cls.DEBUG and not cls.ENV_TYPE == "dev":
             logger.info(
