@@ -153,8 +153,6 @@ prototyping/
 
 ## Custom Exclusions
 external_creds/*
-backend/static/*
-backend\static\*
 backend/core/external_creds/ndhm_creds.json
 backend/core/external_creds/ndhm_token.json
 
