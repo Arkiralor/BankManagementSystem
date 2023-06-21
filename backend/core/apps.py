@@ -20,6 +20,7 @@ CUSTOM_APPS = [
     'communications_app.apps.CommunicationsAppConfig',
     'kyc_app.apps.KycAppConfig',
     'ledger_app.apps.LedgerAppConfig',
+    'management_app.apps.ManagementAppConfig',
     'middleware_app.apps.MiddlewareAppConfig',
     'user_app.apps.UserAppConfig'
 ]
