@@ -65,7 +65,8 @@ class RequestLogger(object):
                 "method": method,
                 "path": path,
                 "cookies": cookies if cookies else {},
-                "body": loads(body.decode('utf8', 'strict')) if body else {},
+                ## NOTE (prithoo): This is commented out because it is not needed for the current use case.
+                # "body": loads(body.decode('utf8', 'strict')) if body else {},
                 "headers": headers if headers else {},
                 "params": params if params else {},
                 "user": ShowUserSerializer(user).data if user else {},

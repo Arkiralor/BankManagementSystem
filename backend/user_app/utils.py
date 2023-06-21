@@ -257,9 +257,19 @@ class UserModelUtils:
                         {"ip": ip}
                     ]
                 }
-                if not SynchronousMethods.exists(filter_dict=check_dict, collection=DatabaseCollections.user_ips):
+                _exists = SynchronousMethods.exists(
+                    filter_dict=check_dict, collection=DatabaseCollections.user_ips)
+                
+                if not _exists:
                     _ = SynchronousMethods.insert_one(
                         data=data, collection=DatabaseCollections.user_ips)
+                else:
+                    _log = SynchronousMethods.find_and_order(filter_dict=check_dict, collection=DatabaseCollections.user_ips, sort_field="timestampUtc")[0]
+                    
+                    _log["timestampUtc"] = datetime.utcnow()
+                    _ = SynchronousMethods.update_one(
+                        _id=_log.get("_id"), data=_log, collection=DatabaseCollections.user_ips)
+
             except Exception as ex:
                 logger.warn(f"{ex}")
 
