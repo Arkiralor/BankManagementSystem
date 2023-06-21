@@ -4,7 +4,7 @@ from kyc_app.models import Customer, KnowYourCustomer, KYCDocuments, CustomerAdd
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ("id", "first_name", "last_name", "gender")
+    list_display = ("id", "first_name", "middle_name", "last_name", "regnal_suffix", "gender", "age")
     search_fields = (
         "id",
         "first_name",
@@ -13,6 +13,12 @@ class CustomerAdmin(admin.ModelAdmin):
         "regnal_suffix",
     )
     ordering = ("-created",)
+
+    def age(self, obj):
+        return obj.age
+    
+    def middle_name(self, obj):
+        return ' '.join([item for item in obj.middle_name])
 
 
 @admin.register(KnowYourCustomer)

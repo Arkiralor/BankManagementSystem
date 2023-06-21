@@ -15,6 +15,8 @@ class FakeAccount:
     NUMBER_OF_HOLDERS = [1, 2, 3, 4, 5]
     TYPES_OF_ACCOUNTS = [AccountChoice.savings,
                          AccountChoice.current, AccountChoice.loan, AccountChoice.credit]
+    MIN_BALANCE = 10_000
+    MAX_BALANCE = 2_500_000
 
     @classmethod
     def get_account_holders(cls, count=1):
@@ -32,7 +34,7 @@ class FakeAccount:
     def create_account(cls):
         account_type = choice(cls.TYPES_OF_ACCOUNTS)
         holder = cls.get_account_holders(choice(cls.NUMBER_OF_HOLDERS))
-        balance = choice(range(10_000, 2_500_000, 1))
+        balance = choice(range(cls.MIN_BALANCE, cls.MAX_BALANCE, 1))
 
         resp = AccountHelpers.create(customers=holder, balance=float(
             balance), account_type=account_type)
