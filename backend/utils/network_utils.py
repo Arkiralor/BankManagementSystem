@@ -31,7 +31,7 @@ class NetworkUtils:
                 logger.info(f"Server IP Address:\t{ip_address}")
                 return ip_address
             except error as ex:
-                logger.warn("Socket error:", ex)
+                logger.warn(f"Socket error: {ex}")
 
     @classmethod
     def add_to_allowed_hosts(cls):
