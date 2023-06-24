@@ -22,7 +22,7 @@ class GetEnvironmentAPI(APIView):
     This API is only accessible by admin users in production/QA.
     """
     if settings.DEBUG:
-        permission_classes = (AllowAny,)
+        permission_classes = (IsAuthenticated,)
     else:
         permission_classes = (IsAdminUser,)
 
@@ -40,7 +40,7 @@ class AccessTestAPI(APIView):
         resp = Resp(
             message="Access token working successfully.",
             data={
-                "user": request.user.email,
+                "user": ShowUserSerializer(request.user).data,
                 "message": "Access token working successfully."
             },
             status_code=status.HTTP_200_OK
