@@ -27,6 +27,9 @@ class User(AbstractUser):
         default=uuid4
     )
 
+    first_name = None
+    last_name = None
+
     user_type = models.CharField(max_length=128, choices=UserModelChoices.USER_TYPE_CHOICES, default=UserModelChoices.teller)
 
     username = models.CharField(max_length=16, unique=True)
@@ -101,7 +104,7 @@ class Address(TemplateModel):
     """
     Model to hold addresses of Users
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     line_1 = models.CharField(max_length=128, blank=True, null=True)
     line_2 = models.CharField(max_length=128, blank=True, null=True)
     city = models.CharField(max_length=64, blank=True, null=True)

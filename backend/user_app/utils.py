@@ -259,13 +259,14 @@ class UserModelUtils:
                 }
                 _exists = SynchronousMethods.exists(
                     filter_dict=check_dict, collection=DatabaseCollections.user_ips)
-                
+
                 if not _exists:
                     _ = SynchronousMethods.insert_one(
                         data=data, collection=DatabaseCollections.user_ips)
                 else:
-                    _log = SynchronousMethods.find_and_order(filter_dict=check_dict, collection=DatabaseCollections.user_ips, sort_field="timestampUtc")[0]
-                    
+                    _log = SynchronousMethods.find_and_order(
+                        filter_dict=check_dict, collection=DatabaseCollections.user_ips, sort_field="timestampUtc")[0]
+
                     _log["timestampUtc"] = datetime.utcnow()
                     _ = SynchronousMethods.update_one(
                         _id=_log.get("_id"), data=_log, collection=DatabaseCollections.user_ips)
@@ -608,6 +609,26 @@ class UserProfileModelUtils:
     @classmethod
     def get(cls, user_id: str = None) -> UserProfile:
         return UserProfile.objects.filter(user__pk=user_id).select_related("user").first()
+
+    @classmethod
+    def retrieve(cls, user_id: str = None) -> Resp:
+        resp = Resp()
+        profile = cls.get(user_id=user_id)
+        if not profile:
+            resp.error = "Profile Not Found"
+            resp.message = f"Profile for user {user_id} not found."
+            resp.data = user_id
+            resp.status_code = status.HTTP_404_NOT_FOUND
+
+            logger.warn(resp.message)
+            return resp
+
+        resp.message = f"Profile for user {user_id} retrieved successfully."
+        resp.data = UserProfileOutputSerializer(instance=profile).data
+        resp.status_code = status.HTTP_200_OK
+
+        logger.info(resp.message)
+        return resp
 
     @classmethod
     def put(cls, user_id: str = None, data: dict = None) -> Resp:
