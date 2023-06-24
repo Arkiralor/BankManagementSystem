@@ -18,7 +18,7 @@ class NetworkUtils:
     @classmethod
     def get_ip_address(cls):
         """
-        Get the IP address of the current machine.    
+        Get the local IP address of the current machine.    
         """
         with socket(AF_INET, SOCK_DGRAM) as sock:
             try:
