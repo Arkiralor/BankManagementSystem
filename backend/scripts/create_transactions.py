@@ -40,6 +40,8 @@ class FakeTransaction:
                 transaction_type=TransactionChoice.account_transfer
             )
 
+            logger.info(f"Accountant/Teller: {resp.data.get('authorised_by', '')}.")
+
             if resp.error:
                 logger.warn(resp.to_text())
 
