@@ -81,7 +81,10 @@ class TransactionAnalyticsUtils:
             logger.warn(f"Error fetching transaction type groups: {ex}")
             return None
 
-        return transactions
+        return {
+            "total": transactions.count(),
+            "transactions": transactions,
+        }
     
     @classmethod
     def get_transaction_by_amount(cls):
@@ -116,7 +119,10 @@ class TransactionAnalyticsUtils:
             logger.warn(f"Error fetching transaction amount groups: {ex}")
             return None
         
-        return transactions
+        return {
+            "total": transactions.count(),
+            "transactions": transactions,
+        }
     
     @classmethod
     def get_transactions_by_date(cls):
@@ -137,5 +143,8 @@ class TransactionAnalyticsUtils:
             logger.warn(f"Error fetching transaction date groups: {ex}")
             return None
         
-        return transactions
+        return {
+            "total": transactions.count(),
+            "transactions": transactions,
+        }
         
