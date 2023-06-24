@@ -1,10 +1,9 @@
-from argparse import ArgumentParser
-
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandParser
 
 from scripts.create_customers import create_customers
 from scripts.create_accounts import create_accounts
+from scripts.create_transactions import create_transactions
 
 from core import logger
 
@@ -49,6 +48,8 @@ class Command(BaseCommand):
             create_customers(self.amount)
             logger.info('Creating accounts...')
             create_accounts(int(self.amount//2))
+            logger.info('Creating transactions...')
+            create_transactions(int(self.amount*2))
             logger.info(f"Fake database entries created.")
         except Exception as ex:
             logger.error(ex)

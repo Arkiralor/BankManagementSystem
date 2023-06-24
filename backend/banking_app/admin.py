@@ -18,7 +18,7 @@ class AccountAdmin(admin.ModelAdmin):
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ("id", "source", "destination", "amount", "transaction_type")
+    list_display = ("id", "date", "source", "destination", "amount", "transaction_type")
     search_fields = (
         "id",
         "source__id",
@@ -32,5 +32,8 @@ class TransactionAdmin(admin.ModelAdmin):
     )
     raw_id_fields = ("source", "destination")
     ordering = ("-created",)
+
+    def date(self, obj):
+        return obj.created.strftime("%Y-%m-%d %H:%M:%S.%f")
 
     
