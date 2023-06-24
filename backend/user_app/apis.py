@@ -1,5 +1,10 @@
+from os import environ
+
+from django.conf import settings
+
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
+from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.views import APIView
 
@@ -9,6 +14,17 @@ from user_app.utils import UserModelUtils, UserProfileModelUtils
 
 from user_app import logger
 
+class GetEnvironmentAPI(APIView):
+    if settings.DEBUG:
+        permission_classes = (AllowAny,)
+    else:
+        permission_classes = (IsAdminUser,)
+
+    def post(self, request: Request, *args, **kwargs):
+        return Response(
+            environ,
+            status=status.HTTP_200_OK
+        )
 
 class AccessTestAPI(APIView):
     permission_classes = (IsAuthenticated,)
