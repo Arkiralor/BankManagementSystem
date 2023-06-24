@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 
 from auth.permissions import IsAccountantOrTeller
-from analytics_app.helpers import CustomerAnalyticsHelper
+from analytics_app.helpers import CustomerAnalyticsHelper, TransactionAnalyticsHelper
 from core.boilerplate.response_template import Resp
 
 class CustomerAnalyticsAPI(APIView):
@@ -19,6 +19,27 @@ class CustomerAnalyticsAPI(APIView):
         elif criteria == "gender":
             resp = CustomerAnalyticsHelper.get_customers_by_gender()
 
+        else:
+            resp = Resp(
+                error="error",
+                message="Invalid criteria",
+                status_code=status.HTTP_400_BAD_REQUEST
+            )
+
+        return resp.to_response()
+    
+
+class TransactionAnalyticsAPI(APIView):
+    permission_classes = (IsAccountantOrTeller | IsAdminUser,)
+
+    def get(self, request: Request, *args, **kwargs):
+        criteria = request.query_params.get("criteria")
+        if criteria == "type":
+            resp = TransactionAnalyticsHelper.get_txn_by_type()
+        elif criteria == "amount":
+            resp = TransactionAnalyticsHelper.get_txn_by_amount()
+        elif criteria == "date":
+            resp = TransactionAnalyticsHelper.get_txn_by_date()
         else:
             resp = Resp(
                 error="error",

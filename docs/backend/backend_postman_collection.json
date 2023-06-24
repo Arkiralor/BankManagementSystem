@@ -14,7 +14,13 @@
 					"name": "Get Customer Age Groups",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{baseUrl}}/api/analytics/customers/?criteria=ageGroup",
 							"host": [
@@ -156,15 +162,16 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{tellerAccess}}",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/api/analytics/customers/?criteria=gender",
+									"raw": "localhost:8000/api/analytics/customers/?criteria=gender",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
 										"api",
 										"analytics",
@@ -228,9 +235,348 @@
 							"body": "[\n    {\n        \"group\": \"Female\",\n        \"count\": 87\n    },\n    {\n        \"group\": \"Male\",\n        \"count\": 77\n    },\n    {\n        \"group\": \"Other\",\n        \"count\": 86\n    }\n]"
 						}
 					]
+				},
+				{
+					"name": "Get Transactions by Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/transactions/?criteria=type",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"transactions",
+								""
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "type"
+								}
+							]
+						},
+						"description": "API for tellers/accountants to get the number of transactions for each valid type i.e, \n\n1. Cash Deposit\n2. Cash Withdrawal\n3. Account Transfer"
+					},
+					"response": [
+						{
+							"name": "Get Transactions by Type",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/analytics/transactions/?criteria=type",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"analytics",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "criteria",
+											"value": "type"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 24 Jun 2023 02:27:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"group\": \"Account Transfer\",\n        \"count\": 1000\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Transactions by Amount",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/transactions/?criteria=amount",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"transactions",
+								""
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "amount"
+								}
+							]
+						},
+						"description": "API to let tellers/accountants group and count transactions by their amount."
+					},
+					"response": [
+						{
+							"name": "Get Transactions by Amount",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/analytics/transactions/?criteria=amount",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"analytics",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "criteria",
+											"value": "amount"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 24 Jun 2023 02:44:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"group\": \"a. 0-500\",\n        \"count\": 511\n    },\n    {\n        \"group\": \"b. 501-1'000\",\n        \"count\": 236\n    },\n    {\n        \"group\": \"c. 1'001-1'500\",\n        \"count\": 157\n    },\n    {\n        \"group\": \"d. 1'501-2'000\",\n        \"count\": 69\n    },\n    {\n        \"group\": \"e. 2'001-2'500\",\n        \"count\": 27\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Transactions by Date",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tellerAccess}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/transactions/?criteria=date",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"transactions",
+								""
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "date"
+								}
+							]
+						},
+						"description": "API to let tellers/accountants group and count transactions by how old they are i.e, \nwhen they were committed:\n\n1. Today\n2. In the last 7 days\n3. In the last 30 days\n4. In the last 90 days\n5. In the last 180 days\n6. In the last 1 year (365 days)"
+					},
+					"response": [
+						{
+							"name": "Get Transactions by Date",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/analytics/transactions/?criteria=date",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"analytics",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "criteria",
+											"value": "date"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 24 Jun 2023 02:50:14 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.17"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"group\": \"b. Last 7 days\",\n        \"count\": 6\n    },\n    {\n        \"group\": \"c. Last 30 days\",\n        \"count\": 4\n    },\n    {\n        \"group\": \"d. Last 90 days\",\n        \"count\": 13\n    },\n    {\n        \"group\": \"e. Last 180 days\",\n        \"count\": 25\n    },\n    {\n        \"group\": \"f. Last 365 days\",\n        \"count\": 48\n    },\n    {\n        \"group\": \"g. Older than 365 days\",\n        \"count\": 904\n    }\n]"
+						}
+					]
 				}
 			],
-			"description": "This editor contains the analytics functionality of the system. Currently it has two analytics APIs which are supported by helpers in the backend:\n\n1. Group customers by age-group.\n2. Find the number of customers by gender.\n\n_Further analytics functionality is planned for development._"
+			"description": "This editor contains the analytics functionality of the system. Currently it has two analytics APIs which are supported by helpers in the backend:\n\n1. Group customers by age-group.\n2. Find the number of customers by gender.\n    \n\n_Further analytics functionality is planned for development._"
 		},
 		{
 			"name": "Banking App",
@@ -412,7 +758,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
@@ -426,11 +772,10 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000/api/banking/account/?customer=6f9d37a3-7eb6-48a7-863c-3829edc66d01&account",
+									"raw": "{{baseUrl}}/api/banking/account/?customer=6f9d37a3-7eb6-48a7-863c-3829edc66d01&account",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"banking",
@@ -547,7 +892,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
@@ -561,11 +906,10 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000/api/kyc/customer/",
+									"raw": "{{baseUrl}}/api/kyc/customer/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"kyc",
@@ -666,7 +1010,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
@@ -680,11 +1024,10 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000/api/kyc/customer/",
+									"raw": "{{baseUrl}}/api/kyc/customer/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"kyc",
@@ -797,7 +1140,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
@@ -817,11 +1160,10 @@
 									]
 								},
 								"url": {
-									"raw": "localhost:8000/api/kyc/documents/?customer=d4d44a57-d164-4851-980a-3eb2e9dae3b5",
+									"raw": "{{baseUrl}}/api/kyc/documents/?customer=d4d44a57-d164-4851-980a-3eb2e9dae3b5",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"kyc",
@@ -913,9 +1255,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/ledger/entry/",
+							"raw": "{{localDevHost}}/api/ledger/entry/",
 							"host": [
-								"{{baseUrl}}"
+								"{{localDevHost}}"
 							],
 							"path": [
 								"api",
@@ -934,7 +1276,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
@@ -948,11 +1290,10 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000/api/ledger/entry/",
+									"raw": "{{baseUrl}}/api/ledger/entry/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"ledger",
@@ -1062,16 +1403,15 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "localhost:8000/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f&user&from&to",
+									"raw": "{{baseUrl}}/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f&user&from&to",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"ledger",
@@ -1380,7 +1720,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
@@ -1394,11 +1734,10 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f",
+									"raw": "{{baseUrl}}/api/ledger/entry/?id=f3ab4244-4a68-47db-9274-e271f45e387f",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"ledger",
@@ -1505,7 +1844,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"test.user@gmail.com\",\n    \"password\": \"Password@123\"\n}",
+									"raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1513,11 +1852,10 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000/api/user/signup/",
+									"raw": "{{baseUrl}}/api/user/signup/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"user",
@@ -1613,7 +1951,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"test.user@gmail.com\",\n    \"password\": \"Password@123\"\n}",
+									"raw": "{\n    \"email\": \"{{tellerLogin}}\",\n    \"password\": \"{{tellerPassword}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1621,11 +1959,10 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8000/api/user/login/password/",
+									"raw": "{{baseUrl}}/api/user/login/password/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"user",
@@ -1688,7 +2025,7 @@
 				{
 					"name": "Test Authentication",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
@@ -1696,10 +2033,19 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"This\": \"is a test!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/api/user/auth-test/",
+							"raw": "{{localDevHost}}/api/user/auth-test/",
 							"host": [
-								"{{baseUrl}}"
+								"{{localDevHost}}"
 							],
 							"path": [
 								"api",
@@ -1718,16 +2064,15 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "localhost:8000/api/user/auth-test/",
+									"raw": "{{baseUrl}}/api/user/auth-test/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"user",
@@ -1798,9 +2143,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/api/user/info/",
+							"raw": "{{localDevHost}}/api/user/info/",
 							"host": [
-								"{{baseUrl}}"
+								"{{localDevHost}}"
 							],
 							"path": [
 								"api",
@@ -1819,16 +2164,15 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTMyMzk5LCJpYXQiOjE2ODY1MDM1OTksImp0aSI6ImJlNDZkNGY3Mjcx...",
+										"value": "Bearer {{tellerAccess}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "localhost:8000/api/user/info/",
+									"raw": "{{baseUrl}}/api/user/info/",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"user",
