@@ -47,6 +47,9 @@ Please make sure the pre-requisites are satisfied before proceeding with the dev
 6. Copy the `.env` file for the backend into the folder and fill the values as per your local configuration.
 7. Create any new required migrations for the RDBMS using: `python manage.py makemigrations`
 8. Run said migrations for the RDBMS using: `python manage.py migrate`
+   1. At this point, you can generate fake data for the database (`customers`, `accounts`, `transactions`) by running `python manage.py fakedb`.
+   2. Similiarly, you can cleanse the database of all `customers`, `accounts` and `transactions` by running `python manage.py cleardb`.
+   3. __NOTE:__ _These commands will only work when `DEBUG` is set to `True` and the `ENV_TYPE` is set to `DEV` in the environment variables._
 9. Create a new Superuser or Administrator using: `python manage.py createsuperuser`
 
     ___FOR LOCAL DEV MACHINE ONLY___
