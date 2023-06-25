@@ -1,18 +1,18 @@
 from datetime import datetime
 from faker import Faker
+from os import sep, path, makedirs
 from secrets import choice
 from typing import List, Set, Tuple
-from os import sep, path, makedirs
 from uuid import uuid4
 
+from django.conf import settings
 from django.core.files import File
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.conf import settings
 from django.utils._os import safe_join
 
+from kyc_app.helpers import CustomerAPIHelper
 from kyc_app.models import Customer, KnowYourCustomer, KYCDocuments, CustomerAddress
 from kyc_app.model_choices import CustomerChoice
-from kyc_app.helpers import CustomerAPIHelper
 
 from scripts import logger
 
