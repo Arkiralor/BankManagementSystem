@@ -10,7 +10,7 @@ SECRET_KEY = environ.get("SECRET_KEY", "t3mp0r4ry-s3cre4-k3y")
 
 DEBUG = eval(environ.get("DEBUG", "False"))
 ENV_TYPE = environ.get("ENV_TYPE", "PROD").lower()
-MAX_ITEMS_PER_PAGE = 15
+MAX_ITEMS_PER_PAGE = 10
 
 ALLOWED_HOSTS = environ.get("ALLOWED_HOSTS", "").split(", ")
 

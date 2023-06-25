@@ -45,6 +45,28 @@ class BankAccountAPI(APIView):
 class TransactionAPI(APIView):
     permission_classes = (IsAccountantOrTeller | IsAdminUser,)
 
+    def get(self, request: Request, *args, **kwargs):
+        """
+        Retreive the details of a single transaction or all transactions belonging to an individual customer.
+        """
+        transaction_id = request.query_params.get("transaction")
+        authorised_by = request.user
+        upto = request.query_params.get("upto", None)
+        page = request.query_params.get("page", 1)
+
+        if not transaction_id:
+            resp = TransactionHelpers.get_transactions_for_teller(
+                authorised_by=authorised_by, upto=upto, page=page
+            )
+
+        else:
+            resp = TransactionHelpers.retrieve(
+                transaction_id=transaction_id
+            )
+
+        return resp.to_response()
+
+
     def post(self, request: Request, *args, **kwargs):
         data = request.data
         source = data.get("source")

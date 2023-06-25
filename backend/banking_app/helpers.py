@@ -1,6 +1,8 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from typing import List
 
+from django.conf import settings
+from django.core.paginator import Paginator
 from django.db.models import Q, QuerySet, Case, When, CharField, Value
 from django.utils import timezone
 
@@ -14,6 +16,7 @@ from kyc_app.models import Customer, KnowYourCustomer, KYCDocuments, CustomerAdd
 from kyc_app.serializers import CustomerSerializer, KYCDocumentsInputSerializer, KYCDocumentsOutputSerializer, KnowYourCustomerInputSerializer, \
     KnowYourCustomerOutputSerializer, CustomerAddressInputSerializer, CustomerAddressOutputSerializer
 from user_app.models import User
+from user_app.model_choices import UserModelChoices
 
 from banking_app import logger
 
@@ -173,6 +176,64 @@ class AccountHelpers:
 class TransactionHelpers:
 
     MAX_DATE_RANGE: int = 90
+
+    @classmethod
+    def get_transactions_for_teller(cls, authorised_by: User = None, upto: str = None, page: int = 1):
+        resp = Resp()
+
+        if authorised_by is None or not isinstance(authorised_by, User):
+            resp.error = "Invalid User"
+            resp.message = f"User: {authorised_by}"
+            resp.status_code = status.HTTP_400_BAD_REQUEST
+            
+            logger.warn(resp.to_text())
+            return resp
+        
+        if not authorised_by.user_type in (UserModelChoices.teller, UserModelChoices.accountant):
+            resp.error = "Invalid User Type"
+            resp.message = f"You do not have access privileges to view this data."
+            resp.data = {
+                "user_type": authorised_by.user_type,
+                "required_user_type": [
+                    UserModelChoices.teller,
+                    UserModelChoices.accountant
+                ]
+            }
+            resp.status_code = status.HTTP_400_BAD_REQUEST
+            
+            logger.warn(resp.to_text())
+            return resp
+        
+        if upto:
+            upto = datetime.strptime(upto, "%Y-%m-%d").date()
+        elif upto == "":
+            upto = timezone.now().date()
+        else:
+            upto = timezone.now().date()
+        
+        transactions = Transaction.objects.filter(
+            Q(authorised_by=authorised_by)
+            & Q(created__date__lte=upto)
+        )
+
+        paginated = Paginator(transactions, settings.MAX_ITEMS_PER_PAGE)
+        transactions = paginated.get_page(page)
+
+        serialized = TransactionOutputSerializer(transactions, many=True).data
+
+        resp.message = "Transactions Retrieved Successfully"
+        resp.data = {
+            "hits": paginated.count,
+            "pages": paginated.num_pages,
+            "currentPage": page,
+            "results": serialized
+        }
+        resp.status_code = status.HTTP_200_OK
+
+        logger.info(resp.message)
+        return resp
+
+
 
     @classmethod
     def get_account_transactions(cls, account: Account = None, date_from: date = None, date_to: date = None, *args, **kwargs) -> QuerySet[Transaction]:

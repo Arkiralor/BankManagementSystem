@@ -2,6 +2,7 @@ from rest_framework.serializers import ModelSerializer
 
 from banking_app.models import Account, Transaction
 from kyc_app.serializers import CustomerSerializer
+from user_app.serializers import ShowUserSerializer
 
 
 class AccountInputSerializer(ModelSerializer):
@@ -29,6 +30,7 @@ class TransactionInputSerializer(ModelSerializer):
 class TransactionOutputSerializer(ModelSerializer):
     source = AccountInputSerializer()
     destination = AccountInputSerializer()
+    authorised_by = ShowUserSerializer()
 
     class Meta:
         model = Transaction
