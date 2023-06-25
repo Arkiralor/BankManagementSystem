@@ -24,6 +24,26 @@ class Customer(TemplateModel):
         null=True
     )
     last_name = models.CharField(max_length=16)
+
+    email = models.EmailField(
+        max_length=64,
+        validators=[
+            EmailValidator(
+                message="The email address is invalid."
+            )
+        ],
+        unique=True
+    )
+    phone = models.CharField(
+        max_length=15,
+        validators=[
+            RegexValidator(
+                regex=FormatRegex.ISO_PHONE_REGEX,
+                message="The phone number is invalid."
+            )
+        ],
+        unique=True
+    )
     regnal_suffix = models.CharField(
         max_length=10, help_text="I, II, Jr., Sr., etc", blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
@@ -32,6 +52,9 @@ class Customer(TemplateModel):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
+    def __repr__(self) -> str:
+        return self.__str__()
 
     def save(self, *args, **kwargs):
         self.first_name = self.first_name.title()
@@ -55,6 +78,13 @@ class Customer(TemplateModel):
         verbose_name = "Customer"
         verbose_name_plural = "Customers"
 
+        indexes = (
+            models.Index(fields=('id',)),
+            models.Index(fields=('first_name','middle_name','last_name',)),
+            models.Index(fields=('email',)),
+            models.Index(fields=('phone',)),
+        )
+
 
 class KnowYourCustomer(TemplateModel):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
@@ -67,6 +97,12 @@ class KnowYourCustomer(TemplateModel):
     class Meta:
         verbose_name = "Know Your Customer"
         verbose_name_plural = "Know Your Customers"
+
+        indexes = (
+            models.Index(fields=('id',)),
+            models.Index(fields=('customer',)),
+            models.Index(fields=('id_proof_value','address_proof_value',)),
+        )
 
 
 class KYCDocuments(TemplateModel):
@@ -129,6 +165,10 @@ class KYCDocuments(TemplateModel):
     class Meta:
         verbose_name = "KYC Document"
         verbose_name_plural = "KYC Documents"
+        indexes = (
+            models.Index(fields=('id',)),
+            models.Index(fields=('customer',)),
+        )
 
 
 class CustomerAddress(TemplateModel):
@@ -168,3 +208,7 @@ class CustomerAddress(TemplateModel):
     class Meta:
         verbose_name = "Customer Address"
         verbose_name_plural = "Customer Addresses"
+        indexes = (
+            models.Index(fields=('id',)),
+            models.Index(fields=('customer',)),
+        )

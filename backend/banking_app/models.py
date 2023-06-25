@@ -36,14 +36,14 @@ class Account(TemplateModel):
         """
         super(Account, self).save(*args, **kwargs)
 
-    def credit(self, amount: float, *args, **kwargs):
+    def credit(self, amount: float = 0.0, *args, **kwargs):
         """
         Method to credit the account with the given amount.
         """
         self.balance = self.balance + amount
         self.save()
 
-    def debit(self, amount: float, *args, **kwargs):
+    def debit(self, amount: float = 0.0, *args, **kwargs):
         """
         Method to debit the account with the given amount.
         """
@@ -57,6 +57,11 @@ class Account(TemplateModel):
         verbose_name = "Bank Account"
         verbose_name_plural = "Bank Accounts"
         ordering = ("-created",)
+
+        indexes = (
+            models.Index(fields=('id',)),
+            models.Index(fields=('account_number',)),
+        )
 
 
 class Transaction(TemplateModel):
@@ -91,3 +96,8 @@ class Transaction(TemplateModel):
         verbose_name = "Transaction"
         verbose_name_plural = "Transactions"
         ordering = ("-created",)
+
+        indexes = (
+            models.Index(fields=('id',)),
+            models.Index(fields=('destination', 'source')),
+        )

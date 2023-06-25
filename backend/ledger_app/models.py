@@ -28,3 +28,9 @@ class EmployeeLedger(TemplateModel):
         verbose_name = 'Employee Ledger'
         verbose_name_plural = 'Employee Ledgers'
         ordering = ('-created',)
+
+        indexes = (
+            models.Index(fields=('id',)),
+            models.Index(fields=('employee',)),
+            models.Index(fields=('title','body',)),
+        )

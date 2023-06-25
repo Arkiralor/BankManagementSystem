@@ -15,7 +15,7 @@ class CustomerAPI(APIView):
 
     def get(self, request: Request, *args, **kwargs):
 
-        customer_id = request.data.get('customer')
+        customer_id = request.query_params.get('customer')
         resp = CustomerAPIHelper.retrieve(customer_id=customer_id)
         return resp.to_response()
 
@@ -27,23 +27,25 @@ class CustomerAPI(APIView):
 
     def put(self, request: Request, *args, **kwargs):
         query = request.data.get('query')
+        page = int(request.data.get('page', 1))
         resp = CustomerAPIHelper.search(query=query)
         return resp.to_response()
 
 
 class KYCDocumentsAPI(APIView):
     permission_classes = (IsAccountantOrTeller, )
-    # parser_classes = (FileUploadParser,)
 
     ID_PROOF: str = "idProof"
     ADDRESS_PROOF: str = "addressProof"
+    PHOTO: str = "photo"
 
     def put(self, request: Request, *args, **kwargs):
 
         customer_id = request.query_params.get("customer")
         id_proof = request.FILES.get(self.ID_PROOF)
         address_proof = request.FILES.get(self.ADDRESS_PROOF)
+        photo = request.FILES.get(self.PHOTO)
 
         resp = KYCDocumentsAPIHelper.add_documents(
-            customer_id=customer_id, id_proof=id_proof, address_proof=address_proof)
+            customer_id=customer_id, id_proof=id_proof, address_proof=address_proof, photo=photo)
         return resp.to_response()
