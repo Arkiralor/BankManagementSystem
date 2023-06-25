@@ -1,4 +1,7 @@
-from django.db.models import Q, QuerySet
+from django.conf import settings
+from django.core.files.uploadedfile import TemporaryUploadedFile
+from django.core.paginator import Paginator
+from django.db.models import Q, QuerySet, Count, Case, When, Value, IntegerField
 
 from rest_framework import status
 from rest_framework.parsers import FileUploadParser
@@ -14,8 +17,10 @@ from kyc_app import logger
 
 class CustomerAPIHelper:
 
+    ITEMS_PER_PAGE: int = settings.MAX_ITEMS_PER_PAGE
+
     @classmethod
-    def search(cls, query: str = None):
+    def search(cls, query: str = None, page: int = 1):
         """
         Method to search for customers based on their first name, last name, email, phone number or middle name.
         """
@@ -33,19 +38,36 @@ class CustomerAPIHelper:
             Q(first_name__icontains=query)
             | Q(last_name__icontains=query)
             | Q(middle_name__icontains=query)
-        ).distinct().order_by("-created")
+        ).distinct().annotate(
+            relevance=Count(
+                Case(
+                    When(first_name__icontains=query, then=Value(1)),
+                    When(last_name__icontains=query, then=Value(1)),
+                    When(middle_name__icontains=query, then=Value(1)),
+                    default=Value(0),
+                    output_field=IntegerField(),
+                )
+            )
+        ).order_by("-relevance", "-created")
+        paginated = Paginator(customers, cls.ITEMS_PER_PAGE)
+        customers = paginated.get_page(page)
 
         serialized = CustomerSerializer(customers, many=True).data
 
         resp.message = "Customers Retrieved Successfully"
-        resp.data = serialized
+        resp.data = {
+            "totalPages": paginated.num_pages,
+            "currentPage": page,
+            "hits": paginated.count,
+            "results": serialized
+        }
         resp.status_code = status.HTTP_200_OK
 
         logger.info(resp.message)
         return resp
 
     @classmethod
-    def get(cls, customer_id:str=None):
+    def get(cls, customer_id: str = None):
         return Customer.objects.filter(pk=customer_id).first()
 
     @classmethod
@@ -181,11 +203,12 @@ class KYCDocumentsAPIHelper:
 
     @classmethod
     def get(cls, customer_id: str = None):
-        kyc_documents = KYCDocuments.objects.filter(customer__id=customer_id).first()
+        kyc_documents = KYCDocuments.objects.filter(
+            customer__id=customer_id).first()
         if not kyc_documents:
             logger.warn("Invalid Customer ID")
             raise ValueError("Invalid Customer ID")
-        
+
         return kyc_documents
 
     @classmethod
@@ -226,29 +249,48 @@ class KYCDocumentsAPIHelper:
         logger.info(resp.message)
         return resp
 
-
     @classmethod
-    def add_documents(cls, customer_id: str=None, id_proof = None, address_proof = None, *args, **kwargs) -> Resp:
+    def add_documents(
+        cls,
+        customer_id: str = None,
+        id_proof: TemporaryUploadedFile = None,
+        address_proof: TemporaryUploadedFile = None,
+        photo: TemporaryUploadedFile = None,
+        *args,
+        **kwargs
+    ) -> Resp:
         resp = Resp()
 
         kyc_documents = cls.get(customer_id=customer_id)
-        if id_proof:
-            if kyc_documents.id_proof:
-                _ = kyc_documents.id_proof.delete(save=False)
-            kyc_documents.id_proof = id_proof
-        if address_proof:
-            if kyc_documents.address_proof:
-                _ = kyc_documents.address_proof.delete(save=False)
-            kyc_documents.address_proof = address_proof
+        try:
+            if id_proof:
+                if kyc_documents.id_proof:
+                    _ = kyc_documents.id_proof.delete(save=False)
+                kyc_documents.id_proof = id_proof
+            if address_proof:
+                if kyc_documents.address_proof:
+                    _ = kyc_documents.address_proof.delete(save=False)
+                kyc_documents.address_proof = address_proof
+            if photo:
+                if kyc_documents.photo:
+                    _ = kyc_documents.photo.delete(save=False)
+                kyc_documents.photo = photo
 
-        kyc_documents.save()
+            kyc_documents.save()
+        except Exception as ex:
+            resp.error = "Error while adding documents"
+            resp.message = f"{ex}"
+            resp.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+
+            logger.warn(resp.to_text())
+            return resp
+
         resp.message = f"KYC documents successfully updated for customer<{customer_id}>."
         resp.data = KYCDocumentsOutputSerializer(kyc_documents).data
         resp.status_code = status.HTTP_200_OK
 
         logger.info(resp.message)
         return resp
-
 
 
 class CustomerAddressAPIHelper:

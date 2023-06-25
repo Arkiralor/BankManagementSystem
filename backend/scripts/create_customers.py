@@ -157,8 +157,12 @@ class FakeFactory:
             "last_name": last_name,
             "gender": self.gender,
             "date_of_birth": date_of_birth,
-            "regnal_suffix": regnal_suffix
+            "regnal_suffix": regnal_suffix,
+            "email": self.faker.email(),
+            "phone": f"{self.faker.country_calling_code()}{self.randomizer.get_random_number(10)}",
         }
+
+        logger.info(f"Person: {person}")
 
         return person
 
