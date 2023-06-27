@@ -22,7 +22,7 @@ class GetEnvironmentAPI(APIView):
     This API is only accessible by admin users in production/QA.
     """
     if settings.DEBUG:
-        permission_classes = (IsAuthenticated,)
+        permission_classes = (IsAuthenticated | AllowAny,)
     else:
         permission_classes = (IsAdminUser,)
 

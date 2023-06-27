@@ -72,23 +72,11 @@ REDIS_PORT = int(environ.get("REDIS_PORT", 6379))
 REDIS_DB = int(environ.get("REDIS_DB", 0))
 REDIS_PASSWORD = None
 
-print(f"REDIS_HOST: {REDIS_HOST}")
-print(f"REDIS_POST: {REDIS_PORT}")
-print(f"REDIS_DB: {REDIS_DB}")
-print(f"REDIS_PASSWORD: {REDIS_PASSWORD}")
-
 REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 REDIS_CONN = redis.Redis.from_url(REDIS_URL)
 
-
-# WEB_Q = "web"
-# EMAIL_Q = "email"
-# SMS_Q = "sms"
-# NOTIFICATION_Q = "notification"
-# DEFAULT_Q = "default"
-
-# RQ_QUEUES = [rq.Queue(WEB_Q), rq.Queue(EMAIL_Q), rq.Queue(SMS_Q), rq.Queue(NOTIFICATION_Q), rq.Queue(DEFAULT_Q)]
 RQ_QUEUES = {q: {'URL': REDIS_URL} for q in JobQ.ALL_QS}
+RQ_DEFAULT_TIMEOUT = 300
 
 
 
