@@ -8,8 +8,10 @@ DEFAULT_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'django_rq',
     'rest_framework',
     'rest_framework.authtoken',
+    # 'rq',
     'storages'
 ]
 
@@ -18,6 +20,7 @@ CUSTOM_APPS = [
     'analytics_app.apps.AnalyticsAppConfig',
     'banking_app.apps.BankingAppConfig',
     'communications_app.apps.CommunicationsAppConfig',
+    'experiments_app.apps.ExperimentsAppConfig',
     'kyc_app.apps.KycAppConfig',
     'ledger_app.apps.LedgerAppConfig',
     'management_app.apps.ManagementAppConfig',

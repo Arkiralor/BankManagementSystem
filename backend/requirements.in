@@ -5,6 +5,7 @@ django
 django-cors-headers
 django-dotenv
 djangorestframework
+django-rq
 djangorestframework-simplejwt
 django-storages
 faker
@@ -18,5 +19,6 @@ pymongo
 pytest-django
 python-jose[cryptography]
 requests
+rq
 tldextract
 waitress

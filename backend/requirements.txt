@@ -6,6 +6,8 @@
 #
 asgiref==3.6.0
     # via django
+async-timeout==4.0.2
+    # via redis
 autopep8==2.0.2
     # via -r requirements.in
 boto3==1.26.117
@@ -20,8 +22,8 @@ cffi==1.15.1
     # via cryptography
 charset-normalizer==3.1.0
     # via requests
-colorama==0.4.6
-    # via pytest
+click==8.1.3
+    # via rq
 coverage==7.2.3
     # via -r requirements.in
 cryptography==40.0.2
@@ -30,12 +32,15 @@ django==4.2
     # via
     #   -r requirements.in
     #   django-cors-headers
+    #   django-rq
     #   django-storages
     #   djangorestframework
     #   djangorestframework-simplejwt
 django-cors-headers==3.14.0
     # via -r requirements.in
 django-dotenv==1.4.2
+    # via -r requirements.in
+django-rq==2.8.1
     # via -r requirements.in
 django-storages==1.13.2
     # via -r requirements.in
@@ -112,6 +117,10 @@ pytz==2023.3
     # via
     #   djangorestframework
     #   pandas
+redis==4.6.0
+    # via
+    #   django-rq
+    #   rq
 requests==2.28.2
     # via
     #   -r requirements.in
@@ -119,6 +128,10 @@ requests==2.28.2
     #   tldextract
 requests-file==1.5.1
     # via tldextract
+rq==1.15.1
+    # via
+    #   -r requirements.in
+    #   django-rq
 rsa==4.9
     # via python-jose
 s3transfer==0.6.0
@@ -139,9 +152,7 @@ tomli==2.0.1
 typing-extensions==4.5.0
     # via pydantic
 tzdata==2023.3
-    # via
-    #   django
-    #   pandas
+    # via pandas
 urllib3==1.26.15
     # via
     #   botocore

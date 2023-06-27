@@ -15,6 +15,7 @@ urlpatterns = [
     path('api/admin/', include('admin_app.endpoints')),
     path('api/analytics/', include('analytics_app.endpoints')),
     path('api/banking/', include('banking_app.endpoints')),
+    path('api/experiment/', include('experiments_app.endpoints')),
     path('api/kyc/', include('kyc_app.endpoints')),
     path('api/ledger/', include('ledger_app.endpoints')),
     path('api/user/', include('user_app.endpoints')),

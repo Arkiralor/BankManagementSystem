@@ -4,6 +4,11 @@ from os import path, makedirs, environ
 
 from core.apps import DEFAULT_APPS, THIRD_PARTY_APPS, CUSTOM_APPS
 from core.middleware import DEFAULT_MIDDLEWARE, THIRD_PARTY_MIDDLEWARE, CUSTOM_MIDDLEWARE
+from job_handlers.constants import JobQ
+
+
+import redis
+import rq
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = environ.get("SECRET_KEY", "t3mp0r4ry-s3cre4-k3y")
@@ -61,6 +66,30 @@ MONGO_HOST = environ.get("MONGO_HOST")
 MONGO_PORT = int(environ.get("MONGO_PORT", 27017))
 MONGO_USER = environ.get("MONGO_USER", None)
 MONGO_PASSWORD = environ.get("MONGO_PASSWORD", None)
+
+REDIS_HOST = environ.get("REDIS_HOST", "localhost")
+REDIS_PORT = int(environ.get("REDIS_PORT", 6379))
+REDIS_DB = int(environ.get("REDIS_DB", 0))
+REDIS_PASSWORD = None
+
+print(f"REDIS_HOST: {REDIS_HOST}")
+print(f"REDIS_POST: {REDIS_PORT}")
+print(f"REDIS_DB: {REDIS_DB}")
+print(f"REDIS_PASSWORD: {REDIS_PASSWORD}")
+
+REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
+REDIS_CONN = redis.Redis.from_url(REDIS_URL)
+
+
+# WEB_Q = "web"
+# EMAIL_Q = "email"
+# SMS_Q = "sms"
+# NOTIFICATION_Q = "notification"
+# DEFAULT_Q = "default"
+
+# RQ_QUEUES = [rq.Queue(WEB_Q), rq.Queue(EMAIL_Q), rq.Queue(SMS_Q), rq.Queue(NOTIFICATION_Q), rq.Queue(DEFAULT_Q)]
+RQ_QUEUES = {q: {'URL': REDIS_URL} for q in JobQ.ALL_QS}
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
