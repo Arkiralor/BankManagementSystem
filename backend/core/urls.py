@@ -15,7 +15,6 @@ urlpatterns = [
     path('api/admin/', include('admin_app.endpoints')),
     path('api/analytics/', include('analytics_app.endpoints')),
     path('api/banking/', include('banking_app.endpoints')),
-    path('api/experiment/', include('experiments_app.endpoints')),
     path('api/kyc/', include('kyc_app.endpoints')),
     path('api/ledger/', include('ledger_app.endpoints')),
     path('api/user/', include('user_app.endpoints')),
@@ -29,6 +28,7 @@ urlpatterns = [
 if settings.DEBUG and settings.ENV_TYPE.lower() == 'dev':
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns.append(path('api/experiment/', include('experiments_app.endpoints')))
 
 
 logger.info(f"Running in {settings.ENV_TYPE.upper()} mode with DEBUG: {settings.DEBUG}")
