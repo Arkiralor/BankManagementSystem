@@ -15,24 +15,6 @@ from user_app.utils import UserModelUtils, UserProfileModelUtils
 from user_app import logger
 
 
-class GetEnvironmentAPI(APIView):
-    """
-    API to get environment variables.
-
-    This API is only accessible by admin users in production/QA.
-    """
-    if settings.DEBUG:
-        permission_classes = (IsAuthenticated | AllowAny,)
-    else:
-        permission_classes = (IsAdminUser,)
-
-    def post(self, request: Request, *args, **kwargs):
-        return Response(
-            environ,
-            status=status.HTTP_200_OK
-        )
-
-
 class AccessTestAPI(APIView):
     permission_classes = (IsAuthenticated,)
 
