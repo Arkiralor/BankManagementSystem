@@ -81,10 +81,11 @@ class PasswordLoginAPI(APIView):
         resp = UserModelUtils.login_via_password(
             username=username, email=email, password=password)
 
-        _ = UserModelUtils.log_login_ip(
-            user=f"{resp.data.get('user', '')}", request=request)
-        _ = UserModelUtils.log_login_mac(
-            user=f"{resp.data.get('user', '')}", request=request)
+        if not resp.error:
+            _ = UserModelUtils.log_login_ip(
+                user=f"{resp.data.get('user', '')}", request=request)
+            _ = UserModelUtils.log_login_mac(
+                user=f"{resp.data.get('user', '')}", request=request)
         return resp.to_response()
 
 

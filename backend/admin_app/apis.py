@@ -53,7 +53,7 @@ class RequestLogsAPI(APIView):
         term = request.query_params.get("term", None)
         page = int(request.query_params.get("page", 1))
 
-        if term:
+        if term and term != "":
             resp = RequestLogUtils.find_by_text(term=term, page=page)
 
         else:
