@@ -15,10 +15,26 @@ This is not the software that a bank's customer might use to manage their accoun
 The sub-techstack for the backend, specifically is as follows:
 
 1. The core language in which it is written in, is Python, specifically the `CPython` variant.
-2. The framework used for Python (_I am not masochistic enough to implement everything myself, from scratch_) is [Django](https://some-domain.com), extended via [Django-RestFramework](https://some-domain.com).
+2. The framework used for Python (_I am not masochistic enough to implement everything myself, from scratch_) is [Django](https://www.djangoproject.com/), extended via [Django-RestFramework](https://www.django-rest-framework.org/).
 3. Long-term (_non-archival_) and operational data (_data used by the system to execute its main functions_) storage for critical tasks is done via a relational database, specifically: PostgreSQL as it is the most advanced, reliable and extensible RDBMS in the market as of writing this (c. 2023)
 4. Non-structured data-warehousing and storage of non-critical data is accomplished via a noSQL database, specifically: MongoDB.
-5. Dependencies for Python are managed by `setup-tools` via a `requirements.in` file.
+5. Task-queuing is implemented done in `Redis` via `rq` and connected to Django via `django-rq`.
+6. Dependencies for Python are managed by `setup-tools` via a `requirements.in` file.
+
+## Individual Applications
+
+The following are the individual `django applications` created via the `python manage.py startapp <app name>` command. Non-app modules are not named here as they are only to _facilitate_ the working of these applications.
+
+1. __[Admin](./admin_app/):__ Used to extend functionalities provided by Django to administrators via independent APIs.
+2. __[Analytics](./analytics_app/):__ Used to provide analytics functionalities to moderators/analysts via APIs.
+3. __[Banking](./banking_app/):__ Houses APIs to facilitate banking acitivies such as account creation/update and transaction recording.
+4. __[Communications](./communications_app/):__ Used to hold communications (SMS, email, Whatsapp, _et cetera_) functionalities and APIs.
+5. __[Experiments](./experiments_app/):__ Used to hold experimental APIs and functionalities for development purposes.
+6. __[Know Your Customer](./kyc_app/):__ Used to hold customer data such as: personal details, addresses, ID and Address proofs, _et cetera_ and their related methods/APIs.
+7. __[Ledger](./ledger_app/):__ Used to facilitate `tellers`/`accountants` in creating/maintaining their daily ledgers i.e, work diaries.
+8. __[Management](./management_app/):__ Used to store custom management commands for the [backend codebase](.).
+9. __[Middleware](./middleware_app/):__ Used to hold custom middleware for the [backend codebase](.), more details can be found in the [internal readme](./middleware_app/middlewares/README.MD).
+10. __[User](./user_app/):__ Used to hold methods/APIs to facilitate user-management and user-authentication.
 
 ## Setup
 
@@ -26,14 +42,16 @@ Please make sure the pre-requisites are satisfied before proceeding with the dev
 
 ### Pre-Requisites
 
-1. __Console:__ [Bash](https://some-domain.com)
-   - [GitBash](https://some-domain.com) for Windows
-2. __Language Compiler/Interpreter:__ [Python v3.9 (CPython)](https://some-domain.com)
+1. __Console:__ [Bash (_Born Again SHell_)](https://www.gnu.org/software/bash/)
+   - [GitBash](https://git-scm.com/download/win) for Windows
+2. __Language Compiler/Interpreter:__ [Python v3.9 (CPython)](https://www.python.org/downloads/release/python-3917/)
    - I have no idea if PyPI will work; it was created via CPython.
-3. __Relational Database Management System:__ [PostgreSQL](https://some-domain.com) and [PGAdmin4](https://some-domain.com)
+3. __Relational Database Management System:__ [PostgreSQL](https://www.postgresql.org/download/) and [PGAdmin4](https://www.pgadmin.org/download/)
    - While PGAdmin is not strictly necessary, it makes working with PostgreSQL a whole lot easier.
-4. __noSQL Database Management System:__ [MongoDB Community](https://some-domain.com) and [MongoDB Compass](https://some-domain.com)
+4. __noSQL Database Management System:__ [MongoDB Community](https://www.mongodb.com/try/download/community) and [MongoDB Compass](https://www.mongodb.com/products/compass)
    - Same case as PGAdmin; while compass is not strictly necessary, it makes the whole ordeal a lot simpler.
+5. __In-Memory Data Structure/Store:__ [Redis](https://redis.io/)
+   - Redis is used to handle queued jobs in the `backend` and caching in the `frontend`/`app`.
 
 ### Development Setup
 
@@ -43,7 +61,7 @@ Please make sure the pre-requisites are satisfied before proceeding with the dev
 3. Install the dependency management package via: `python -m pip install pip-tools`
 4. Install the listed dependencies by running: `sh scripts/install_dependencies.sh`
    1. In UNIX systems, you might need to run `sudo chmod +x scripts/*.sh` before executing the script mentioned above to give it and the rest of the shell-scripts execution permission(s).
-5. Create instances of a PostgreSQL database and a MongoDB cluster.
+5. Create instances of a PostgreSQL database, a MongoDB cluster and a Redis server.
 6. Copy the `.env` file for the backend into the folder and fill the values as per your local configuration.
 7. Create any new required migrations for the RDBMS using: `python manage.py makemigrations`
 8. Run said migrations for the RDBMS using: `python manage.py migrate`
@@ -117,12 +135,19 @@ OTP_ATTEMPT_LIMIT = How many login attempts before being blocked
 OTP_ATTEMPT_TIMEOUT = How long to block for
 
 ## Amazon Web Services Settings:
+USE_AWS_S3 = True | False
 SNS_SENDER_ID = ""
 AWS_ACCESS_KEY_ID = ""
 AWS_SECRET_ACCESS_KEY = ""
 AWS_REGION_NAME = ""
 AWS_STORAGE_BUCKET_NAME = ""
 AWS_S3_ARN = ""
+
+## Redis Settings:
+REDIS_HOST = "The machine where your redis server instance is hosted"
+REDIS_PORT = "The post of the redis-server instance"
+REDIS_DB = "Which redis instance (database) at the URI you need to access; not needed if it is the deafult db i.e, 0"
+REDIS_PASSWORD = "The password (if set) of the redis server instance"
 ```
 
 ## Documentation
