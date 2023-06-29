@@ -41,3 +41,31 @@ _It should be noted that we would want to set up a [Celery](https://docs.celeryq
 ### Final Thoughts
 
 Of cource this is a very crude and simple implementation of the logic and can be modified further. Afterall, this entire repository is only to be used as a template to set up your own codebase. For example, you can replace the `noSQL` database with a `Graph` database to take the distance between nodes (user IP adresses) into consideration when rejecting or accepting an access token.
+
+
+## [Request Logger](request_logger.py)
+
+Logging which endpoints are accessed/requested by which user is essential for today's RESTful web-applications as they form a core component of your site-wide analytics. The logged-data can be used to predict traffic for certain resources (APIs) at certain time-periods and when certain outside criteria are met; this can be used to provide additional load-balances to those resources if the additional traffic is desired or rate-limiters can be placed on those endpoints if the additional traffic is undesired. Similarly, a reduction in traffic can be further handled by revoking additional load balancers and/or rate-limiters.
+
+These logs also help to identify the critical resources of the backend i.e, the top ~10% of the APIs that see ~90% of the traffic, irrespective of the time-period; in any web-application, these are the resources that merit the most optimization from a cost-vs-profit metric.
+
+### Working Theory
+
+1. Whenever a request is recieved by the backend, they "pass-through" all the middlewares described in the `settings.py` file in order of their listing in said module; our `request_logger` is listed towards the very bottom of the list so that the request only reaches it after it has already been recieved by the bulk of the security-related middlewares.
+
+2. Once it reaches the middleware of concern, the request is dissected into its constituent elements namely, the following.
+
+    1. `method`
+    2. `path`
+    3. `cookies`
+    4. `headers`
+    5. `params`
+    6. `user`
+
+    The user can be extracted similiarly to the middleware above, by decripting the `Authorization` field in the `header`.
+
+3. From there, it can either be stored in the prescribed `MongoDB` collection or the `PostgreSQL` table.
+
+#### Addendum
+
+It should be noted that the APIs and functionality to parse these logs are available in the `analytics_app` and the `admin_app`, via REST APIs.
