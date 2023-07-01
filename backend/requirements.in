@@ -13,6 +13,7 @@ gunicorn
 motor
 pandas
 pillow
+psutil
 psycopg2-binary
 pydantic
 pymongo

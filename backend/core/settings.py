@@ -75,8 +75,7 @@ REDIS_PASSWORD = None
 REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 REDIS_CONN = redis.Redis.from_url(REDIS_URL)
 
-RQ_QUEUES = {q: {'URL': REDIS_URL} for q in JobQ.ALL_QS}
-RQ_DEFAULT_TIMEOUT = 300
+RQ_QUEUES = {q: {'URL': REDIS_URL, 'DEFAULT_TIMEOUT': 480} for q in JobQ.ALL_QS}
 
 
 
@@ -98,6 +97,13 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10/min',
+        'user': '60/min'
+    },
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
     )
 }
 

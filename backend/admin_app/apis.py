@@ -8,11 +8,28 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.views import APIView
 
+from admin_app.helpers import SystemInfoAPIHelpers
 from admin_app.utils import RequestLogUtils
 from auth.permissions import IsModerator
 from core.boilerplate.response_template import Resp
 
 from admin_app import logger
+
+
+class GetSystemInfo(APIView):
+    if settings.DEBUG:
+        permission_classes = (IsAuthenticated | AllowAny,)
+    else:
+        permission_classes = (IsAdminUser,)
+
+    def get(self, request: Request) -> Response:
+        """
+        Get system information.
+        """
+        resp = SystemInfoAPIHelpers.get_hw_info()
+
+        return resp.to_response()
+
 
 class GetEnvironmentAPI(APIView):
     """
@@ -30,21 +47,22 @@ class GetEnvironmentAPI(APIView):
             environ,
             status=status.HTTP_200_OK
         )
-    
+
+
 class RequestLogsAPI(APIView):
     permission_classes = (IsModerator,)
 
-    def get(self, request:Request, *args, **kwargs):
+    def get(self, request: Request, *args, **kwargs):
         """
         Get all request Logs by page.
         """
         page = int(request.query_params.get("page", 1))
 
         resp = RequestLogUtils.get(page=page)
-        
+
         return resp.to_response()
-    
-    def post(self, request:Request, *args, **kwargs):
+
+    def post(self, request: Request, *args, **kwargs):
         """
         Search for a request by a given term or path.
         """
@@ -57,7 +75,7 @@ class RequestLogsAPI(APIView):
             resp = RequestLogUtils.find_by_text(term=term, page=page)
 
         else:
-            resp = RequestLogUtils.find_by_path(method=method, path=path, page=page)
+            resp = RequestLogUtils.find_by_path(
+                method=method, path=path, page=page)
 
-        
         return resp.to_response()
