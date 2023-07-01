@@ -103,6 +103,7 @@ class RequestLogger(object):
             method = request.method
             path = request.path
             cookies = request.COOKIES
+            ## NOTE (prithoo): This is commented out because it is not needed for the current use case.
             body = request.body
             headers = request.headers
             params = request.GET
