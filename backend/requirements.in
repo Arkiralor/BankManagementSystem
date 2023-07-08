@@ -3,6 +3,7 @@ boto3
 coverage
 django
 django-cors-headers
+django_cron
 django-dotenv
 djangorestframework
 django-rq

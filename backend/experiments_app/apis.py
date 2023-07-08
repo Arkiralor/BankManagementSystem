@@ -18,7 +18,8 @@ class TestEnqueue(APIView):
 
     def get(self, request: Request) -> Response:
         job_id = request.query_params.get('job', None)
-        instance = get_job(job_id=job_id, job_q='default')
+        job_q = request.query_params.get('jobQ', 'default')
+        instance = get_job(job_id=job_id, job_q=job_q)
 
         return Response(
             RQJobSerializer(instance).data,

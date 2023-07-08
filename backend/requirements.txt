@@ -32,11 +32,14 @@ django==4.2
     # via
     #   -r requirements.in
     #   django-cors-headers
+    #   django-cron
     #   django-rq
     #   django-storages
     #   djangorestframework
     #   djangorestframework-simplejwt
 django-cors-headers==3.14.0
+    # via -r requirements.in
+django-cron==0.6.0
     # via -r requirements.in
 django-dotenv==1.4.2
     # via -r requirements.in

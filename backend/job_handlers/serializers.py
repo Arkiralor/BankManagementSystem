@@ -1,6 +1,8 @@
 import pickle
 
-from rest_framework.serializers import CharField, DateTimeField, Serializer, SerializerMethodField
+from rest_framework.serializers import CharField, DateTimeField, Serializer, SerializerMethodField, ModelSerializer
+
+from job_handlers.models import EnqueuedJob
 
 
 class RQJobSerializer(Serializer):
@@ -48,3 +50,10 @@ class RQJobSerializer(Serializer):
         Return the value of the `origin` attribute as `queue`.
         """
         return getattr(obj, 'origin', None)
+
+
+class EnqueuedJobSerializer(ModelSerializer):
+
+    class Meta:
+        model = EnqueuedJob
+        fields = '__all__'

@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token-verify'),
     path('api/token/blacklist/', TokenBlacklistView.as_view(), name='token-blacklist'),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/images/favicon.ico'))),
+    path('django-rq/', include('django_rq.urls')),
 ]
 
 if settings.DEBUG and settings.ENV_TYPE.lower() == 'dev':

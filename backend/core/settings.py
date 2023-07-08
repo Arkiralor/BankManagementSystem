@@ -3,8 +3,9 @@ from pathlib import Path
 from os import path, makedirs, environ
 
 from core.apps import DEFAULT_APPS, THIRD_PARTY_APPS, CUSTOM_APPS
+from core.cron_classes import JOB_HANDLER_CLASSES, USER_APP_CLASSES
 from core.middleware import DEFAULT_MIDDLEWARE, THIRD_PARTY_MIDDLEWARE, CUSTOM_MIDDLEWARE
-from job_handlers.constants import JobQ
+from core.rq_constants import JobQ
 
 
 import redis
@@ -67,17 +68,19 @@ MONGO_PORT = int(environ.get("MONGO_PORT", 27017))
 MONGO_USER = environ.get("MONGO_USER", None)
 MONGO_PASSWORD = environ.get("MONGO_PASSWORD", None)
 
-REDIS_HOST = environ.get("REDIS_HOST", "localhost")
-REDIS_PORT = int(environ.get("REDIS_PORT", 6379))
-REDIS_DB = int(environ.get("REDIS_DB", 0))
-REDIS_PASSWORD = None
+USE_REDIS = eval(environ.get("USE_REDIS", "True"))
+if USE_REDIS:
+    REDIS_HOST = environ.get("REDIS_HOST", "localhost")
+    REDIS_PORT = int(environ.get("REDIS_PORT", 6379))
+    REDIS_DB = int(environ.get("REDIS_DB", 0))
+    REDIS_PASSWORD = None
 
-REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
-REDIS_CONN = redis.Redis.from_url(REDIS_URL)
+    REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
+    REDIS_CONN = redis.Redis.from_url(REDIS_URL)
 
-RQ_QUEUES = {q: {'URL': REDIS_URL, 'DEFAULT_TIMEOUT': 480} for q in JobQ.ALL_QS}
+    RQ_QUEUES = {q: {'URL': REDIS_URL, 'DEFAULT_TIMEOUT': 480,} for q in JobQ.ALL_QS}
 
-
+CRON_CLASSES = JOB_HANDLER_CLASSES + USER_APP_CLASSES
 
 AUTH_PASSWORD_VALIDATORS = [
     {
